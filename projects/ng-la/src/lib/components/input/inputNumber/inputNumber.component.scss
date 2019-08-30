@@ -1,0 +1,44 @@
+.grid-la-input {
+    display: grid;
+    grid-row-gap: 5px;
+    grid-template-rows: auto 30px auto ;
+    grid-template-columns: auto;
+    grid-template-areas: 'label'
+                         'input'
+                         'validate';
+  
+    .label {
+      grid-area: label;
+      height: 12px;
+      margin-bottom: 5px;
+
+      span {
+          color: red;
+      }
+    }
+  
+    .input {
+      grid-area: input;
+      width: 100%;
+      height: 100%;
+      box-shadow: none;
+  
+      &:hover:enabled {
+        border: 1px solid black;
+      }
+
+      &.ng-invalid {
+        border: 1px solid red;
+      }
+    }
+
+    .validate {
+        grid-area: validate;
+        color: red;
+    }
+  }
+  
+  .disabled {
+    pointer-events:none;
+  }
+  

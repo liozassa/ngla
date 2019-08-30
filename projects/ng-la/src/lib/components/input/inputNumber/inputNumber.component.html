@@ -1,0 +1,11 @@
+<div class="grid-la-input" [ngClass]="{disabled: disabled}">
+    <label class="label" *ngIf="label !== undefined">
+        <span *ngIf="required">*&nbsp;</span>
+        {{ label }}
+    </label>
+    <input class="input" type="number" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
+        [required]="required"
+        [min]="min"
+        [max]="max">
+    <span class="validate" *ngIf="validate() !== null">{{ getError() }}</span>
+</div>

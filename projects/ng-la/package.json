@@ -1,0 +1,10 @@
+{
+  "name": "ng-la",
+  "version": "0.0.1",
+  "author": "Lioz assa <liozassa@gmail.com>",
+  "peerDependencies": {
+    "@angular/common": "^8.2.3",
+    "@angular/core": "^8.2.3",
+    "@angular/forms": "^8.2.3"
+  }
+}
