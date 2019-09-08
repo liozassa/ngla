@@ -26,6 +26,7 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
   @Input() placeholder: boolean;
 
   @Input() showErrors: boolean;
+  @Input() validateErrors: {};
   @Input() required: boolean;
   @Input() min: number;
   @Input() max: number;
@@ -58,8 +59,10 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
     this.change.emit(this.value);
   }
 
-  writeValue(value: any): void {
-    if (value) {
+  writeValue(value: number): void {
+    if (!Number.isInteger(value)) {
+      console.error(`Error: la-inputNumber - Invalid ${value} value for ngModel field.`);
+    } else {
       this.value = value;
     }
   }
@@ -73,37 +76,32 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
   }
 
   validate() {
-    if (!this.showErrors) {
-      return null;
-    }
-    const validates = [];
-    if (!this.value && this.required) {
-      validates.push({ 'required': 'Please fill out this field.' });
-      // validates.push({ 'required': 'Please choose a option.' });
+    const validates = {};
+    if (!Number.isInteger(this.value) && this.value !== 0 && this.required) {
+      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
     }
 
     
-    if (this.min > 0) {
-      if (!this.value || this.value < this.min) {
-        validates.push({ 'min': 'Please fill out this field.' });
+    if (Number.isInteger(this.min)) {
+      if (!Number.isInteger(this.value) || this.value < this.min) {
+        validates['min'] = this.validateErrors && this.validateErrors['min'] ? this.validateErrors['min'] : `The value must be less than ${this.min}.`;
       }
     }
 
     
-    if (this.max > 0) {
-      if (!this.value || this.value > this.max) {
-        validates.push({ 'max': 'Please fill out this field.' });
+    if (Number.isInteger(this.max)) {
+      if (!Number.isInteger(this.value) || this.value > this.max) {
+        validates['max'] = this.validateErrors && this.validateErrors['max'] ? this.validateErrors['max'] : `The value must be greater than ${this.max}.`;
       }
     }
-    
-    console.log('validates', validates);
-    return validates.length !== 0 ? validates : null;
+    return validates !== {} ? validates : null;
   }
 
   getError() {
-    const errors = this.validate()[0];
-    const firstError = Object.values(errors)[0];
-    console.log('first error', firstError);
-    return firstError;
+    if (!this.showErrors) {
+      return null;
+    }
+
+    return Object.values(this.validate())[0];;
   }
 }

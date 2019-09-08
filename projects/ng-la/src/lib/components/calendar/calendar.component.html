@@ -1,0 +1,56 @@
+<div class="la-calendar">
+
+  <div class="la-calendar-years">
+    <div class="la-calendar-years-item la-calendar-years-back" (click)="prevYear()">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+        <g>
+          <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="la-calendar-years-item la-calendar-years-name">{{ currentDate.format('YYYY') }}</div>
+    <div class="la-calendar-years-item la-calendar-years-next" (click)="nextYear()">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+        <g>
+          <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="la-calendar-months">
+    <div class="la-calendar-months-item la-calendar-months-back" (click)="prevMonth()">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+        <g>
+          <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="la-calendar-months-item la-calendar-months-name">{{ currentDate.format('MMMM') }}</div>
+    <div class="la-calendar-months-item la-calendar-months-next" (click)="nextMonth()">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+        <g>
+          <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="la-calendar-headers">
+    <span class="la-calendar-headers-label" *ngFor="let name of dayNames"><b>{{ name }}</b></span>
+  </div>
+  
+  <div class="la-calendar-days">
+    <div class="la-calendar-days-week" *ngFor="let week of weeks">
+      <ng-container *ngFor="let day of week">
+        <div class="la-calendar-days-label" [ngClass]="{'today': isToday(day.mDate),
+                    'selected': isSelected(day.mDate),
+                    'enabled': isSelectedMonth(day.mDate), 'disabled': !isSelectedMonth(day.mDate)}"
+                    (click)="selectDate(day)">
+                    {{ day.mDate.date() }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+  

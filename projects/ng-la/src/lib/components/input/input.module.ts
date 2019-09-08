@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { LaInputTextComponent } from './inputText/inputText.component';
-import { LaInputDirective } from './input.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
@@ -10,8 +9,7 @@ import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
 @NgModule({
   declarations: [
     LaInputTextComponent,
-    LaInputNumberComponent,
-    LaInputDirective
+    LaInputNumberComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +17,7 @@ import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
   ],
   exports: [
     LaInputTextComponent,
-    LaInputNumberComponent,
-    LaInputDirective
+    LaInputNumberComponent
   ],
 })
 export class LaInputModule { }

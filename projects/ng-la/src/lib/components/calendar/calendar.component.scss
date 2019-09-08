@@ -1,0 +1,144 @@
+$pink: #ffcdd2;
+
+.la-calendar {
+    display: grid;
+    grid-row-gap: 5px;
+    grid-template-rows: 30px 30px auto;
+    grid-template-areas: 'years'
+                         'months'
+                         'headers'
+                         'days';
+
+    .la-calendar-years {
+        grid-area: years;
+        display: grid;
+        grid-column-gap: 10px;
+        grid-template-columns: 30px auto 30px;
+        grid-template-areas: 'back name next';
+
+        .la-calendar-years-item {
+
+            &.la-calendar-years-back {
+                grid-area: back;
+                cursor: pointer;
+                text-align: left;
+                padding: 15%;
+        
+                svg {
+                  height: 60%;
+                  width: 60%;
+                }
+            }
+    
+            &.la-calendar-years-name {
+                grid-area: name;
+                place-self: center;
+            }
+    
+            &.la-calendar-years-next {
+                grid-area: next;
+                cursor: pointer;
+                text-align: right;
+                padding: 15%;
+        
+                svg {
+                  height: 60%;
+                  width: 60%;
+                }
+            }
+        }
+    }
+    
+    .la-calendar-months {
+        grid-area: months;
+        display: grid;
+        grid-column-gap: 10px;
+        grid-template-columns: 30px auto 30px;
+        grid-template-areas: 'back name next';
+
+        .la-calendar-months-item {
+
+            &.la-calendar-months-back {
+                grid-area: back;
+                cursor: pointer;
+                text-align: left;
+                padding: 15%;
+        
+                svg {
+                  height: 60%;
+                  width: 60%;
+                }
+            }
+    
+            &.la-calendar-months-name {
+                grid-area: name;
+                place-self: center;
+            }
+    
+            &.la-calendar-months-next {
+                grid-area: next;
+                cursor: pointer;
+                text-align: right;
+                padding: 15%;
+        
+                svg {
+                  height: 60%;
+                  width: 60%;
+                }
+            }
+        }
+    }
+
+    .la-calendar-headers {
+        grid-area: headers;
+        display: grid;
+        grid-gap: 0px;
+        grid-template-columns: repeat(7, 30px);
+        grid-template-rows: 30px;
+
+        .la-calendar-headers-label {
+            place-self: center;
+        }
+    }
+
+    .la-calendar-days {
+        grid-area: days;
+        display: grid;
+        grid-gap: 0px;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(5, 30px);
+
+        .la-calendar-days-week {
+            display: grid;
+            grid-gap: 0px;
+            grid-template-columns: repeat(7, 30px);
+
+            .la-calendar-days-label {
+                padding: 5px;
+                text-align: center;
+
+                &.enabled {
+                    cursor: pointer;
+                    &:hover {
+                        background-color: lightgray;
+                        border-radius: 25%;
+                    }
+                }
+
+                &.selected {
+                    color: white;
+                    background-color: $pink;
+                    border-radius: 25%;
+                }
+            
+                &.disabled {
+                    color: gray;
+                }
+
+                &.today {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

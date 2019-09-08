@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { NgLaComponent } from './ng-la.component';
-import { LaInputModule } from './components/input/input.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { LaInputModule } from './components/input/input.module';
+import { LaDropDownModule } from './components/dropdownlist/dropdown.module';
+import { LaCalendarModule } from './components/calendar/calendar.module';
 
 
 
@@ -14,11 +17,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   exports: [
     NgLaComponent,
-    LaInputModule
+    LaInputModule,
+    LaDropDownModule,
+    LaCalendarModule
   ]
 })
 export class NgLaModule { }

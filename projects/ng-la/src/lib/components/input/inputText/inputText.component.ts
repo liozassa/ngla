@@ -26,6 +26,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
   @Input() placeholder: boolean;
 
   @Input() showErrors: boolean;
+  @Input() validateErrors: {};
   @Input() required: boolean;
   @Input() minlength: number;
   @Input() maxlength: number;
@@ -53,14 +54,18 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
     this.showErrors = false;
    }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    console.log('required', this.required);
+  }
 
   ngOnChanges() {
     this.change.emit(this.value);
   }
 
-  writeValue(value: any): void {
-    if (value) {
+  writeValue(value: string): void {
+    if (value === undefined) {
+      console.error(`Error: la-inputText - Invalid ${value} value for ngModel field.`);
+    } else {
       this.value = value;
     }
   }
@@ -74,36 +79,31 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
   }
 
   validate() {
-    if (!this.showErrors) {
-      return null;
-    }
-    const validates = []
+    const validates = {};
     if (!this.value && this.required) {
-      validates.push({ 'required': 'Please fill out this field.' });
-      // validates.push({ 'required': 'Please choose a option.' });
+      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
     }
     
-    if (this.minlength > 0) {
+    if (Number.isInteger(this.minlength) && this.minlength > 0) {
       if (!this.value || this.value.length < this.minlength) {
-        validates.push({ 'minlength': 'Please fill out this field.' });
+        validates['minlength'] = this.validateErrors && this.validateErrors['minlength'] ? this.validateErrors['minlength'] : `The value must contain more than ${this.minlength} characters.`;
       }
     }
 
     
-    if (this.maxlength > 0) {
+    if (Number.isInteger(this.maxlength) && this.maxlength > 0) {
       if (!this.value || this.value.length > this.maxlength) {
-        validates.push({ 'maxlength': 'Please fill out this field.' });
+        validates['maxlength'] = this.validateErrors && this.validateErrors['maxlength'] ? this.validateErrors['maxlength'] : `The value must contain less than ${this.maxlength} characters.`;
       }
     }
-    
-    console.log('validates', validates);
-    return validates.length !== 0 ? validates : null;
+    return validates!== {} ? validates : null;
   }
 
   getError() {
-    const errors = this.validate()[0];
-    const firstError = Object.values(errors)[0];
-    console.log('first error', firstError);
-    return firstError;
+    if (!this.showErrors) {
+      return null;
+    }
+    
+    return Object.values(this.validate())[0];;
   }
 }

@@ -1,10 +1,16 @@
 {
   "name": "ng-la",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "author": "Lioz assa <liozassa@gmail.com>",
   "peerDependencies": {
-    "@angular/common": "^8.2.3",
-    "@angular/core": "^8.2.3",
-    "@angular/forms": "^8.2.3"
+    "@angular/common": "^8.2.5",
+    "@angular/core": "^8.2.5",
+    "@angular/forms": "^8.2.5",
+    "@angular/animations": "^8.2.5",
+    "@angular/platform-browser": "^8.2.4",
+    "@angular/platform-browser-dynamic": "^8.2.4",
+    "moment": "^2.24.0"
+  },
+  "dependencies": {
   }
 }

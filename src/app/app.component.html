@@ -1,25 +1,33 @@
 <div class="grid-container">
     <div class="input text">
-      <la-inputText [label]="'Input Text'" [(ngModel)]="textEmptyExample" [showErrors]="true"></la-inputText>
+      <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [showErrors]="true"></la-inputText>
     </div>
 
     <div class="input text">
-      <la-inputText [label]="'Input Text (required)'" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
+      <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
     </div>
 
     <div class="input text">
-      <la-inputText [label]="'Input Text (with errors)'" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
+      <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2" [showErrors]="true" [validateErrors]=validateErrors></la-inputText>
     </div>
 
     <div class="input text">
-      <la-inputText [label]="'Input Text (read only)'" [(ngModel)]="textExample" [showErrors]="false" [readonly]="true"></la-inputText>
+      <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [showErrors]="false" [readonly]="true"></la-inputText>
     </div>
 
     <div class="input text">
-      <la-inputText [label]="'Input Text (disabled)'" [(ngModel)]="textExample" [showErrors]="false" [disabled]="true"></la-inputText>
+      <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [showErrors]="false" [disabled]="true"></la-inputText>
     </div>
 
     <div class="input number">
-      <la-inputNumber [label]="'Input Number (min: 0)'" [(ngModel)]="numberExample" [showErrors]="false" [min]="0"></la-inputNumber>
+      <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [showErrors]="true" [min]="0"></la-inputNumber>
+    </div>
+
+    <div class="dropdown">
+      <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
+    </div>
+
+    <div class="calendar">
+      <la-calendar></la-calendar>
     </div>
 </div>
