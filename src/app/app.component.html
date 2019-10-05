@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" dir="rtl">
     <div class="input text">
       <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [showErrors]="true"></la-inputText>
     </div>
@@ -23,11 +23,31 @@
       <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [showErrors]="true" [min]="0"></la-inputNumber>
     </div>
 
+    <div class="calendar">
+      <la-calendar [(ngModel)]="date" [rtl]="true" type="birthday" language="he"></la-calendar>
+    </div>
+
+    <div class="date-picker">
+      <la-datepicker [(ngModel)]="date2" label="Date Picker" [rtl]="true"></la-datepicker>
+    </div>
+
     <div class="dropdown">
       <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
     </div>
 
-    <div class="calendar">
-      <la-calendar></la-calendar>
+    <div class="select-button">
+      <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender" [rtl]="true"></la-selectbutton>
+    </div>
+
+    <div class="switch-button">
+      <la-switchbutton label="Switch Button (done)" [(ngModel)]="done" [rtl]="true"></la-switchbutton>
+    </div>
+
+    <div class="done value">
+      Date: {{ date | date: 'dd-MM-yyyy' }}
+    </div>
+
+    <div class="done value">
+      Date: {{ date2 | date: 'dd-MM-yyyy' }}
     </div>
 </div>

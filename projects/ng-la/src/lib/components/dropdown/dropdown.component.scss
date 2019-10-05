@@ -1,7 +1,9 @@
+@import '../../common/variables.scss';
+
 .la-dropdown {
     display: grid;
-    grid-row-gap: 5px;
-    grid-template-rows: auto 30px auto auto;
+    grid-row-gap: $component-row-gap;
+    grid-template-rows: $component-label-height 30px auto auto;
     grid-template-areas: 'label'
                          'content'
                          'menu'
@@ -71,7 +73,7 @@
       overflow-y: auto;
       padding: 0;
       margin: 0px;
-      z-index: 1;
+      z-index: 1000;
       list-style: none;
   
       li {

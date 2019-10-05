@@ -1,7 +1,9 @@
+@import '../../../common/variables.scss';
+
 .grid-la-input {
     display: grid;
-    grid-row-gap: 5px;
-    grid-template-rows: auto 30px auto ;
+    grid-row-gap: $component-row-gap;
+    grid-template-rows: $component-label-height 30px auto ;
     grid-template-columns: auto;
     grid-template-areas: 'label'
                          'input'

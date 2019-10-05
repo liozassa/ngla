@@ -1,0 +1,138 @@
+@import '../../common/variables.scss';
+
+@mixin hideInput {width: 0; height: 0; position: absolute; left: -9999px;}
+
+@mixin focusOutline {outline: dotted 1px #CCC; outline-offset: .45rem;}
+
+@mixin breakpoint($point) {
+	@if $point == 1100 {
+		@media (max-width: 1100px) { @content ; }
+	}
+	@else if $point == 800 {
+		@media (max-width: 800px) { @content ; }
+	}
+}
+
+.la-selectbutton-grid {
+    display: grid;
+    background-color: transparent;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-row-gap: $component-row-gap;
+    grid-template-rows: $component-label-height 30px auto;
+    grid-template-areas: 'label'
+                         'toggle'
+                         'validate';
+
+    .la-selectbutton-item {
+  
+        &.label {
+          grid-area: label;
+          height: 12px;
+          margin-bottom: 5px;
+
+          span {
+              color: red;
+          }
+        }
+      
+        &.toggle {
+            grid-area: toggle;
+            margin: 0 0 1.5rem;
+            box-sizing: border-box;
+            font-size: 0;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            
+            div {
+                margin: 0;
+                padding: 2vh 1vw;
+                box-sizing: border-box;
+                position: relative;
+                display: inline-block;
+                border: solid 1px #DDD;
+                background-color: #FFF;
+                font-size: 2vh;
+                line-height: .5vh;
+                //font-weight: 600;
+                text-align: center;
+                box-shadow: 0 0 0 rgba(255,255,255,0);
+                transition: border-color .15s ease-out, 
+                            color .25s ease-out, 
+                            background-color .15s ease-out,
+                            box-shadow .15s ease-out;
+
+                &:first-of-type {
+                    border-radius: 6px 0 0 6px;
+                    border-right: none;
+                }
+
+                &:last-of-type {
+                    border-radius: 0 6px 6px 0;
+                    border-left: none;
+                }
+
+                &:hover {
+                    border-color: #213140;
+                }
+
+                &.selected {
+                    background-color: $pink;
+                    color: #FFF;
+                    box-shadow: 0 0 10px rgba(#66B3FB, .5);
+                    border-color: $pink;
+                    z-index: 1;
+                }
+            }
+
+            /*@include breakpoint(800) {
+                input + label {
+                    padding: 2vh 1vw;
+                    flex: 0 0 50%;
+                    display: flex; justify-content: center; align-items: center;
+                }
+            }*/
+        }
+    }
+
+    .la-selectbutton-validate {
+      grid-area: validate;
+      color: red;
+      font-size: 12px;
+      margin-top: -10px;
+    }
+
+
+
+    &.la-rtl {
+
+        .la-selectbutton-item {
+      
+            &.toggle {
+                :first-of-type {
+                    border-radius: 0 6px 6px 0;
+                    border-left: none;
+                    border-right: solid 1px #DDD;
+                }
+
+                :last-of-type {
+                    border-radius: 6px 0 0 6px;
+                    border-right: none;
+                    border-left: solid 1px #DDD;
+                }
+
+                :hover {
+                    border-color: #213140;
+                }
+            }
+        }
+    }
+}
+  
+.disabled {
+    pointer-events:none;
+}

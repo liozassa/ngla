@@ -1,39 +1,30 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges } from '@angular/core';
 import { LaSelectItem } from '../../common/models';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms';
 
 @Component({
-  selector: 'la-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
+  selector: 'la-selectbutton',
+  templateUrl: './selectbutton.component.html',
+  styleUrls: ['./selectbutton.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => LaDropdownComponent),
+      useExisting: forwardRef(() => LaSelectbuttonComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaDropdownComponent),
+      useExisting: forwardRef(() => LaSelectbuttonComponent),
       multi: true
     }
-  ],
-  animations: [
-    trigger('ddlopen', [
-      state('small', style({ height: '0px'})),
-      state('large', style({ height: '100px'})),
-      transition('small <=> large', animate('400ms ease-in'))
-    ])
   ]
 })
+export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
 
-export class LaDropdownComponent implements OnInit {
-
-  @Input() options: LaSelectItem[];
   @Input() label: string;
+  @Input() options: LaSelectItem[];
   @Input() disabled: boolean;
-  @Input() placeholder: string = 'Select one option';
+  @Input() rtl: boolean;
 
   @Input() showErrors: boolean;
   @Input() validateErrors: {};
@@ -49,21 +40,12 @@ export class LaDropdownComponent implements OnInit {
       this._value = option.value;
       this.onChange(val);
       this.onTouched();
-      this.selectedItem = option ? option.label : this.placeholder;
-    } else {
-      this.selectedItem = this.placeholder || 'Selece one option';
     }
-    this.state = 'small';
   }
+  private _value: any;
 
   @Output() change = new EventEmitter();
 
-
-  selectedItem: string;
-  state: string = 'small';
-
-
-  private _value: any;
 
   onChange: any = () => { };
   onTouched: any = () => { };
@@ -74,7 +56,7 @@ export class LaDropdownComponent implements OnInit {
     this.showErrors = false;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   ngOnChanges() {
@@ -82,8 +64,8 @@ export class LaDropdownComponent implements OnInit {
   }
 
   writeValue(value: any): void {
-    if (!value) {
-      console.error(`Error: la-dropdown - Invalid ${value} value for ngModel field.`);
+    if (value !== null && !Number.isInteger(value)) {
+      console.error(`Error: la-selectbutton - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }
@@ -101,21 +83,12 @@ export class LaDropdownComponent implements OnInit {
     this.disabled = disabled;
   }
 
-  openDdl() {
-    if (this.disabled) {
-      return;
-    }
-
-    this.animateMe();
-  }
-
-  selecteItem(value: string) {
+  selectItem(value: string) {
     this.value = value;
   }
 
-
-  animateMe() {
-    this.state = (this.state === 'small' ? 'large' : 'small');
+  isSelected(value: string) {
+    return this.value === value;
   }
 
   validate() {
@@ -133,5 +106,4 @@ export class LaDropdownComponent implements OnInit {
     }
     return Object.values(this.validate())[0];;
   }
-
 }

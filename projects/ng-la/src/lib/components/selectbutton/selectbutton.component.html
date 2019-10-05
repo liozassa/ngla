@@ -1,0 +1,14 @@
+<div class="la-selectbutton-grid" [ngClass]="{ 'la-rtl': rtl }">
+    <label class="la-selectbutton-item label" *ngIf="label !== undefined">
+        <span *ngIf="required">*&nbsp;</span>
+        {{ label }}
+    </label>
+
+    <div class="la-selectbutton-item toggle">
+        <div *ngFor="let option of options" [ngClass]="{ 'selected': isSelected(option.value) }" (click)="selectItem(option.value)">
+            {{ option.label }}
+        </div>
+    </div>
+
+    <span class="la-selectbutton-validate" *ngIf="getError() !== null">{{ getError() }}</span>
+</div>

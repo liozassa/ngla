@@ -1,0 +1,117 @@
+@import '../../common/variables.scss';
+
+.la-switchbutton-grid {
+    display: grid;
+    background-color: transparent;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-row-gap: $component-row-gap;
+    grid-template-rows: $component-label-height 30px auto;
+    grid-template-areas: 'label'
+                         'toggle'
+                         'validate';
+
+    .la-switchbutton-item {
+  
+        &.label {
+          grid-area: label;
+          height: 12px;
+          margin-bottom: 5px;
+
+          span {
+              color: red;
+          }
+        }
+      
+        &.toggle {
+            grid-area: toggle;
+
+            .toggle-btn {
+                display: inline-block;
+                outline: 0;
+                width: 4em;
+                height: 2em;
+                position: relative;
+                cursor: pointer;
+                user-select: none;
+                background: #fbfbfb;
+                border-radius: 2em;
+                padding: 2px;
+                transition: all 0.4s ease;
+                border: 1px solid #e8eae9;
+              
+                &:focus::after, &:active::after {
+                  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08), inset 0px 0px 0px 1.5px #9c9c9c;
+                }
+              
+                &::after {
+                    left: 0;
+                    position: relative;
+                    display: block;
+                    content: '';
+                    width: 50%;
+                    height: 100%;
+                    border-radius: 2em;
+                    background: #fbfbfb;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+                    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+                }
+              
+                &.toggle-btn-on {
+                    &::after {
+                        left: 50%;
+                    }
+                
+                    background: $pink;
+                
+                    &:active {
+                        box-shadow: none;
+                
+                        &::after {
+                        margin-left: -0.8em;
+                        }
+                    }
+                }
+              
+                &:active::after {
+                    padding-right: 0.8em;
+                }
+            }
+              
+            .toggle-input {
+                display: none;
+            }
+        }
+    }
+
+    .la-selectbutton-validate {
+      grid-area: validate;
+      color: red;
+      font-size: 12px;
+      margin-top: -10px;
+    }
+
+    &.la-rtl {
+
+        .la-switchbutton-item {
+            
+            &.toggle {
+
+                .toggle-btn {
+                    &::after {
+                        left: -50%;
+                    }
+
+                    &.toggle-btn-on {
+                        &::after {
+                            left: 0;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

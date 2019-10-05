@@ -1,0 +1,13 @@
+<div class="la-datepicker-grid">
+  <label class="la-datepicker-item label" *ngIf="label !== undefined">
+    <span *ngIf="required">*&nbsp;</span>
+    {{ label }}
+  </label>
+  <div class="la-datepicker-item content" (click)="showCalendar = !showCalendar">
+    <input class="la-datepicker-content-input" id="la-date" [ngModel]="value | date: 'dd-MM-yyyy'" (ngModelChange)="value=$event" readonly> <!-- (change)="value = parseDate($event.target.value)" -->
+    <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }"></div>
+  </div>
+  <div class="la-datepicker-item calendar" *ngIf="showCalendar">
+    <la-calendar [ngModel]="date" [rtl]="rtl" [language]="language" (ngModelChange)="value=$event"></la-calendar>
+  </div>
+</div>

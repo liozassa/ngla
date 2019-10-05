@@ -55,7 +55,6 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
    }
 
   ngOnInit() { 
-    console.log('required', this.required);
   }
 
   ngOnChanges() {

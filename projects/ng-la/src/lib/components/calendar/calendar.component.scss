@@ -1,7 +1,9 @@
-$pink: #ffcdd2;
+@import '../../common/variables.scss';
 
 .la-calendar {
     display: grid;
+    height: auto;
+    border: 0.5px solid lightgrey;
     grid-row-gap: 5px;
     grid-template-rows: 30px 30px auto;
     grid-template-areas: 'years'
@@ -12,7 +14,7 @@ $pink: #ffcdd2;
     .la-calendar-years {
         grid-area: years;
         display: grid;
-        grid-column-gap: 10px;
+        // grid-column-gap: 10px;
         grid-template-columns: 30px auto 30px;
         grid-template-areas: 'back name next';
 
@@ -23,11 +25,8 @@ $pink: #ffcdd2;
                 cursor: pointer;
                 text-align: left;
                 padding: 15%;
-        
-                svg {
-                  height: 60%;
-                  width: 60%;
-                }
+                background: url('./left-arrow.svg') no-repeat center;
+                background-size: 50%;
             }
     
             &.la-calendar-years-name {
@@ -40,11 +39,8 @@ $pink: #ffcdd2;
                 cursor: pointer;
                 text-align: right;
                 padding: 15%;
-        
-                svg {
-                  height: 60%;
-                  width: 60%;
-                }
+                background: url('./right-arrow.svg') no-repeat center;
+                background-size: 50%;
             }
         }
     }
@@ -52,7 +48,7 @@ $pink: #ffcdd2;
     .la-calendar-months {
         grid-area: months;
         display: grid;
-        grid-column-gap: 10px;
+        // grid-column-gap: 10px;
         grid-template-columns: 30px auto 30px;
         grid-template-areas: 'back name next';
 
@@ -63,11 +59,8 @@ $pink: #ffcdd2;
                 cursor: pointer;
                 text-align: left;
                 padding: 15%;
-        
-                svg {
-                  height: 60%;
-                  width: 60%;
-                }
+                background: url('./left-arrow.svg') no-repeat center;
+                background-size: 50%;
             }
     
             &.la-calendar-months-name {
@@ -80,11 +73,8 @@ $pink: #ffcdd2;
                 cursor: pointer;
                 text-align: right;
                 padding: 15%;
-        
-                svg {
-                  height: 60%;
-                  width: 60%;
-                }
+                background: url('./right-arrow.svg') no-repeat center;
+                background-size: 50%;
             }
         }
     }
@@ -92,9 +82,9 @@ $pink: #ffcdd2;
     .la-calendar-headers {
         grid-area: headers;
         display: grid;
-        grid-gap: 0px;
         grid-template-columns: repeat(7, 30px);
         grid-template-rows: 30px;
+        justify-content: space-between;	
 
         .la-calendar-headers-label {
             place-self: center;
@@ -104,14 +94,17 @@ $pink: #ffcdd2;
     .la-calendar-days {
         grid-area: days;
         display: grid;
-        grid-gap: 0px;
-        grid-template-columns: 100%;
+        // grid-gap: 0px;
+        grid-template-columns: auto;
         grid-template-rows: repeat(5, 30px);
 
         .la-calendar-days-week {
             display: grid;
-            grid-gap: 0px;
             grid-template-columns: repeat(7, 30px);
+            grid-template-rows: auto;
+            //justify-items: center;
+            justify-content: space-between;	
+            align-items: stretch;
 
             .la-calendar-days-label {
                 padding: 5px;
@@ -121,14 +114,14 @@ $pink: #ffcdd2;
                     cursor: pointer;
                     &:hover {
                         background-color: lightgray;
-                        border-radius: 25%;
+                        border-radius: 50%;
                     }
                 }
 
                 &.selected {
                     color: white;
                     background-color: $pink;
-                    border-radius: 25%;
+                    border-radius: 50%;
                 }
             
                 &.disabled {
@@ -137,6 +130,33 @@ $pink: #ffcdd2;
 
                 &.today {
                     font-weight: bold;
+                }
+            }
+        }
+    }
+
+    &.la-rtl {
+        .la-calendar-years {
+            .la-calendar-years-item {
+                &.la-calendar-years-back {
+                    background: url('./right-arrow.svg') no-repeat center;
+                    background-size: 50%;
+                }
+                &.la-calendar-years-next {
+                    background: url('./left-arrow.svg') no-repeat center;
+                    background-size: 50%;
+                }
+            }
+        }
+        .la-calendar-months {
+            .la-calendar-months-item {
+                &.la-calendar-months-back {
+                    background: url('./right-arrow.svg') no-repeat center;
+                    background-size: 50%;
+                }
+                &.la-calendar-months-next {
+                    background: url('./left-arrow.svg') no-repeat center;
+                    background-size: 50%;
                 }
             }
         }
