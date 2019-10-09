@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.numberExample = 0;
-    this.gender = 1;
+    // this.gender = 1;
     this.done = true;
     this.date = new Date('2019-10-13');
     this.date2 = new Date('2019-10-03');
@@ -31,7 +31,8 @@ export class AppComponent implements OnInit {
   getGenderDataSource() {
     return [
       { label: 'male', value: 1},
-      { label: 'female', value: 2}
+      { label: 'female', value: 2},
+      { label: 'trans', value: 3}
     ]
   }
 }

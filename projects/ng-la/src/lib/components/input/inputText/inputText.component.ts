@@ -40,22 +40,24 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
     this.onChange(this._value);
     this.onTouched();
   }
+  private _value: any;
 
   @Output() change = new EventEmitter();
 
-  private _value: any;
   private onChange: any = () => { };
   private onTouched: any = () => { };
+
+  hasChange:boolean;
 
   constructor() {
     this.required = false;
     this.disabled = false;
     this.readonly = false;
     this.showErrors = false;
+    this.hasChange = false;
    }
 
-  ngOnInit() { 
-  }
+  ngOnInit() { }
 
   ngOnChanges() {
     this.change.emit(this.value);
@@ -79,6 +81,11 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
 
   validate() {
     const validates = {};
+
+    if (!this.hasChange) {
+      return null;
+    }
+
     if (!this.value && this.required) {
       validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
     }
@@ -95,14 +102,20 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
         validates['maxlength'] = this.validateErrors && this.validateErrors['maxlength'] ? this.validateErrors['maxlength'] : `The value must contain less than ${this.maxlength} characters.`;
       }
     }
-    return validates!== {} ? validates : null;
+    
+    return Object.keys(validates).length ? validates : null;
   }
 
   getError() {
-    if (!this.showErrors) {
+    if (!this.showErrors || !this.onChange) {
       return null;
     }
     
-    return Object.values(this.validate())[0];;
+    const validates = this.validate();
+    if (!validates) {
+      return null;
+    }
+
+    return Object.values(this.validate())[0];
   }
 }

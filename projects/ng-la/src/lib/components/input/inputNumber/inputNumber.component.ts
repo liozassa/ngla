@@ -47,6 +47,8 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
   private onChange: any = () => { };
   private onTouched: any = () => { };
 
+  hasChange:boolean;
+
   constructor() {
     this.required = false;
     this.disabled = false;
@@ -77,6 +79,11 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
 
   validate() {
     const validates = {};
+
+    if (!this.hasChange) {
+      return null;
+    }
+    
     if (!Number.isInteger(this.value) && this.value !== 0 && this.required) {
       validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
     }
@@ -94,14 +101,19 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
         validates['max'] = this.validateErrors && this.validateErrors['max'] ? this.validateErrors['max'] : `The value must be greater than ${this.max}.`;
       }
     }
-    return validates !== {} ? validates : null;
+    return Object.keys(validates).length ? validates : null;
   }
 
   getError() {
-    if (!this.showErrors) {
+    if (!this.showErrors || !this.onChange) {
+      return null;
+    }
+    
+    const validates = this.validate();
+    if (!validates) {
       return null;
     }
 
-    return Object.values(this.validate())[0];;
+    return Object.values(this.validate())[0];
   }
 }

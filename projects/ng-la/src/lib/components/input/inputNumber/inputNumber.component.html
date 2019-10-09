@@ -3,7 +3,7 @@
         <span *ngIf="required">*&nbsp;</span>
         {{ label }}
     </label>
-    <input class="input" type="number" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
+    <input class="input" [ngClass]="{'la-changed': hasChange}" type="number" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
         [required]="required"
         [min]="min"
         [max]="max">

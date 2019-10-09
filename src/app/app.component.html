@@ -1,8 +1,8 @@
 <div class="grid-container" dir="rtl">
     <div class="input text">
-      <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [showErrors]="true"></la-inputText>
+      <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
     </div>
-
+    
     <div class="input text">
       <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
     </div>
@@ -50,4 +50,5 @@
     <div class="done value">
       Date: {{ date2 | date: 'dd-MM-yyyy' }}
     </div>
+    
 </div>

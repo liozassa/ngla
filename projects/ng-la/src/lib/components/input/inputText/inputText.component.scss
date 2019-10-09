@@ -30,7 +30,9 @@
       }
 
       &.ng-invalid {
-        border: 1px solid red;
+        &.la-changed {
+          border: 1px solid red;
+        }
       }
     }
 

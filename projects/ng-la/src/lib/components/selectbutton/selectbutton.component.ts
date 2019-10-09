@@ -97,13 +97,19 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, Va
       validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please choose a option.';
     }
     
-    return validates!== {} ? validates : null;
+    return Object.keys(validates).length ? validates : null;
   }
 
   getError() {
     if (!this.showErrors) {
       return null;
     }
-    return Object.values(this.validate())[0];;
+    
+    const validates = this.validate();
+    if (!validates) {
+      return null;
+    }
+
+    return Object.values(this.validate())[0];
   }
 }

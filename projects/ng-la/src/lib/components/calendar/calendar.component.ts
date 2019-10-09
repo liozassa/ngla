@@ -85,7 +85,6 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   }
 
   writeValue(value: Date | null): void {
-    console.log('calendar writeValue', value);
     if (value) {
       this.currentDate = moment(value);
       this.value = value;
@@ -157,7 +156,6 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   }
 
   fillDates(selectedMoment: moment_.Moment): CalendarDate[] {
-    console.log('selectedMoment', selectedMoment);
     const firstOfMonth = moment(selectedMoment).startOf('month').day();
     const firstDayOfGrid = moment(selectedMoment).startOf('month').subtract(firstOfMonth, 'days');
     const start = firstDayOfGrid.date();
@@ -194,7 +192,7 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
         validates['maxlength'] = this.validateErrors && this.validateErrors['maxlength'] ? this.validateErrors['maxlength'] : `The value must contain less than ${this.maxlength} characters.`;
       }
     }*/
-    return validates!== {} ? validates : null;
+    return Object.keys(validates).length ? validates : null;
   }
 
   getError() {
@@ -202,7 +200,12 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
       return null;
     }
     
-    return Object.values(this.validate())[0];;
+    const validates = this.validate();
+    if (!validates) {
+      return null;
+    }
+
+    return Object.values(this.validate())[0];
   }
 
 }

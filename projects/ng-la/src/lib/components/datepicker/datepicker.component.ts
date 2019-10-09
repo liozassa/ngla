@@ -78,8 +78,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   }
 
   writeValue(value: Date | null): void {
-    console.log('datepicker writeValue', value);
-    console.log('datepicker showCalendar', this.showCalendar);
     if (value) {
       // this.value = new Date(value.setHours(0,0,0,0));
       this.value = value;

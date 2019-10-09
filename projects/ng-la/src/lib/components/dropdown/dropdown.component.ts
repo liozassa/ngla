@@ -34,6 +34,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
   clickout(event) {
     if(!this.eRef.nativeElement.contains(event.target)) {
       this.state = 'small';
+      this.hasChange = true;
     }
   }
 
@@ -69,6 +70,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
 
   selectedItem: string;
   state: string = 'small';
+  hasChange:boolean;
 
 
   
@@ -80,6 +82,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
     this.required = false;
     this.disabled = false;
     this.showErrors = false;
+    this.hasChange = false;
   }
 
   ngOnInit(): void {
@@ -123,23 +126,37 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
 
 
   animateMe() {
+    if (this.state === 'large') {
+      this.hasChange = true;
+    }
     this.state = (this.state === 'small' ? 'large' : 'small');
   }
 
   validate() {
     const validates = {};
+
+    if (!this.hasChange) {
+      return null;
+    }
+
     if (!this.value && this.required) {
       validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please choose a option.';
     }
     
-    return validates!== {} ? validates : null;
+    return Object.keys(validates).length ? validates : null;
   }
 
   getError() {
-    if (!this.showErrors) {
+    if (!this.showErrors || !this.onChange) {
       return null;
     }
-    return Object.values(this.validate())[0];;
+    
+    const validates = this.validate();
+    if (!validates) {
+      return null;
+    }
+
+    return Object.values(this.validate())[0];
   }
 
 }

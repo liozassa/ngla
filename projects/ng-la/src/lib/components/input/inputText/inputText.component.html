@@ -3,9 +3,10 @@
         <span *ngIf="required">*&nbsp;</span>
         {{ label }}
     </label>
-    <input class="la-input-content" type="text" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
+    <input class="la-input-content" [ngClass]="{'la-changed': hasChange}" type="text" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
         [required]="required"
         [minlength]="minlength"
-        [maxlength]="maxlength">
+        [maxlength]="maxlength"
+        (blur)="hasChange = true">
     <span class="la-input-validate" *ngIf="validate() !== null">{{ getError() }}</span>
 </div>

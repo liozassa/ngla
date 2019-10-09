@@ -6,7 +6,6 @@
     padding: 0px;
     width: 100%;
     height: 100%;
-    display: grid;
     grid-template-rows: $component-label-height $component-row-gap 30px auto;
     grid-template-areas: 'label'
                          '.'
@@ -47,7 +46,7 @@
                 border: none;
         
                 &:focus {
-                outline:none;
+                    outline:none;
                 }
             }
       
