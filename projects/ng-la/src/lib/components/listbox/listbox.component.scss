@@ -2,15 +2,16 @@
 
 .la-listbox-grid {
   display: grid;
-  grid-template-columns: auto 30px;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: auto;
+  grid-template-rows:30px auto 30px;
+  grid-auto-rows: 0;
   background-color: white;
-  height: 100%;
   overflow: hidden;
+  height: 100%;
   border: 1px solid lightgrey;
-  grid-template-areas: 'header add'
-                       'list list'
-                       'footer footer';
+  grid-template-areas: 'header'
+                       'list'
+                       'footer';
 
   
   
@@ -24,31 +25,34 @@
     text-align: center;
     font-size: 2.5vh;
 
-    &.add {
-      grid-area: add;
-      height: 30px;
-      line-height: 30px;
-      background: $pink url('./plus.svg') no-repeat center;
-      background-size: 50%;
-    }
-
     &.header {
-      grid-area: header;
+      // grid-area: header;
+      display: grid;
+      grid-template-columns: auto 30px;
       background-color: $pink;
       height: 30px;
       line-height: 30px;
+
+      .la-listbox-header {
+
+        &.add {
+          background: $pink url('./plus.svg') no-repeat center;
+          background-size: 50%;
+        }
+      }
     }
 
     &.list {
-      grid-area: list;
+      // grid-area: list;
       background-color: white;
       overflow-x: hidden;
       overflow-y: auto;
+      height: 96%;
       padding: 2%;
     }
 
     &.footer {
-      grid-area: footer;
+      // grid-area: footer;
       background-color: $pink;
       height: 30px;
       line-height: 30px;
