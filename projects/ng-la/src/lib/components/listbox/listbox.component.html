@@ -3,6 +3,8 @@
         <span> {{ header }} </span>
     </div>
 
+    <div class="la-listbox-item add" *ngIf="showAddButton" (click)="add()"></div>
+
     <div class="la-listbox-item list">
         <ng-content select=".la-items"></ng-content>
     </div>

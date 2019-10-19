@@ -1,7 +1,7 @@
 <div class="grid-container" dir="rtl">
 
   <div class="listbox">
-    <la-listbox header="Persons" footer="Count: {{ persons.length }}">
+    <la-listbox header="Persons" footer="Count: {{ persons.length }}" [showAddButton]="true" (addItem)="addPerson()">
       <div class="la-items">
         <ng-container *ngFor="let person of persons">
           <la-card [person]="person"></la-card>

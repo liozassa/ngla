@@ -20,69 +20,14 @@ export class AppComponent implements OnInit {
 
   persons = [
     {
-      name: 'lioz',
-      age: 31,
-      phone: '050-8114396'
+      name: 'person1',
+      age: 1,
+      phone: '050-1234567'
     },
     {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
-    },
-    {
-      name: 'meytal',
-      age: 31,
-      phone: '050-8114394'
+      name: 'person2',
+      age: 2,
+      phone: '050-1234567'
     }
   ];
 
@@ -103,5 +48,15 @@ export class AppComponent implements OnInit {
       { label: 'female', value: 2},
       { label: 'trans', value: 3}
     ]
+  }
+
+  addPerson() {
+    const person = {
+      name: 'person' + (this.persons.length + 1),
+      age: (this.persons.length + 1),
+      phone: '050-1234567'
+    };
+
+    this.persons.push(person);
   }
 }

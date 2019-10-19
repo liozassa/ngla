@@ -1,6 +1,6 @@
 {
   "name": "ng-la",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "author": "Lioz assa <liozassa@gmail.com>",
   "peerDependencies": {
     "@angular/common": "^8.2.5",

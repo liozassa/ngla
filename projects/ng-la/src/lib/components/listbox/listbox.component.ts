@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChild, Input } from '@angular/core';
+import { Component, OnInit, ContentChild, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'la-listbox',
@@ -9,10 +9,19 @@ export class LaListBoxComponent implements OnInit {
 
   @Input() header: string;
   @Input() footer: any;
+  @Input() showAddButton: boolean;
 
-  constructor() { }
+  @Output() addItem: EventEmitter<any> = new EventEmitter();
+
+  constructor() { 
+    this.showAddButton = false;
+  }
 
   ngOnInit() {
+  }
+
+  add() {
+    this.addItem.emit();
   }
 
 }
