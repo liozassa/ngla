@@ -10,6 +10,7 @@ import { LaCalendarModule } from './components/calendar/calendar.module';
 import { LaDatepickerModule } from './components/datepicker/datepicker.module';
 import { LaSelectbuttonModule } from './components/selectbutton/selectbutton.module';
 import { LaSwitchbuttonModule } from './components/switchbutton/switchbutton.module';
+import { LaListBoxModule } from './components/listbox/listbox.module';
 
 
 
@@ -30,7 +31,8 @@ import { LaSwitchbuttonModule } from './components/switchbutton/switchbutton.mod
     LaCalendarModule,
     LaDatepickerModule,
     LaSelectbuttonModule,
-    LaSwitchbuttonModule
+    LaSwitchbuttonModule,
+    LaListBoxModule
   ]
 })
 export class NgLaModule { }

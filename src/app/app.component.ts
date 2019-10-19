@@ -18,6 +18,75 @@ export class AppComponent implements OnInit {
   date: Date;
   date2: Date;
 
+  persons = [
+    {
+      name: 'lioz',
+      age: 31,
+      phone: '050-8114396'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    },
+    {
+      name: 'meytal',
+      age: 31,
+      phone: '050-8114394'
+    }
+  ];
+
+
   constructor() { }
 
   ngOnInit(): void {

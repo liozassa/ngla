@@ -11,3 +11,5 @@ export * from './lib/components/dropdown/public_api';
 export * from './lib/components/calendar/public_api';
 export * from './lib/components/datepicker/public_api';
 export * from './lib/components/selectbutton/public_api';
+export * from './lib/components/switchbutton/public_api';
+export * from './lib/components/listbox/public_api';

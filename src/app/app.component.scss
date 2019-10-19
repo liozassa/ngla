@@ -3,7 +3,7 @@
     width: auto;
     grid-gap: 40px;
     grid-template-columns: auto auto auto auto;
-    // grid-template-areas: 'input trigger';
+    grid-template-rows: 200px auto auto auto;
 
     .dropdown { 
         height: 60px;

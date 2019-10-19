@@ -1,4 +1,15 @@
 <div class="grid-container" dir="rtl">
+
+  <div class="listbox">
+    <la-listbox header="Persons" footer="Count: {{ persons.length }}">
+      <div class="la-items">
+        <ng-container *ngFor="let person of persons">
+          <la-card [person]="person"></la-card>
+        </ng-container>
+      </div>
+    </la-listbox>
+  </div>
+
     <div class="input text">
       <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
     </div>

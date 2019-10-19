@@ -1,0 +1,13 @@
+<div class="la-listbox-grid">
+    <div class="la-listbox-item header" *ngIf="header">
+        <span> {{ header }} </span>
+    </div>
+
+    <div class="la-listbox-item list">
+        <ng-content select=".la-items"></ng-content>
+    </div>
+
+    <div class="la-listbox-item footer" *ngIf="footer">
+        <span> {{ footer }} </span>
+    </div>
+</div>
