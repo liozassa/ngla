@@ -13,3 +13,5 @@ export * from './lib/components/datepicker/public_api';
 export * from './lib/components/selectbutton/public_api';
 export * from './lib/components/switchbutton/public_api';
 export * from './lib/components/listbox/public_api';
+export * from './lib/components/dialog/public_api';
+export * from './lib/components/button/public_api';

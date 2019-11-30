@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms'
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
 
 @Component({
   selector: 'la-inputText',
@@ -10,15 +10,10 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } fro
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LaInputTextComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaInputTextComponent),
-      multi: true
     }
   ]
 })
-export class LaInputTextComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @Input() label: string;
   @Input() readonly: boolean;
@@ -26,7 +21,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
   @Input() placeholder: boolean;
 
   @Input() showErrors: boolean;
-  @Input() validateErrors: {};
+  @Input() invalidError: string;
   @Input() required: boolean;
   @Input() minlength: number;
   @Input() maxlength: number;
@@ -59,7 +54,12 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
 
   ngOnInit() { }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    const errorMsg: SimpleChange = changes.invalidError;
+    if (errorMsg ) {
+      console.log('errorMsg currentValue', errorMsg.currentValue);
+      // this.errors = errors.currentValue;
+    }
     this.change.emit(this.value);
   }
 
@@ -77,45 +77,5 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, Valid
 
   registerOnTouched(fn) {
     this.onTouched = fn;
-  }
-
-  validate() {
-    const validates = {};
-
-    if (!this.hasChange) {
-      return null;
-    }
-
-    if (!this.value && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
-    }
-    
-    if (Number.isInteger(this.minlength) && this.minlength > 0) {
-      if (!this.value || this.value.length < this.minlength) {
-        validates['minlength'] = this.validateErrors && this.validateErrors['minlength'] ? this.validateErrors['minlength'] : `The value must contain more than ${this.minlength} characters.`;
-      }
-    }
-
-    
-    if (Number.isInteger(this.maxlength) && this.maxlength > 0) {
-      if (!this.value || this.value.length > this.maxlength) {
-        validates['maxlength'] = this.validateErrors && this.validateErrors['maxlength'] ? this.validateErrors['maxlength'] : `The value must contain less than ${this.maxlength} characters.`;
-      }
-    }
-    
-    return Object.keys(validates).length ? validates : null;
-  }
-
-  getError() {
-    if (!this.showErrors || !this.onChange) {
-      return null;
-    }
-    
-    const validates = this.validate();
-    if (!validates) {
-      return null;
-    }
-
-    return Object.values(this.validate())[0];
   }
 }

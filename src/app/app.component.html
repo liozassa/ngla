@@ -10,56 +10,91 @@
     </la-listbox>
   </div>
 
-    <div class="input text">
-      <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
-    </div>
-    
-    <div class="input text">
-      <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
-    </div>
+  <div class="showOkDialog">
+    <button (click)="showOkDialog = true"> Show OK Dialog </button>
+  </div>
 
-    <div class="input text">
-      <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2" [showErrors]="true" [validateErrors]=validateErrors></la-inputText>
-    </div>
+  <div class="showYesNoDialog">
+    <button (click)="showYesNoDialog = true"> Show Yes|No Dialog </button>
+  </div>
 
-    <div class="input text">
-      <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [showErrors]="false" [readonly]="true"></la-inputText>
-    </div>
+  <div class="input text">
+    <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
+  </div>
+  
+  <div class="input text">
+    <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
+  </div>
 
-    <div class="input text">
-      <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [showErrors]="false" [disabled]="true"></la-inputText>
-    </div>
+  <div class="input text">
+    <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2" [showErrors]="true"></la-inputText>
+  </div>
 
-    <div class="input number">
-      <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [showErrors]="true" [min]="0"></la-inputNumber>
-    </div>
+  <div class="input text">
+    <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [showErrors]="false" [readonly]="true"></la-inputText>
+  </div>
 
-    <div class="calendar">
-      <la-calendar [(ngModel)]="date" [rtl]="true" type="birthday" language="he"></la-calendar>
-    </div>
+  <div class="input text">
+    <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [showErrors]="false" [disabled]="true"></la-inputText>
+  </div>
 
-    <div class="date-picker">
-      <la-datepicker [(ngModel)]="date2" label="Date Picker" [rtl]="true"></la-datepicker>
-    </div>
+  <div class="input number">
+    <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [showErrors]="true" [min]="0"></la-inputNumber>
+  </div>
 
-    <div class="dropdown">
-      <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
-    </div>
+  <div class="calendar">
+    <la-calendar [(ngModel)]="date" [rtl]="true" type="birthday" language="he"></la-calendar>
+  </div>
 
-    <div class="select-button">
-      <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender" [rtl]="true"></la-selectbutton>
-    </div>
+  <div class="date-picker">
+    <la-datepicker [(ngModel)]="date2" label="Date Picker" [rtl]="true"></la-datepicker>
+  </div>
 
-    <div class="switch-button">
-      <la-switchbutton label="Switch Button (done)" [(ngModel)]="done" [rtl]="true"></la-switchbutton>
-    </div>
+  <div class="dropdown">
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
+  </div>
 
-    <div class="done value">
-      Date: {{ date | date: 'dd-MM-yyyy' }}
-    </div>
+  <div class="select-button">
+    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender" [rtl]="true"></la-selectbutton>
+  </div>
 
-    <div class="done value">
-      Date: {{ date2 | date: 'dd-MM-yyyy' }}
-    </div>
+  <div class="switch-button">
+    <la-switchbutton label="Switch Button (done)" [(ngModel)]="done" [rtl]="true"></la-switchbutton>
+  </div>
+
+  <div class="done value">
+    Date: {{ date | date: 'dd-MM-yyyy' }}
+  </div>
+
+  <div class="done value">
+    Date: {{ date2 | date: 'dd-MM-yyyy' }}
+  </div>
     
 </div>
+
+<la-dialog [open]="showOkDialog" [header]="'LA - Dialog'" [laStyle]="{'height': '700px','width': '500px'}" (ok)="showOkDialog = false">
+  <div class="la-dialog-content">
+    <form id="dialogForm" [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group firstName">
+        <la-inputText formControlName="firstName" label="First Name:" [(ngModel)]="textEmptyExample" [invalidError]="getInvalidMsg('firstName')"></la-inputText>
+      </div>
+
+      <div class="form-group lastName">
+        <la-inputText formControlName="lastName" label="Last Name:" [(ngModel)]="textEmptyExample" [invalidError]="getInvalidMsg('lastName')"></la-inputText>
+      </div>
+
+      <div class="form-group dropdown">
+        <la-dropdown formControlName="gender" [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="la-dialog-footer">
+    <la-button class="la-button ok" form="ngForm" label="OK"></la-button> <!--  [disabled]="dialogForm.invalid" -->
+  </div>
+</la-dialog>
+
+<la-dialog [open]="showYesNoDialog" [header]="'LA - Dialog'" buttons="yes|no" (yes)="showYesNoDialog = false"></la-dialog>

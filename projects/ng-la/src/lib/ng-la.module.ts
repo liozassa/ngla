@@ -11,12 +11,16 @@ import { LaDatepickerModule } from './components/datepicker/datepicker.module';
 import { LaSelectbuttonModule } from './components/selectbutton/selectbutton.module';
 import { LaSwitchbuttonModule } from './components/switchbutton/switchbutton.module';
 import { LaListBoxModule } from './components/listbox/listbox.module';
+import { LaDialogModule } from './components/dialog/dialog.module';
+import { LaButtonModule } from './components/button/button.module';
+import { LaInputDirective } from './directives/input/input.directive';
 
 
 
 @NgModule({
   declarations: [
-    NgLaComponent
+    NgLaComponent,
+    LaInputDirective
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,10 @@ import { LaListBoxModule } from './components/listbox/listbox.module';
     LaDatepickerModule,
     LaSelectbuttonModule,
     LaSwitchbuttonModule,
-    LaListBoxModule
+    LaListBoxModule,
+    LaDialogModule,
+    LaButtonModule,
+    LaInputDirective
   ]
 })
 export class NgLaModule { }

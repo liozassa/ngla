@@ -1,11 +1,38 @@
 .grid-container {
     display: grid;
-    width: auto;
+    width: 100%;
     grid-gap: 40px;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: 200px auto auto auto;
 
     .dropdown { 
         height: 60px;
+    }
+}
+
+.la-dialog-content {
+    display: grid;
+    height: 100%;
+    padding: 10px;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+
+    .is-invalid {
+        border: red 1px solid;
+    }
+
+    .invalid-feedback {
+        color: red;
+        font-size: 1.2vh;
+    }
+}
+
+.la-dialog-footer {
+    display: grid;
+    width: auto;
+    justify-items: center;
+
+    .la-button {
+        width: 100px;
     }
 }

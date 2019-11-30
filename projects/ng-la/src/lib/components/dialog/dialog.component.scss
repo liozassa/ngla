@@ -1,0 +1,108 @@
+@import '../../common/_variables.scss';
+
+.closed {
+    &.la-dialog-grid {
+        top: -50%;
+        display: none;
+    }
+
+    &.la-dialog-overlay {
+        display: none;
+    }
+}
+
+.la-dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.la-dialog-grid {
+    display: grid;
+    box-sizing: border-box;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
+    background-color: white;
+    transition: all .5s ease;
+    grid-template-rows: 40px auto 50px;
+    margin: 0;
+    z-index: 110;
+    position: absolute;
+    grid-gap: 0px;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    grid-template-areas: 'header'
+                        'content'
+                        'footer';
+        
+    .la-dialog-item {
+        width: 100%;
+
+        &.header {
+            grid-area: header;
+            background-color: $pink;
+            font-size: 3vh;
+            padding: 1vh 0;
+            text-align: center;
+        } 
+  
+        &.content {
+            grid-area: content;
+            
+            /*.la-dialog-content {
+                height: 100%;
+                width: 100%;
+            }*/
+        }
+  
+        &.footer {
+            grid-area: footer;
+            display: grid;
+            border-top: 1px solid lightgrey;
+            margin: 0 10px;
+            padding: 10px 0;
+            width: auto;
+            justify-items: center;
+            /*grid-template-columns: auto 10px auto auto auto 10px auto;
+            grid-template-areas: 'save . . ok delete . cancel';
+    
+            .footer-button {
+        
+                &.ok {
+                    grid-area: ok;
+                    width: 100px;
+                }
+        
+                &.yes {
+                    grid-area: save;
+                    width: 100px;
+                }
+        
+                &.no {
+                    grid-area: cancel;
+                    width: 100px;
+                }
+        
+                &.save {
+                    grid-area: save;
+                    width: 100px;
+                }
+        
+                &.delete {
+                    grid-area: delete;
+                    width: 100px;
+                }
+        
+                &.cancel {
+                    grid-area: cancel;
+                    width: 100px;
+                }
+            }*/
+        }
+    }
+}

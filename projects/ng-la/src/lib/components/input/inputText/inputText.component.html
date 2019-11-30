@@ -8,5 +8,5 @@
         [minlength]="minlength"
         [maxlength]="maxlength"
         (blur)="hasChange = true">
-    <span class="la-input-validate" *ngIf="validate() !== null">{{ getError() }}</span>
+    <span class="la-input-validate" *ngIf="invalidError !== null">{{ invalidError }}</span>
 </div>

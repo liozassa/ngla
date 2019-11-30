@@ -1,0 +1,37 @@
+@import '../../common/_variables.scss';
+
+.la-button {
+    font-size: 2vh;
+    color: white;
+    font-weight: bold;
+    border-radius: 2px;
+
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 20px;
+        
+    &.ok {
+        background-color: $blue;
+    }
+
+    &.yes {
+        background-color: $green;
+    }
+
+    &.no {
+        background-color: $red;
+    }
+
+    &.save {
+        background-color: $blue;
+    }
+
+    &.delete {
+        background-color: $red;
+    }
+
+    &.cancel {
+        background-color: $bright-gray;
+    }
+}

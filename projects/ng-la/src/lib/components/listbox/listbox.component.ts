@@ -21,7 +21,9 @@ export class LaListBoxComponent implements OnInit {
   }
 
   add() {
-    this.addItem.emit();
+    if (this.showAddButton) {
+      this.addItem.emit();
+    }
   }
 
 }
