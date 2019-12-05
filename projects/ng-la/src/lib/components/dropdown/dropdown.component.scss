@@ -1,12 +1,10 @@
 @import '../../common/_variables.scss';
 
-.la-dropdown-grid {
+.la-dropdown {
     display: grid;
-    padding: 0px;
     grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-height $component-row-gap 30px auto auto;
+    grid-template-rows: $component-label-height 30px auto auto;
     grid-template-areas: 'label'
-                         '.'
                          'content'
                          'menu'
                          'validate';

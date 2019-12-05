@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { LaSelectItem } from '../../common/models';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -10,11 +10,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => LaDropdownComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => LaDropdownComponent),
       multi: true
     }
@@ -28,7 +23,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 
-export class LaDropdownComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -44,7 +39,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
   @Input() placeholder: string = 'Select one option';
 
   @Input() showErrors: boolean;
-  @Input() validateErrors: {};
+  @Input() invalidError: string;
   @Input() required: boolean;
 
   @Input()
@@ -130,33 +125,6 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, Valida
       this.hasChange = true;
     }
     this.state = (this.state === 'small' ? 'large' : 'small');
-  }
-
-  validate() {
-    const validates = {};
-
-    if (!this.hasChange) {
-      return null;
-    }
-
-    if (!this.value && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please choose a option.';
-    }
-    
-    return Object.keys(validates).length ? validates : null;
-  }
-
-  getError() {
-    if (!this.showErrors || !this.onChange) {
-      return null;
-    }
-    
-    const validates = this.validate();
-    if (!validates) {
-      return null;
-    }
-
-    return Object.values(this.validate())[0];
   }
 
 }

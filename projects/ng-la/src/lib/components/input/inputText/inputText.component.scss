@@ -4,7 +4,6 @@
     display: grid;
     grid-row-gap: $component-row-gap;
     grid-template-rows: $component-label-height 30px auto ;
-    grid-template-columns: auto;
     grid-template-areas: 'label'
                          'input'
                          'validate';
