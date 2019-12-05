@@ -27,7 +27,7 @@
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
     background-color: white;
     transition: all .5s ease;
-    grid-template-rows: 40px auto 50px;
+    grid-template-rows: 4vh auto 5vh;
     margin: 0;
     z-index: 110;
     position: absolute;
@@ -46,13 +46,14 @@
         &.header {
             grid-area: header;
             background-color: $pink;
-            font-size: 3vh;
+            font-size: 2vh;
             padding: 1vh 0;
             text-align: center;
         } 
   
         &.content {
             grid-area: content;
+            padding: 1vh 1vw;
             
             /*.la-dialog-content {
                 height: 100%;
@@ -65,7 +66,7 @@
             display: grid;
             border-top: 1px solid lightgrey;
             margin: 0 10px;
-            padding: 10px 0;
+            padding: 1vh 0;
             width: auto;
             justify-items: center;
             /*grid-template-columns: auto 10px auto auto auto 10px auto;
