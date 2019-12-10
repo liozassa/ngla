@@ -12,18 +12,16 @@ export class LaButtonComponent implements OnInit {
   classes: string = '';
 
   constructor(private el: ElementRef) { 
-    if (el.nativeElement.classList.contains('ok')) {
-      this.classes = 'ok'
-    } else if (el.nativeElement.classList.contains('yes')) {
-      this.classes = 'yes'
-    } else if (el.nativeElement.classList.contains('no')) {
-      this.classes = 'no'
-    } else if (el.nativeElement.classList.contains('cancel')) {
-      this.classes = 'cancel'
-    } else if (el.nativeElement.classList.contains('save')) {
-      this.classes = 'save'
-    } else if (el.nativeElement.classList.contains('delete')) {
-      this.classes = 'delete'
+    if (el.nativeElement.classList.contains('la-button-secondary')) {
+      this.classes = 'la-button-secondary'
+    } else if (el.nativeElement.classList.contains('la-button-success')) {
+      this.classes = 'la-button-success'
+    } else if (el.nativeElement.classList.contains('la-button-info')) {
+      this.classes = 'la-button-info'
+    } else if (el.nativeElement.classList.contains('la-button-warning')) {
+      this.classes = 'la-button-warning'
+    } else if (el.nativeElement.classList.contains('la-button-danger')) {
+      this.classes = 'la-button-danger'
     }
   }
 

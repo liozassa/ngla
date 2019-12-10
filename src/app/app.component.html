@@ -11,35 +11,35 @@
   </div>
 
   <div class="showOkDialog">
-    <button (click)="showOkDialog = true"> Show OK Dialog </button>
+    <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true"></la-button>
   </div>
 
   <div class="showYesNoDialog">
-    <button (click)="showYesNoDialog = true"> Show Yes|No Dialog </button>
+    <la-button class="la-button-secondary" label="Show Yes|No Dialog" (click)="showYesNoDialog = true"></la-button>
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="true"></la-inputText>
+    <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true"></la-inputText>
   </div>
   
   <div class="input text">
-    <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true" [showErrors]="false"></la-inputText>
+    <la-inputText label="Input Text (required)" [(ngModel)]="textEmptyExample" [required]="true"></la-inputText>
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2" [showErrors]="true"></la-inputText>
+    <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2"></la-inputText>
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [showErrors]="false" [readonly]="true"></la-inputText>
+    <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [readonly]="true"></la-inputText>
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [showErrors]="false" [disabled]="true"></la-inputText>
+    <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [disabled]="true"></la-inputText>
   </div>
 
   <div class="input number">
-    <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [showErrors]="true" [min]="0"></la-inputNumber>
+    <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [min]="0"></la-inputNumber>
   </div>
 
   <div class="calendar">
@@ -47,11 +47,11 @@
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date2" label="Date Picker" [rtl]="true"></la-datepicker>
+    <la-datepicker [(ngModel)]="date2" label="Date Picker" [rtl]="true" (selectDate)="onSelectDate($event)"></la-datepicker>
   </div>
 
   <div class="dropdown">
-    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" ></la-dropdown>
   </div>
 
   <div class="select-button">
@@ -72,9 +72,9 @@
     
 </div>
 
-<la-dialog [open]="showOkDialog" [header]="'LA - Dialog'" [laStyle]="{'height': '700px','width': '500px'}" (ok)="showOkDialog = false">
+<la-dialog [open]="showOkDialog" [header]="'LA - Dialog'" [laStyle]="{'height': '700px'}" (ok)="showOkDialog = false">
   <div class="la-dialog-content">
-    <form id="dialogForm" [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
+    <form class="la-dialog-content-grid" id="dialogForm" [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group firstName">
         <la-inputText formControlName="firstName" label="First Name:" [(ngModel)]="textEmptyExample" [invalidError]="getInvalidMsg('firstName')"></la-inputText>
@@ -85,7 +85,11 @@
       </div>
 
       <div class="form-group dropdown">
-        <la-dropdown formControlName="gender" [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true" [showErrors]="true"></la-dropdown>
+        <la-dropdown formControlName="gender" [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [invalidError]="getInvalidMsg('gender')"></la-dropdown>
+      </div>
+
+      <div class="form-group select-button">
+        <la-selectbutton formControlName="gender2" [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender2" [invalidError]="getInvalidMsg('gender2')"></la-selectbutton>
       </div>
 
     </form>
@@ -93,7 +97,8 @@
   </div>
 
   <div class="la-dialog-footer">
-    <la-button class="la-button ok" form="ngForm" label="OK"></la-button> <!--  [disabled]="dialogForm.invalid" -->
+      <la-button class="la-button-secondary" form="ngForm" label="OK" (click)="onSubmit()"></la-button> <!--  -->
+      <la-button class="la-button-info" label="Cancel" (click)="showOkDialog = false"></la-button>
   </div>
 </la-dialog>
 

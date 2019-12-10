@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms'
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
 
 @Component({
   selector: 'la-inputNumber',
@@ -10,23 +10,17 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } fro
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LaInputNumberComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaInputNumberComponent),
-      multi: true
     }
   ]
 })
-export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @Input() label: string;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: boolean;
 
-  @Input() showErrors: boolean;
-  @Input() validateErrors: {};
+  @Input() invalidError: string;
   @Input() required: boolean;
   @Input() min: number;
   @Input() max: number;
@@ -40,10 +34,10 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
     this.onChange(this._value);
     this.onTouched();
   }
+  private _value: number;
 
   @Output() change = new EventEmitter();
 
-  private _value: number;
   private onChange: any = () => { };
   private onTouched: any = () => { };
 
@@ -53,11 +47,19 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
     this.required = false;
     this.disabled = false;
     this.readonly = false;
+    this.hasChange = false;
+    this.invalidError = null;
   }
 
   ngOnInit() { }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.invalidError) {
+      const currentInvalidError: SimpleChange = changes.invalidError;
+      if (currentInvalidError.currentValue ) {
+        this.invalidError =  currentInvalidError.currentValue;
+      }
+    }
     this.change.emit(this.value);
   }
 
@@ -77,43 +79,11 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, Val
     this.onTouched = fn;
   }
 
-  validate() {
-    const validates = {};
-
-    if (!this.hasChange) {
-      return null;
-    }
-    
-    if (!Number.isInteger(this.value) && this.value !== 0 && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
-    }
-
-    
-    if (Number.isInteger(this.min)) {
-      if (!Number.isInteger(this.value) || this.value < this.min) {
-        validates['min'] = this.validateErrors && this.validateErrors['min'] ? this.validateErrors['min'] : `The value must be less than ${this.min}.`;
-      }
-    }
-
-    
-    if (Number.isInteger(this.max)) {
-      if (!Number.isInteger(this.value) || this.value > this.max) {
-        validates['max'] = this.validateErrors && this.validateErrors['max'] ? this.validateErrors['max'] : `The value must be greater than ${this.max}.`;
-      }
-    }
-    return Object.keys(validates).length ? validates : null;
+  isInvalid() {
+    return this.invalidError !== null;
   }
 
-  getError() {
-    if (!this.showErrors || !this.onChange) {
-      return null;
-    }
-    
-    const validates = this.validate();
-    if (!validates) {
-      return null;
-    }
-
-    return Object.values(this.validate())[0];
+  getValidationErr() {
+    return this.invalidError;
   }
 }

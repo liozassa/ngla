@@ -8,7 +8,7 @@
     height: 100%;
     display: grid;
     grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-height 30px auto;
+    grid-template-rows: $component-label-size 30px auto;
     grid-template-areas: 'label'
                          'toggle'
                          'validate';
@@ -17,8 +17,7 @@
   
         &.label {
           grid-area: label;
-          height: 12px;
-          margin-bottom: 5px;
+          font-size: $component-label-size;
 
           span {
               color: red;

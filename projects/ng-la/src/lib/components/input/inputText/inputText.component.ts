@@ -20,8 +20,6 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
   @Input() disabled: boolean;
   @Input() placeholder: boolean;
 
-  @Input() showErrors: boolean;
-  @Input() invalidError: string;
   @Input() required: boolean;
   @Input() minlength: number;
   @Input() maxlength: number;
@@ -37,6 +35,15 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
   }
   private _value: any;
 
+  @Input()
+  get invalidError() {
+    return this._invalidError;
+  }
+  set invalidError(val: string) {
+    this._invalidError = val;
+  }
+  private _invalidError: string;
+
   @Output() change = new EventEmitter();
 
   private onChange: any = () => { };
@@ -48,17 +55,18 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
     this.required = false;
     this.disabled = false;
     this.readonly = false;
-    this.showErrors = false;
     this.hasChange = false;
+    this.invalidError = null;
    }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    const errorMsg: SimpleChange = changes.invalidError;
-    if (errorMsg ) {
-      console.log('errorMsg currentValue', errorMsg.currentValue);
-      // this.errors = errors.currentValue;
+    if (changes.invalidError) {
+      const currentInvalidError: SimpleChange = changes.invalidError;
+      if (currentInvalidError.currentValue ) {
+        this.invalidError =  currentInvalidError.currentValue;
+      }
     }
     this.change.emit(this.value);
   }
@@ -77,5 +85,13 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  isInvalid() {
+    return this.invalidError !== null;
+  }
+
+  getValidationErr() {
+    return this.invalidError;
   }
 }

@@ -4,7 +4,8 @@
     <span *ngIf="required">*&nbsp;</span>
     {{ label }}
   </label>
-  <div class="la-dropdown-item content" [ngClass]="{'ng-invalid': invalidError !== null && hasChange}" (click)="openDdl()">
+
+  <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid()}" (click)="openDdl()">
     <input class="la-dropdown-content-input" type="text" [(ngModel)]="selectedItem" [disabled]="disabled" readonly [placeholder]="placeholder ? placeholder : ''" [required]="required">
     <div class="la-dropdown-content-trigger" [ngClass]="{down: state === 'small', up: state === 'large'}">
       <svg *ngIf="state === 'small'" viewBox="0 0 129 129" enable-background="new 0 0 129 129">
@@ -20,6 +21,6 @@
   <ul class="la-dropdown-item menu" [@ddlopen]='state'>
     <li *ngFor="let o of options" id="d.value" (click)="selecteItem(o.value)"> {{ o.label }} </li>
   </ul>
-  <span class="la-dropdown-item validate" *ngIf="invalidError !== null && hasChange && state === 'small'">{{ invalidError }}</span>
+  <span class="la-dropdown-item validate" *ngIf="getValidationErr() !== null && state === 'small'">{{ getValidationErr() }}</span>
 </div>
   

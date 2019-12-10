@@ -1,11 +1,16 @@
-<div class="grid-la-input" [ngClass]="{disabled: disabled}">
-    <label class="label" *ngIf="label !== undefined">
+<div class="la-input" [ngClass]="{disabled: disabled}">
+    <label class="la-input-label" *ngIf="label !== undefined">
         <span *ngIf="required">*&nbsp;</span>
         {{ label }}
     </label>
-    <input class="input" [ngClass]="{'la-changed': hasChange}" type="number" [(ngModel)]="value" [disabled]="disabled" [readonly]="readonly" [placeholder]="placeholder ? placeholder : ''"
+    <input class="la-input-content" [ngClass]="{'la-invalid': isInvalid()}" type="number"
+        [(ngModel)]="value"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [placeholder]="placeholder ? placeholder : ''"
         [required]="required"
         [min]="min"
-        [max]="max">
-    <span class="validate" *ngIf="validate() !== null">{{ getError() }}</span>
+        [max]="max"
+        (blur)="hasChange = true">
+    <span class="la-input-validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>
 </div>

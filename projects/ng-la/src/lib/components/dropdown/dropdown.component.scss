@@ -3,7 +3,7 @@
 .la-dropdown {
     display: grid;
     grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-height 30px auto auto;
+    grid-template-rows: $component-label-size 30px auto auto;
     grid-template-areas: 'label'
                          'content'
                          'menu'
@@ -13,7 +13,7 @@
 
       &.label {
         grid-area: label;
-        height: 12px;
+        font-size: $component-label-size;
 
         span {
             color: red;
@@ -35,7 +35,7 @@
           border: 1px solid black;
         }
 
-        &.ng-invalid {
+        &.la-invalid {
           border: 1px solid red;
         }
     
@@ -74,11 +74,12 @@
         max-height: 144px;
         overflow-y: scroll;
         padding: 0;
-        margin: 0px;
+        margin: 0;
         z-index: 1000;
         list-style: none;
     
         li {
+          font-size: $component-label-size;
           padding: 10px;
           transition: all .2s ease-in-out;
           cursor: pointer;
@@ -97,7 +98,7 @@
         grid-area: validate;
         color: red;
         font-size: 12px;
-        margin-top: -10px;
+        margin-top: -5px;
       }
     }
   }

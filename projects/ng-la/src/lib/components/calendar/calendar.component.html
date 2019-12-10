@@ -23,7 +23,7 @@
                     'selected': isSelected(day.mDate),
                     'enabled': isSelectedMonth(day.mDate),
                     'disabled': !isSelectedMonth(day.mDate)}"
-                    (click)="selectDate(day)">
+                    (click)="onSelectDate(day)">
                     {{ day.mDate.date() }}
         </div>
       </ng-container>

@@ -4,10 +4,10 @@
     {{ label }}
   </label>
   <div class="la-datepicker-item content" (click)="showCalendar = !showCalendar">
-    <input class="la-datepicker-content-input" id="la-date" [ngModel]="value | date: 'dd-MM-yyyy'" (ngModelChange)="value=$event" readonly> <!-- (change)="value = parseDate($event.target.value)" -->
+    <input class="la-datepicker-content-input" id="la-date" [ngModel]="value | date: 'dd-MM-yyyy'" readonly> <!-- (change)="value = parseDate($event.target.value)" -->
     <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }"></div>
   </div>
   <div class="la-datepicker-item calendar" *ngIf="showCalendar">
-    <la-calendar [ngModel]="date" [rtl]="rtl" [language]="language" (ngModelChange)="value=$event"></la-calendar>
+    <la-calendar [ngModel]="date" [rtl]="rtl" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar> <!--  (change)="selsctDate($event)" -->
   </div>
 </div>

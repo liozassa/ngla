@@ -1,37 +1,32 @@
 @import '../../common/_variables.scss';
 
 .la-button {
-    font-size: 2vh;
+    font-size: 15px;
     color: white;
-    font-weight: bold;
-    border-radius: 2px;
-
-    height: 100%;
-    width: 100%;
+    font-weight: 500;
+    border-radius: 4px;
+    height: 30px;
+    width: auto;
     border: none;
-    font-size: 20px;
+    padding: 0 15px;
         
-    &.ok {
+    &.la-button-secondary {
         background-color: $blue;
     }
 
-    &.yes {
+    &.la-button-success {
         background-color: $green;
     }
 
-    &.no {
+    &.la-button-danger {
         background-color: $red;
     }
 
-    &.save {
-        background-color: $blue;
+    &.la-button-warning {
+        background-color: $yellow;
     }
 
-    &.delete {
-        background-color: $red;
-    }
-
-    &.cancel {
+    &.la-button-info {
         background-color: $bright-gray;
     }
 }

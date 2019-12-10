@@ -5,10 +5,10 @@
     </label>
 
     <div class="la-selectbutton-item toggle">
-        <div *ngFor="let option of options" [ngClass]="{ 'selected': isSelected(option.value) }" (click)="selectItem(option.value)">
-            {{ option.label }}
+        <div *ngFor="let option of options" [ngClass]="{ 'la-invalid': isInvalid(), 'selected': isSelected(option.value) }" (click)="selectItem(option.value)">
+            <span> {{ option.label }} </span>
         </div>
     </div>
 
-    <span class="la-selectbutton-validate" *ngIf="getError() !== null">{{ getError() }}</span>
+    <span class="la-selectbutton-item validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>
 </div>

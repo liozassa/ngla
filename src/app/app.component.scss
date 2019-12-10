@@ -10,12 +10,35 @@
     }
 }
 
-.la-dialog-content {
+.la-dialog-content-grid {
     display: grid;
     height: 100%;
-    padding: 10px;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-columns: auto 50px;
+    grid-template-areas: 'firstName .'
+                         'lastName .'
+                         'dropdown .'
+                         'select-button .';
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+
+        &.firstName {
+            grid-area: firstName;
+        }
+
+        &.lastName {
+            grid-area: lastName;
+        }
+
+        &.dropdown {
+            grid-area: dropdown;
+        }
+
+        &.select-button {
+            grid-area: select-button;
+        }
+    }
 
     .is-invalid {
         border: red 1px solid;
@@ -29,10 +52,6 @@
 
 .la-dialog-footer {
     display: grid;
-    width: auto;
-    justify-items: center;
-
-    .la-button {
-        width: 100px;
-    }
+    grid-template-columns: auto auto;
+    justify-content: space-around;
 }

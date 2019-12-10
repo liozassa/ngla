@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { LaSelectItem } from '../../common/models';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'la-selectbutton',
@@ -11,23 +11,17 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } fro
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LaSelectbuttonComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaSelectbuttonComponent),
-      multi: true
     }
   ]
 })
-export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @Input() label: string;
   @Input() options: LaSelectItem[];
   @Input() disabled: boolean;
   @Input() rtl: boolean;
 
-  @Input() showErrors: boolean;
-  @Input() validateErrors: {};
+  @Input() invalidError: string;
   @Input() required: boolean;
 
   @Input()
@@ -47,19 +41,28 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, Va
   @Output() change = new EventEmitter();
 
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  private onChange: any = () => { };
+  private onTouched: any = () => { };
+
+  hasChange:boolean;
 
   constructor() {
     this.required = false;
     this.disabled = false;
-    this.showErrors = false;
+    this.hasChange = false;
+    this.invalidError = null;
   }
 
   ngOnInit() {
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.invalidError) {
+      const currentInvalidError: SimpleChange = changes.invalidError;
+      if (currentInvalidError.currentValue ) {
+        this.invalidError =  currentInvalidError.currentValue;
+      }
+    }
     this.change.emit(this.value);
   }
 
@@ -91,25 +94,11 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, Va
     return this.value === value;
   }
 
-  validate() {
-    const validates = {};
-    if (!this.value && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please choose a option.';
-    }
-    
-    return Object.keys(validates).length ? validates : null;
+  isInvalid() {
+    return this.invalidError !== null;
   }
 
-  getError() {
-    if (!this.showErrors) {
-      return null;
-    }
-    
-    const validates = this.validate();
-    if (!validates) {
-      return null;
-    }
-
-    return Object.values(this.validate())[0];
+  getValidationErr() {
+    return this.invalidError;
   }
 }

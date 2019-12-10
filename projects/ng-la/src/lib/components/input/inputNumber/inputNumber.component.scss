@@ -1,17 +1,16 @@
 @import '../../../common/_variables.scss';
 
-.grid-la-input {
+.la-input {
     display: grid;
     grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-height 30px auto ;
-    grid-template-columns: auto;
+    grid-template-rows: $component-label-size 30px auto ;
     grid-template-areas: 'label'
                          'input'
                          'validate';
   
-    .label {
+    .la-input-label {
       grid-area: label;
-      height: 12px;
+      font-size: $component-label-size;
       // margin-bottom: 5px;
 
       span {
@@ -19,9 +18,8 @@
       }
     }
   
-    .input {
+    .la-input-content {
       grid-area: input;
-      width: 100%;
       height: 100%;
       box-shadow: none;
       padding: 0;
@@ -30,17 +28,15 @@
         border: 1px solid black;
       }
 
-      &.ng-invalid {
-        &.la-changed {
-          border: 1px solid red;
-        }
+      &.la-invalid {
+        border: 1px solid red;
       }
     }
 
-    .validate {
-        grid-area: validate;
-        color: red;
-        font-size: 12px;
+    .la-input-validate {
+      grid-area: validate;
+      color: red;
+      font-size: 12px;
     }
   }
   

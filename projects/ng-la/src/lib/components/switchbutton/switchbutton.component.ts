@@ -1,5 +1,5 @@
-import { Component, OnInit, forwardRef, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms';
+import { Component, OnInit, forwardRef, OnChanges, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'la-switchbutton',
@@ -10,22 +10,15 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } fro
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LaSwitchbuttonComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaSwitchbuttonComponent),
-      multi: true
     }
   ]
 })
-export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @Input() label: string;
   @Input() disabled: boolean;
   @Input() rtl: boolean;
-
-  @Input() showErrors: boolean;
-  @Input() validateErrors: {};
+  
   @Input() required: boolean;
 
   @Input()
@@ -39,13 +32,29 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, Va
   }
   private _value: any;
 
+  @Input()
+  get invalidError() {
+    return this._invalidError;
+  }
+  set invalidError(val: string) {
+    this._invalidError = val;
+  }
+  private _invalidError: string;
+
   @Output() change: EventEmitter<any> = new EventEmitter();
 
 
   onChange: any = () => { };
   onTouched: any = () => { };
 
-  constructor() { }
+  hasChange:boolean;
+
+  constructor() {
+    this.required = false;
+    this.disabled = false;
+    this.hasChange = false;
+    this.invalidError = null;
+  }
 
   ngOnInit() {
   }
@@ -82,26 +91,12 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, Va
     return this.value === value;
   }
 
-  validate() {
-    const validates = {};
-    if (!this.value && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please choose a option.';
-    }
-    
-    return Object.keys(validates).length ? validates : null;
+  isInvalid() {
+    return this.invalidError !== null;
   }
 
-  getError() {
-    if (!this.showErrors) {
-      return null;
-    }
-    
-    const validates = this.validate();
-    if (!validates) {
-      return null;
-    }
-
-    return Object.values(this.validate())[0];
+  getValidationErr() {
+    return this.invalidError;
   }
 
 }

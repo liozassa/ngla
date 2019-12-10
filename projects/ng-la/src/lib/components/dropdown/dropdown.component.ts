@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { LaSelectItem } from '../../common/models';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -38,7 +38,6 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   @Input() disabled: boolean;
   @Input() placeholder: string = 'Select one option';
 
-  @Input() showErrors: boolean;
   @Input() invalidError: string;
   @Input() required: boolean;
 
@@ -76,14 +75,20 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   constructor(private eRef: ElementRef) {
     this.required = false;
     this.disabled = false;
-    this.showErrors = false;
     this.hasChange = false;
+    this.invalidError = null;
   }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.invalidError) {
+      const currentInvalidError: SimpleChange = changes.invalidError;
+      if (currentInvalidError.currentValue ) {
+        this.invalidError =  currentInvalidError.currentValue;
+      }
+    }
     this.change.emit(this.value);
   }
 
@@ -125,6 +130,14 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
       this.hasChange = true;
     }
     this.state = (this.state === 'small' ? 'large' : 'small');
+  }
+
+  isInvalid() {
+    return this.invalidError !== null;
+  }
+
+  getValidationErr() {
+    return this.invalidError;
   }
 
 }

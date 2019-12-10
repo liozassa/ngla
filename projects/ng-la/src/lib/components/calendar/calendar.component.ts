@@ -52,6 +52,7 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   private _value: moment_.Moment = moment().startOf('day');
 
   @Output() change = new EventEmitter<Date>();
+  @Output() selectDate = new EventEmitter<Date>();
   
   currentDate = moment();
   dayNames: string[];
@@ -112,8 +113,9 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
     return moment(date).isSame(this.currentDate, 'month');
   }
 
-  selectDate(date: CalendarDate): void {
+  onSelectDate(date: CalendarDate) {
     this.value = date.mDate.toDate();
+    this.selectDate.emit(this.value);
   }
 
   prevMonth(): void {

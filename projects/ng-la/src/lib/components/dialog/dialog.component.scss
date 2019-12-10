@@ -27,7 +27,7 @@
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
     background-color: white;
     transition: all .5s ease;
-    grid-template-rows: 4vh auto 5vh;
+    grid-template-rows: 40px auto 40px;
     margin: 0;
     z-index: 110;
     position: absolute;
@@ -41,19 +41,19 @@
                         'footer';
         
     .la-dialog-item {
-        width: 100%;
+        // width: 100%;
 
         &.header {
             grid-area: header;
             background-color: $pink;
-            font-size: 2vh;
-            padding: 1vh 0;
+            font-size: 20px;
+            padding: 10px 0;
             text-align: center;
         } 
   
         &.content {
             grid-area: content;
-            padding: 1vh 1vw;
+            padding: 10px;
             
             /*.la-dialog-content {
                 height: 100%;
@@ -63,47 +63,8 @@
   
         &.footer {
             grid-area: footer;
-            display: grid;
             border-top: 1px solid lightgrey;
-            margin: 0 10px;
-            padding: 1vh 0;
-            width: auto;
-            justify-items: center;
-            /*grid-template-columns: auto 10px auto auto auto 10px auto;
-            grid-template-areas: 'save . . ok delete . cancel';
-    
-            .footer-button {
-        
-                &.ok {
-                    grid-area: ok;
-                    width: 100px;
-                }
-        
-                &.yes {
-                    grid-area: save;
-                    width: 100px;
-                }
-        
-                &.no {
-                    grid-area: cancel;
-                    width: 100px;
-                }
-        
-                &.save {
-                    grid-area: save;
-                    width: 100px;
-                }
-        
-                &.delete {
-                    grid-area: delete;
-                    width: 100px;
-                }
-        
-                &.cancel {
-                    grid-area: cancel;
-                    width: 100px;
-                }
-            }*/
+            padding: 5px 0;
         }
     }
 }

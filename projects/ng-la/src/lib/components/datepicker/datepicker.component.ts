@@ -43,13 +43,13 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   @Input() maxDate: Date;
 
   @Input()
-  get value(): Date | null {
+  get value(): Date {
     if (this.endOfDay === true) {
       return this._value.endOf('day').toDate();
     }
     return this._value.toDate();
   }
-  set value(val: Date | null) {
+  set value(val: Date) {
     this.date = val;
     this._value = moment(val).startOf('day');
     this.onChange(this._value);
@@ -58,6 +58,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   private _value: moment_.Moment = moment().startOf('day');
 
   @Output() change = new EventEmitter<Date>();
+  @Output() selectDate = new EventEmitter<Date>();
 
   showCalendar: boolean;
   date: Date = new Date();
@@ -103,6 +104,11 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
     } else {
       return null;
     }
+  }
+
+  onSelsctDate(event: Date) {
+    this.value = event;
+    this.selectDate.emit(this.value);
   }
 
   validate() {

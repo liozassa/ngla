@@ -9,5 +9,5 @@
         <button class="toggle-btn" type="button" [ngClass]="{'toggle-btn-on': value, 'toggle-btn-off': !value}" [attr.aria-expanded]="value" (click)="value = !value"></button>
     </div>
 
-    <span class="la-switchbutton-validate" *ngIf="getError() !== null">{{ getError() }}</span>
+    <span class="la-switchbutton-validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>
 </div>
