@@ -73,7 +73,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
 
   writeValue(value: string): void {
     if (value === undefined) {
-      console.error(`Error: la-inputText - Invalid ${value} value for ngModel field.`);
+      // console.error(`Error: la-inputText - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }

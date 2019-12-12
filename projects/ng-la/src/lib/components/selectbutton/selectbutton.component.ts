@@ -68,7 +68,7 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
 
   writeValue(value: any): void {
     if (value !== null && !Number.isInteger(value)) {
-      console.error(`Error: la-selectbutton - Invalid ${value} value for ngModel field.`);
+      // console.error(`Error: la-selectbutton - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }

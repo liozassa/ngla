@@ -65,7 +65,7 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
 
   writeValue(value: number): void {
     if (value !== null && !Number.isInteger(value)) {
-      console.error(`Error: la-inputNumber - Invalid ${value} value for ngModel field.`);
+      // console.error(`Error: la-inputNumber - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }

@@ -65,7 +65,7 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, On
 
   writeValue(value: any): void {
     if (typeof value !== 'boolean' && value !== null) {
-      console.error(`Error: la-switchbutton - Invalid ${value} value for ngModel field.`);
+      // console.error(`Error: la-switchbutton - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }
