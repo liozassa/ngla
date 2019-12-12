@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked {
   title = 'LaDev';
   textExample = 'Text For Example';
   numberExample: number;
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
 
   get f() { return this.dialogForm.controls; }
 
-  constructor() { }
+  constructor(private cdref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.numberExample = 0;
@@ -58,6 +58,10 @@ export class AppComponent implements OnInit {
     this.date = new Date('2019-10-13');
     this.date2 = new Date('2019-10-03');
   }
+
+  ngAfterContentChecked(): void {
+    this.cdref.detectChanges();
+}
 
   getInvalidMsg(formControlName: string): string {
     if (!this.submitted) {

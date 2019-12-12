@@ -94,7 +94,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
 
   writeValue(value: any): void {
     if (!value && value !== null) {
-      console.error(`Error: la-dropdown - Invalid ${value} value for ngModel field.`);
+      // console.error(`Error: la-dropdown - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }
@@ -121,6 +121,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   }
 
   selecteItem(value: string) {
+    console.log('selecteItem');
     this.value = value;
   }
 

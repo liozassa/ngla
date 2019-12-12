@@ -26,6 +26,7 @@
         background-color: white;
         grid-gap: 5px;
         padding: 5px;
+        height: 20px;
         grid-template-columns: auto 30px;
         grid-template-areas: 'input trigger';
         border: 0.5px solid lightgrey;
@@ -42,7 +43,6 @@
         .la-dropdown-content-input {
           grid-area: input;
           width: 100%;
-          height: 20px;
           box-shadow: none;
           border: none;
     
@@ -54,11 +54,16 @@
         .la-dropdown-content-trigger {
           grid-area: trigger;
           width: 100%;
-          height: 20px;
+          cursor: pointer;
 
-          svg {
-            height: 20px;
-            width: 20px;
+          &.down {
+            background: url('./down-arrow.svg') no-repeat center;
+            background-size: 50%;
+          }
+
+          &.up {
+            background: url('./up-arrow.svg') no-repeat center;
+            background-size: 50%;
           }
         }
       }
