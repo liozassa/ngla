@@ -3,13 +3,15 @@ import { LaInputTextComponent } from './inputText/inputText.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
+import { LaInputPasswordComponent } from './inputPassword/inputPassword.component';
 
 
 
 @NgModule({
   declarations: [
     LaInputTextComponent,
-    LaInputNumberComponent
+    LaInputNumberComponent,
+    LaInputPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
   ],
   exports: [
     LaInputTextComponent,
-    LaInputNumberComponent
+    LaInputNumberComponent,
+    LaInputPasswordComponent
   ],
 })
 export class LaInputModule { }
