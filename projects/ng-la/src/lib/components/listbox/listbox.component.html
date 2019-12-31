@@ -1,14 +1,14 @@
-<div class="la-listbox-grid">
-    <div class="la-listbox-item header"> <!-- *ngIf="header" -->
-        <span class="la-listbox-header label"> {{ header }} </span>
+<div class="la-listbox-grid" [ngClass]="(header && footer) ? 'hasHeaderFooter' : header ? 'hasHeader' : footer ? 'hasFooter' : ''">
+    <div class="la-listbox-item header" *ngIf="header">
         <div class="la-listbox-header add" *ngIf="showAddButton" (click)="add()"></div>
+        <span class="la-listbox-header label"> {{ header }} </span>
     </div>
 
     <div class="la-listbox-item list">
         <ng-content select=".la-items"></ng-content>
     </div>
 
-    <div class="la-listbox-item footer"> <!-- *ngIf="footer" -->
+    <div class="la-listbox-item footer" *ngIf="footer">
         <span> {{ footer }} </span>
     </div>
 </div>

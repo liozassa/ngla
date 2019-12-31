@@ -17,8 +17,7 @@ export class LaListBoxComponent implements OnInit {
     this.showAddButton = false;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   add() {
     if (this.showAddButton) {
