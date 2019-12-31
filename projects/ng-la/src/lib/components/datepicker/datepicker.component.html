@@ -8,6 +8,6 @@
     <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }"></div>
   </div>
   <div class="la-datepicker-item calendar" *ngIf="showCalendar">
-    <la-calendar [ngModel]="date" [rtl]="rtl" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar> <!--  (change)="selsctDate($event)" -->
+    <la-calendar [ngModel]="date" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar> <!--  (change)="selsctDate($event)" -->
   </div>
 </div>

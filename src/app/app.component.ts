@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
   done: boolean;
   date: Date;
   date2: Date;
+  date3: Date;
+  date4: Date;
   showOkDialog: boolean;
   showYesNoDialog: boolean;
 
@@ -59,6 +61,8 @@ export class AppComponent implements OnInit {
     this.showYesNoDialog = false;
     this.date = new Date('2019-10-13');
     this.date2 = new Date('2019-10-03');
+    this.date3 = new Date('2016-02-13');
+    this.date4 = new Date('2018-02-23');
   }
 
   getInvalidMsg(formControlName: string): string {

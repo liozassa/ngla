@@ -3,6 +3,7 @@ import * as moment_ from 'moment'; const moment = moment_;
 import * as _ from 'lodash';
 import { CalendarDate } from '../../common/interfaces';
 import { ControlValueAccessor, Validator, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'la-calendar',
@@ -28,7 +29,6 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   @Input() endOfDay: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
-  @Input() rtl: boolean;
   @Input() language: string;
 
   @Input() showErrors: boolean;
@@ -63,22 +63,15 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   onChange: any = () => { };
   onTouched: any = () => { };
 
-  constructor() {
-    this.language = 'en';
-    this.dayNames =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    this.monthNames =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  constructor(private utilsService: UtilsService) {
+    this.language = utilsService.getLang();
+    // this.dayNames =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+    // this.monthNames =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
    }
 
   ngOnInit() {
-    switch (this.language) {
-      case 'he':
-        this.dayNames =  ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
-        this.monthNames =  ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
-        break;
-    
-      default:
-        break;
-    }
+    this.dayNames = this.utilsService.getDayNames(this.language);
+    this.monthNames = this.utilsService.getMonthNames(this.language);
   }
 
   ngOnChanges() {
@@ -208,6 +201,10 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
     }
 
     return Object.values(this.validate())[0];
+  }
+
+  isRTL() {
+    return this.utilsService.isRTL();
   }
 
 }
