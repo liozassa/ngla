@@ -1,4 +1,4 @@
-<div class="la-selectbutton-grid" [ngClass]="{ 'la-rtl': rtl }">
+<div class="la-selectbutton-grid" [ngClass]="{ 'la-rtl': isRTL() }">
     <label class="la-selectbutton-item label" *ngIf="label !== undefined">
         <span *ngIf="required">*&nbsp;</span>
         {{ label }}

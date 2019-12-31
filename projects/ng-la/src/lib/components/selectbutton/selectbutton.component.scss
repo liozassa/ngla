@@ -117,9 +117,16 @@
             font-size: 12px;
         }
     }
+}
+  
+.disabled {
+    pointer-events:none;
+}
 
+.la-rtl {
 
-    &.la-rtl {
+    &.la-selectbutton-grid {
+        direction: rtl;
 
         .la-selectbutton-item {
       
@@ -133,7 +140,7 @@
                         border-right: 1px solid red;
                     }
                 }
-
+    
                 :last-of-type {
                     border-radius: 6px 0 0 6px;
                     border-right: none;
@@ -143,15 +150,11 @@
                         border-left: 1px solid red;
                     }
                 }
-
+    
                 :hover {
                     border-color: #213140;
                 }
             }
         }
     }
-}
-  
-.disabled {
-    pointer-events:none;
 }
