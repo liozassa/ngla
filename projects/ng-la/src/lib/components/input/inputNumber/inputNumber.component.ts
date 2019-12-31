@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { UtilsService } from '../../../services/utils.service';
 
 @Component({
   selector: 'la-inputNumber',
