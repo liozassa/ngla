@@ -33,7 +33,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   @Input() endOfDay: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
-  @Input() rtl: boolean;
   @Input() language: string;
 
   @Input() showErrors: boolean;
