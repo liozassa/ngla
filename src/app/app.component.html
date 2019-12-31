@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" [ngClass]="{ 'la-rtl': isRTL() }">
 
   <div class="listbox">
     <la-listbox header="Persons" footer="Count: {{ persons.length }}" [showAddButton]="true" (addItem)="addPerson()">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text (with errors)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2"></la-inputText>
+    <la-inputText label="Input Text (with min)" [(ngModel)]="textEmptyExample" [required]="true" minlength="2"></la-inputText>
   </div>
 
   <div class="input text">
@@ -49,7 +49,11 @@
   </div>
 
   <div class="input number">
-    <la-inputNumber label="Input Number (with errors)" [(ngModel)]="numberExample" [required]="true" [min]="0"></la-inputNumber>
+    <la-inputNumber label="Input Number (with min)" [(ngModel)]="numberExample" [required]="true" [min]="0"></la-inputNumber>
+  </div>
+
+  <div class="input password">
+    <la-inputPassword label="Input Password" [(ngModel)]="passwordExample" [required]="true"></la-inputPassword>
   </div>
 
   <div class="calendar">

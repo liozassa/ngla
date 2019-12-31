@@ -1,15 +1,17 @@
-import { Component, OnInit, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UtilsService } from 'projects/ng-la/src/lib/services/utils.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterContentChecked {
+export class AppComponent implements OnInit {
   title = 'LaDev';
   textExample = 'Text For Example';
   numberExample: number;
+  passwordExample: string = '1234';
   textEmptyExample = '';
   textEmptyExample2 = '';
   validateErrors = {
@@ -47,7 +49,7 @@ export class AppComponent implements OnInit, AfterContentChecked {
 
   get f() { return this.dialogForm.controls; }
 
-  constructor(private cdref: ChangeDetectorRef) { }
+  constructor(private utilsService: UtilsService) { }
 
   ngOnInit(): void {
     this.numberExample = 0;
@@ -58,10 +60,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
     this.date = new Date('2019-10-13');
     this.date2 = new Date('2019-10-03');
   }
-
-  ngAfterContentChecked(): void {
-    this.cdref.detectChanges();
-}
 
   getInvalidMsg(formControlName: string): string {
     if (!this.submitted) {
@@ -139,5 +137,9 @@ export class AppComponent implements OnInit, AfterContentChecked {
       return;
     }
     this.showOkDialog = false;
+  }
+
+  isRTL() {
+    return this.utilsService.isRTL();
   }
 }

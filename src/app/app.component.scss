@@ -55,3 +55,9 @@
     grid-template-columns: auto auto;
     justify-content: space-around;
 }
+
+.la-rtl {
+    &.grid-container {
+        direction: rtl;
+    }
+}

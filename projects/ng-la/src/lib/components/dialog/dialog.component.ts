@@ -20,7 +20,6 @@ export class LaDialogComponent implements OnInit {
         this._laStyle[propNmae] = val[propNmae];
       }
     );
-    console.log('laStyle', this._laStyle);
   }
   private _laStyle: Object;
 

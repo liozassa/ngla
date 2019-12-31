@@ -121,7 +121,6 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   }
 
   selecteItem(value: string) {
-    console.log('selecteItem');
     this.value = value;
   }
 
