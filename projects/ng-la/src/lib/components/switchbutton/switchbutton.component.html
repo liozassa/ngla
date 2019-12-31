@@ -1,4 +1,4 @@
-<div class="la-switchbutton-grid" [ngClass]="{ 'la-rtl': rtl }">
+<div class="la-switchbutton-grid" [ngClass]="{ 'la-rtl': isRTL() }">
     <label class="la-switchbutton-item label" *ngIf="label !== undefined">
         <span *ngIf="required">*&nbsp;</span>
         {{ label }}

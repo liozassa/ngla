@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { LaSelectItem } from '../../common/models';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'la-selectbutton',
@@ -19,7 +20,6 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
   @Input() label: string;
   @Input() options: LaSelectItem[];
   @Input() disabled: boolean;
-  @Input() rtl: boolean;
 
   @Input() invalidError: string;
   @Input() required: boolean;
@@ -46,7 +46,7 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
 
   hasChange:boolean;
 
-  constructor() {
+  constructor(private utilsService: UtilsService) {
     this.required = false;
     this.disabled = false;
     this.hasChange = false;
@@ -100,5 +100,9 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
 
   getValidationErr() {
     return this.invalidError;
+  }
+
+  isRTL() {
+    return this.utilsService.isRTL();
   }
 }

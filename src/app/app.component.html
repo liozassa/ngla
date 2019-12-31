@@ -1,7 +1,17 @@
-<div class="grid-container" dir="rtl">
+<div class="grid-container">
 
   <div class="listbox">
     <la-listbox header="Persons" footer="Count: {{ persons.length }}" [showAddButton]="true" (addItem)="addPerson()">
+      <div class="la-items">
+        <ng-container *ngFor="let person of persons">
+          <la-card [person]="person"></la-card>
+        </ng-container>
+      </div>
+    </la-listbox>
+  </div>
+
+  <div class="listbox2">
+    <la-listbox [showAddButton]="true" (addItem)="addPerson()">
       <div class="la-items">
         <ng-container *ngFor="let person of persons">
           <la-card [person]="person"></la-card>
@@ -55,11 +65,11 @@
   </div>
 
   <div class="select-button">
-    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender" [rtl]="true"></la-selectbutton>
+    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender"></la-selectbutton>
   </div>
 
   <div class="switch-button">
-    <la-switchbutton label="Switch Button (done)" [(ngModel)]="done" [rtl]="true"></la-switchbutton>
+    <la-switchbutton label="Switch Button (done)" [(ngModel)]="done"></la-switchbutton>
   </div>
 
   <div class="done value">

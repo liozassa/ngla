@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, OnChanges, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'la-switchbutton',
@@ -17,8 +18,6 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, On
 
   @Input() label: string;
   @Input() disabled: boolean;
-  @Input() rtl: boolean;
-  
   @Input() required: boolean;
 
   @Input()
@@ -49,15 +48,14 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, On
 
   hasChange:boolean;
 
-  constructor() {
+  constructor(private utilsService: UtilsService) {
     this.required = false;
     this.disabled = false;
     this.hasChange = false;
     this.invalidError = null;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
   
   ngOnChanges() {
     this.change.emit(this.value);
@@ -97,6 +95,10 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, On
 
   getValidationErr() {
     return this.invalidError;
+  }
+
+  isRTL() {
+    return this.utilsService.isRTL();
   }
 
 }

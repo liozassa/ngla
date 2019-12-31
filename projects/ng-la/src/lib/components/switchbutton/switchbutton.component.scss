@@ -14,7 +14,8 @@
                          'validate';
 
     .la-switchbutton-item {
-  
+        justify-self: start;
+
         &.label {
           grid-area: label;
           font-size: $component-label-size;
@@ -91,25 +92,29 @@
       font-size: 12px;
       margin-top: -10px;
     }
+}
 
-    &.la-rtl {
+.la-rtl {
+
+    &.la-switchbutton-grid {
+        direction: rtl;
 
         .la-switchbutton-item {
             
             &.toggle {
-
+    
                 .toggle-btn {
                     &::after {
-                        left: -50%;
+                        right: 0;
                     }
-
+    
                     &.toggle-btn-on {
                         &::after {
-                            left: 0;
+                            right: 50%;
                         }
                     }
                 }
-
+    
             }
         }
     }
