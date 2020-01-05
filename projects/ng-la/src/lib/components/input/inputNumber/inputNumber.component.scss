@@ -1,2 +1,16 @@
 @import '../input-style.scss';
   
+.la-input-content {
+    grid-area: input;
+    height: 100%;
+    box-shadow: none;
+    padding: 0 10px;
+
+    &:hover:enabled {
+      border: 1px solid black;
+    }
+
+    &.la-invalid {
+      border: 1px solid red;
+    }
+}
