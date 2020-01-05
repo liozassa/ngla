@@ -7,16 +7,7 @@
 
   <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid()}">
     <input class="la-dropdown-content-input" type="text" [(ngModel)]="selectedItem" [disabled]="disabled" readonly [placeholder]="placeholder ? placeholder : ''" [required]="required">
-    <div class="la-dropdown-content-trigger" [ngClass]="{down: state === 'small', up: state === 'large'}" (click)="openDdl()">
-      <!-- <svg *ngIf="state === 'small'" viewBox="0 0 129 129" enable-background="new 0 0 129 129">
-        <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z"/>
-      </svg>
-      <svg *ngIf="state === 'large'"  width="64" height="64" viewBox="0 0 64 64" enable-background="new 0 0 64 64" (click)="openDdl()">
-        <g>
-          <path fill="#1D1D1B" d="M3.352,48.296l28.56-28.328l28.58,28.347c0.397,0.394,0.917,0.59,1.436,0.59c0.52,0,1.04-0.196,1.436-0.59   c0.793-0.787,0.793-2.062,0-2.849l-29.98-29.735c-0.2-0.2-0.494-0.375-0.757-0.475c-0.75-0.282-1.597-0.107-2.166,0.456   L0.479,45.447c-0.793,0.787-0.793,2.062,0,2.849C1.273,49.082,2.558,49.082,3.352,48.296z"/>
-        </g>
-      </svg> -->
-    </div>
+    <div class="la-dropdown-content-trigger" [ngClass]="{down: state === 'small', up: state === 'large'}" (click)="openDdl()"></div>
   </div>
   <ul class="la-dropdown-item menu" [@ddlopen]='state'>
     <ng-container *ngFor="let o of options">

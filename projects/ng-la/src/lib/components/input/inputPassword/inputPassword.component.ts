@@ -51,6 +51,7 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
   private onTouched: any = () => { };
 
   hasChange:boolean;
+  inpuType: string = 'password';
 
   constructor() {
     this.required = false;
@@ -94,5 +95,13 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
 
   getValidationErr() {
     return this.invalidError;
+  }
+
+  showPassword() {
+    if (this.inpuType === 'password') {
+      this.inpuType = 'text';
+    } else {
+      this.inpuType = 'password';
+    }
   }
 }
