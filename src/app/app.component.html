@@ -11,7 +11,17 @@
   </div>
 
   <div class="listbox2">
-    <la-listbox [showAddButton]="true" (addItem)="addPerson()">
+    <la-listbox>
+      <div class="la-items">
+        <ng-container *ngFor="let person of persons">
+          <la-card [person]="person"></la-card>
+        </ng-container>
+      </div>
+    </la-listbox>
+  </div>
+
+  <div class="listbox3">
+    <la-listbox header="Persons">
       <div class="la-items">
         <ng-container *ngFor="let person of persons">
           <la-card [person]="person"></la-card>

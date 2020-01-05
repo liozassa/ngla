@@ -31,10 +31,14 @@
     &.header {
       // grid-area: header;
       display: grid;
-      grid-template-columns: 30px auto 30px;
+      grid-template-columns: 100%;
       background-color: $pink;
       height: 30px;
       line-height: 30px;
+
+      &.hasAddButton { 
+        grid-template-columns: 30px auto 30px;
+      }
 
       .la-listbox-header {
 
