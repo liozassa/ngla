@@ -65,8 +65,6 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
 
   constructor(private utilsService: UtilsService) {
     this.language = utilsService.getLang();
-    // this.dayNames =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    // this.monthNames =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
    }
 
   ngOnInit() {
@@ -108,6 +106,7 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
 
   onSelectDate(date: CalendarDate) {
     this.value = date.mDate.toDate();
+    console.log('la-calendar - onSelectDate', this.value);
     this.selectDate.emit(this.value);
   }
 

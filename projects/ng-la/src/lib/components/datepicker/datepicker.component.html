@@ -3,11 +3,11 @@
     <span *ngIf="required">*&nbsp;</span>
     {{ label }}
   </label>
-  <div class="la-datepicker-item content" (click)="showCalendar = !showCalendar">
-    <input class="la-datepicker-content-input" id="la-date" [ngModel]="value | date: 'dd-MM-yyyy'" readonly> <!-- (change)="value = parseDate($event.target.value)" -->
-    <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }"></div>
+  <div class="la-datepicker-item content" [ngClass]="{'disabled': disabled}">
+    <input class="la-datepicker-content-input" [ngModel]="value | date: 'dd-MM-yyyy'" readonly [disabled]="disabled">
+    <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }" (click)="disabled || showCalendar = !showCalendar"></div>
   </div>
   <div class="la-datepicker-item calendar" *ngIf="showCalendar">
-    <la-calendar [ngModel]="date" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar> <!--  (change)="selsctDate($event)" -->
+    <la-calendar [ngModel]="date" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar>
   </div>
 </div>

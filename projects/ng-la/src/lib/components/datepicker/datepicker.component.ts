@@ -49,7 +49,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
     return this._value.toDate();
   }
   set value(val: Date) {
-    this.date = val;
+    this.date = moment(val);
     this._value = moment(val).startOf('day');
     this.onChange(this._value);
     this.onTouched();
@@ -60,7 +60,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   @Output() selectDate = new EventEmitter<Date>();
 
   showCalendar: boolean;
-  date: Date = new Date();
+  date: moment_.Moment = moment();
 
   onChange: any = () => { };
   onTouched: any = () => { };
@@ -97,9 +97,9 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
     this.change.emit(this.value);
   }*/
 
-  parseDate(dateString: string): Date {
+  parseDate(dateString: string): moment_.Moment {
     if (dateString) {
-      return new Date(dateString.replace( /(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+      return moment(dateString.replace( /(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
     } else {
       return null;
     }
@@ -107,6 +107,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
 
   onSelsctDate(event: Date) {
     this.value = event;
+    console.log('la-datepicker - onSelectDate', this.value);
     this.selectDate.emit(this.value);
   }
 

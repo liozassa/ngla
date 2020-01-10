@@ -8,6 +8,7 @@ import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core
 export class LaButtonComponent implements OnInit {
   @Input() label: string;
   @Input() disabled: string;
+  @Input() form: boolean = false;
 
   classes: string = '';
 

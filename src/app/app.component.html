@@ -75,7 +75,7 @@
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date2" label="Date Picker" (selectDate)="onSelectDate($event)"></la-datepicker>
+    <la-datepicker [(ngModel)]="date2" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" [disabled]="true"></la-datepicker>
   </div>
 
   <div class="date-picker">
@@ -129,7 +129,7 @@
   </div>
 
   <div class="la-dialog-footer">
-      <la-button class="la-button-secondary" form="ngForm" label="OK" (click)="onSubmit()"></la-button> <!--  -->
+      <la-button class="la-button-secondary" [form]="true" label="OK"></la-button> <!--  -->
       <la-button class="la-button-info" label="Cancel" (click)="showOkDialog = false"></la-button>
   </div>
 </la-dialog>
