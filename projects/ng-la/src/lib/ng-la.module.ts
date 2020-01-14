@@ -14,6 +14,7 @@ import { LaListBoxModule } from './components/listbox/listbox.module';
 import { LaDialogModule } from './components/dialog/dialog.module';
 import { LaButtonModule } from './components/button/button.module';
 import { LaInputDirective } from './directives/input/input.directive';
+import { LaTooltipModule } from './components/tooltip/directives.module';
 
 
 
@@ -39,7 +40,7 @@ import { LaInputDirective } from './directives/input/input.directive';
     LaListBoxModule,
     LaDialogModule,
     LaButtonModule,
-    LaInputDirective
+    LaTooltipModule
   ]
 })
 export class NgLaModule { }

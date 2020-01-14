@@ -31,7 +31,7 @@
   </div>
 
   <div class="showOkDialog">
-    <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true"></la-button>
+    <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true" laTooltip="Show OK Dialog" laTooltip-position="bottom"></la-button>
   </div>
 
   <div class="showYesNoDialog">
@@ -39,7 +39,7 @@
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true"></la-inputText>
+    <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" laTooltip="Input Text" laTooltip-position="right"></la-inputText>
   </div>
   
   <div class="input text">
@@ -51,7 +51,7 @@
   </div>
 
   <div class="input text">
-    <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [readonly]="true"></la-inputText>
+    <la-inputText label="Input Text (read only)" [(ngModel)]="textExample" [readonly]="true" laTooltip="Input Text (read only)" laTooltip-position="left"></la-inputText>
   </div>
 
   <div class="input text">
@@ -75,7 +75,7 @@
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date2" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" [disabled]="true"></la-datepicker>
+    <la-datepicker [(ngModel)]="date2" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" [disabled]="true" laTooltip="Disabled"></la-datepicker>
   </div>
 
   <div class="date-picker">

@@ -136,7 +136,10 @@
           "options": {
             "tsConfig": "projects/ng-la/tsconfig.lib.json",
             "project": "projects/ng-la/ng-package.json"
-          }
+          },
+          "styles": [
+            "projects/ng-la/src/styles/styles.scss"
+          ]
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
