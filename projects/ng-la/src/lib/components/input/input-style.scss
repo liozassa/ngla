@@ -30,6 +30,12 @@
     &.la-invalid {
       border: 1px solid red;
     }*/
+
+    &:disabled {
+      background: #dddddd;
+      border: 0.5px solid lightgrey;
+      cursor: default;
+    }
   }
 
   .la-input-validate {
