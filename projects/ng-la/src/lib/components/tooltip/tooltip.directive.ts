@@ -31,11 +31,15 @@ export class LaTooltipDirective implements OnInit {
     this.overlayRef = this.overlay.create({ positionStrategy });
   }
 
-  @Input('laTooltip') text = '';
-  @Input('laTooltip-position') position = 'top';
+  @Input('laTooltip') text: string = '';
+  @Input('laTooltip-position') position: string = 'top';
+  @Input('laTooltip-disabled') disabled: boolean = false;
 
   @HostListener('mouseenter')
   show() {
+    if (this.disabled) {
+      return;
+    }
     const tooltipPortal = new ComponentPortal(LaTooltipComponent);
     const tooltipRef: ComponentRef<LaTooltipComponent> = this.overlayRef.attach(tooltipPortal);
     tooltipRef.instance.text = this.text;
@@ -44,6 +48,9 @@ export class LaTooltipDirective implements OnInit {
 
   @HostListener('mouseleave')
   hide() {
+    if (this.disabled) {
+      return;
+    }
     this.overlayRef.detach();
    }
 }
