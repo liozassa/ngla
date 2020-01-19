@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UtilsService } from 'projects/ng-la/src/lib/services/utils.service';
 
 @Component({
@@ -42,18 +42,21 @@ export class AppComponent implements OnInit {
   ];
 
   submitted = false;
-  dialogForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
-    lastName: new FormControl('', Validators.required),
-    gender: new FormControl('', Validators.required),
-    gender2: new FormControl('', Validators.required)
+  dialogForm = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
+    lastName: ['', Validators.required],
+    gender: ['', Validators.required],
+    gender2: ['', Validators.required],
+    date: [{ value: '', disabled: true }, Validators.required]
   });
 
   get f() { return this.dialogForm.controls; }
 
-  constructor(private utilsService: UtilsService) { }
+  constructor(private utilsService: UtilsService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    //this.dialogForm.controls.date.disable();
     this.numberExample = 0;
     // this.gender = 1;
     this.done = true;

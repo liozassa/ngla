@@ -20,7 +20,6 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: boolean;
-
   @Input() invalidError: string;
   @Input() required: boolean;
   @Input() min: number;
@@ -78,6 +77,10 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 
   isInvalid() {

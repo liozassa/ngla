@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter, HostListener, ElementRef, OnChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as moment_ from 'moment'; const moment = moment_;
 
 @Component({
@@ -11,15 +11,10 @@ import * as moment_ from 'moment'; const moment = moment_;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LaDatepickerComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => LaDatepickerComponent),
-      multi: true
     }
   ]
 })
-export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -34,8 +29,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() language: string;
-
-  @Input() showErrors: boolean;
+  @Input() invalidError: string;
   @Input() validateErrors: {};
   @Input() required: boolean;
   @Input() minDate: Date;
@@ -79,7 +73,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
 
   writeValue(value: Date | null): void {
     if (value) {
-      // this.value = new Date(value.setHours(0,0,0,0));
       this.value = value;
     }
   }
@@ -92,10 +85,9 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
     this.onTouched = fn;
   }
 
-  /*setDate(event) {
-    this.value = event;
-    this.change.emit(this.value);
-  }*/
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
 
   parseDate(dateString: string): moment_.Moment {
     if (dateString) {
@@ -107,37 +99,15 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, Vali
 
   onSelsctDate(event: Date) {
     this.value = event;
-    console.log('la-datepicker - onSelectDate', this.value);
     this.selectDate.emit(this.value);
   }
 
-  validate() {
-    const validates = {};
-    if (!this.value && this.required) {
-      validates['required'] = this.validateErrors && this.validateErrors['required'] ? this.validateErrors['required'] : 'Please fill out this field.';
-    }
-    
-    /*if ((this.minDate) && this.minDate > 0) {
-      if (!this.value || this.value.length < this.minlength) {
-        validates['minlength'] = this.validateErrors && this.validateErrors['minlength'] ? this.validateErrors['minlength'] : `The value must contain more than ${this.minlength} characters.`;
-      }
-    }*/
-
-    
-    /*if (Number.isInteger(this.maxlength) && this.maxlength > 0) {
-      if (!this.value || this.value.length > this.maxlength) {
-        validates['maxlength'] = this.validateErrors && this.validateErrors['maxlength'] ? this.validateErrors['maxlength'] : `The value must contain less than ${this.maxlength} characters.`;
-      }
-    }*/
-    return validates !== {} ? validates : null;
+  isInvalid() {
+    return this.invalidError !== null;
   }
 
-  getError() {
-    if (!this.showErrors) {
-      return null;
-    }
-    
-    return Object.values(this.validate())[0];;
+  getValidationErr() {
+    return this.invalidError;
   }
 
 }

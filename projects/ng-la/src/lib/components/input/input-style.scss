@@ -3,7 +3,7 @@
 .la-input {
   display: grid;
   grid-row-gap: $component-row-gap;
-  grid-template-rows: $component-label-size auto auto ;
+  grid-template-rows: $component-label-size auto auto;
   grid-template-areas: 'label'
                         'input'
                         'validate';

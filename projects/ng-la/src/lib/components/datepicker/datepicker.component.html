@@ -10,4 +10,5 @@
   <div class="la-datepicker-item calendar" *ngIf="showCalendar">
     <la-calendar [ngModel]="date" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar>
   </div>
+  <span class="la-datepicker-item validate" *ngIf="getValidationErr() !== null && !showCalendar">{{ getValidationErr() }}</span>
 </div>

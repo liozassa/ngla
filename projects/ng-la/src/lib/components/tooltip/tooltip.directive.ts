@@ -15,7 +15,6 @@ export class LaTooltipDirective implements OnInit {
               private overlay: Overlay) {}
 
   ngOnInit(): void {
-    console.log('position', this.position);
 
     const positionStrategy = this.overlayPositionBuilder
     .flexibleConnectedTo(this.el)

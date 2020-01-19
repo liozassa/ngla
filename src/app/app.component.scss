@@ -13,11 +13,12 @@
 .la-dialog-content-grid {
     display: grid;
     height: 100%;
-    grid-template-columns: auto 50px;
-    grid-template-areas: 'firstName .'
-                         'lastName .'
-                         'dropdown .'
-                         'select-button .';
+    grid-template-columns: auto;
+    grid-template-areas: 'firstName'
+                         'lastName'
+                         'dropdown'
+                         'select-button'
+                         'date-picker';
 
     .form-group {
         width: 100%;
@@ -37,6 +38,10 @@
 
         &.select-button {
             grid-area: select-button;
+        }
+
+        &.date-picker {
+            grid-area: date-picker;
         }
     }
 

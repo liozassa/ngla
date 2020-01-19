@@ -67,7 +67,7 @@
   </div>
 
   <div class="calendar">
-    <la-calendar [(ngModel)]="date" language="he"></la-calendar>
+    <la-calendar [(ngModel)]="date" language="en"></la-calendar>
   </div>
 
   <div class="calendar">
@@ -75,11 +75,11 @@
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date2" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" [disabled]="true" laTooltip="Disabled"></la-datepicker>
+    <la-datepicker [(ngModel)]="date4" label="Date Picker (birthday)" type="birthday" (selectDate)="onSelectDate($event)" [disabled]="true"></la-datepicker>
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date4" label="Date Picker (birthday)" type="birthday" (selectDate)="onSelectDate($event)"></la-datepicker>
+    <la-datepicker [(ngModel)]="date2" label="Date Picker" (selectDate)="onSelectDate($event)" language="en"></la-datepicker>
   </div>
 
   <div class="dropdown">
@@ -109,19 +109,23 @@
     <form class="la-dialog-content-grid" id="dialogForm" [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group firstName">
-        <la-inputText formControlName="firstName" label="First Name:" [(ngModel)]="textEmptyExample" [invalidError]="getInvalidMsg('firstName')"></la-inputText>
+        <la-inputText formControlName="firstName" label="First Name:" [invalidError]="getInvalidMsg('firstName')"></la-inputText>
       </div>
 
       <div class="form-group lastName">
-        <la-inputText formControlName="lastName" label="Last Name:" [(ngModel)]="textEmptyExample" [invalidError]="getInvalidMsg('lastName')"></la-inputText>
+        <la-inputText formControlName="lastName" label="Last Name:" [invalidError]="getInvalidMsg('lastName')"></la-inputText>
       </div>
 
       <div class="form-group dropdown">
-        <la-dropdown formControlName="gender" [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [invalidError]="getInvalidMsg('gender')"></la-dropdown>
+        <la-dropdown formControlName="gender" [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [invalidError]="getInvalidMsg('gender')"></la-dropdown>
       </div>
 
       <div class="form-group select-button">
-        <la-selectbutton formControlName="gender2" [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender2" [invalidError]="getInvalidMsg('gender2')"></la-selectbutton>
+        <la-selectbutton formControlName="gender2" [options]="getGenderDataSource()" label="Select Button (gender)" [invalidError]="getInvalidMsg('gender2')"></la-selectbutton>
+      </div>
+
+      <div class="form-group date-picker">
+        <la-datepicker formControlName="date" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" laTooltip="Disabled"></la-datepicker>
       </div>
 
     </form>

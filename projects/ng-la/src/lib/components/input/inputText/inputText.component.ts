@@ -88,6 +88,10 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
     this.onTouched = fn;
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
   isInvalid() {
     return this.invalidError !== null;
   }

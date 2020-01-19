@@ -6,11 +6,12 @@
     //padding: 0px;
     //width: 100%;
     //height: 100%;
-    grid-template-rows: $component-label-size $component-row-gap auto auto;
+    grid-template-rows: $component-label-size $component-row-gap auto auto auto;
     grid-template-areas: 'label'
                          '.'
                          'content'
-                         'calendar';
+                         'calendar'
+                         'validate';
 
     .la-datepicker-item {
   
@@ -62,10 +63,11 @@
             }
 
             &.disabled {
+            
                 background: #dddddd;
                 border: 0.5px solid lightgrey;
                 cursor: default;
-
+        
                 input {
                     background: #dddddd;
                 }
@@ -76,6 +78,10 @@
           grid-area: calendar;
           z-index: 1000;
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+      
+        &.validate {
+          grid-area: validate;
         }
 
     }

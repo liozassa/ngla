@@ -92,6 +92,10 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
     this.onTouched = fn;
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
   isToday(date: moment_.Moment): boolean {
     return moment().isSame(moment(date), 'day');
   }
@@ -106,7 +110,6 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
 
   onSelectDate(date: CalendarDate) {
     this.value = date.mDate.toDate();
-    console.log('la-calendar - onSelectDate', this.value);
     this.selectDate.emit(this.value);
   }
 

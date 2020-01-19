@@ -89,6 +89,10 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
     this.onTouched = fn;
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
   isInvalid() {
     return this.invalidError !== null;
   }
