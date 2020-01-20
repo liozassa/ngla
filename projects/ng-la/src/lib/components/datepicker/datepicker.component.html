@@ -5,7 +5,7 @@
   </label>
   <div class="la-datepicker-item content" [ngClass]="{'disabled': disabled}">
     <input class="la-datepicker-content-input" [ngModel]="value | date: 'dd-MM-yyyy'" readonly [disabled]="disabled">
-    <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }" (click)="disabled || showCalendar = !showCalendar"></div>
+    <div class="la-datepicker-content-trigger" [ngClass]="{ 'birthday': type === 'birthday' }" (click)="showCalendar = !showCalendar"></div>
   </div>
   <div class="la-datepicker-item calendar" *ngIf="showCalendar">
     <la-calendar [ngModel]="date" [language]="language" (selectDate)="onSelsctDate($event)"></la-calendar>

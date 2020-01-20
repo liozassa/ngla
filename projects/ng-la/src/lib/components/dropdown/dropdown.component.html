@@ -1,11 +1,11 @@
 
-<div class="la-dropdown" [ngClass]="{disabled: disabled}">
+<div class="la-dropdown">
   <label class="la-dropdown-item label" *ngIf="label !== undefined">
     <span *ngIf="required">*&nbsp;</span>
     {{ label }}
   </label>
 
-  <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid()}">
+  <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid(), 'disabled': disabled}">
     <input class="la-dropdown-content-input" type="text" [(ngModel)]="selectedItem" [disabled]="disabled" readonly [placeholder]="placeholder ? placeholder : ''" [required]="required">
     <div class="la-dropdown-content-trigger" [ngClass]="{down: state === 'small', up: state === 'large'}" (click)="openDdl()"></div>
   </div>

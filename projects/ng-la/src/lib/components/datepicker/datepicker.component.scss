@@ -63,13 +63,17 @@
             }
 
             &.disabled {
-            
                 background: #dddddd;
                 border: 0.5px solid lightgrey;
                 cursor: default;
         
                 input {
                     background: #dddddd;
+                }
+
+                .la-datepicker-content-trigger {
+                    pointer-events: none;
+                    cursor: default;
                 }
             }
         }

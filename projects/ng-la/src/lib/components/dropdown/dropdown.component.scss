@@ -39,6 +39,21 @@
         &.la-invalid {
           border: 1px solid red;
         }
+
+        &.disabled {
+          background: #dddddd;
+          border: 0.5px solid lightgrey;
+          cursor: default;
+  
+          input {
+              background: #dddddd;
+          }
+
+          .la-dropdown-content-trigger {
+            pointer-events: none;
+            cursor: default;
+          }
+        }
     
         .la-dropdown-content-input {
           grid-area: input;
@@ -107,9 +122,5 @@
         margin-top: -5px;
       }
     }
-  }
-  
-  .disabled {
-    pointer-events: none;
   }
   
