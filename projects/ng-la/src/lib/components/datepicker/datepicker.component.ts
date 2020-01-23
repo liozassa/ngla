@@ -1,6 +1,9 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, HostListener, ElementRef, OnChanges } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, HostListener, ElementRef, OnChanges, ComponentRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import * as moment_ from 'moment'; const moment = moment_;
+import * as moment_ from 'moment';import { LaCalendarComponent } from '../calendar';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { OverlayPositionBuilder, Overlay, OverlayRef } from '@angular/cdk/overlay';
+ const moment = moment_;
 
 @Component({
   selector: 'la-datepicker',
@@ -18,8 +21,11 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if(!this.eRef.nativeElement.contains(event.target)) {
-      this.showCalendar = false;
+    if(!this.el.nativeElement.contains(event.target)) {
+      if (this.overlayRef.hasAttached) {
+        this.showCalendar = false;
+        this.overlayRef.detach();
+      }
     }
   }
 
@@ -34,6 +40,9 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   @Input() required: boolean;
   @Input() minDate: Date;
   @Input() maxDate: Date;
+  @Input() calendarHeight: number = 300;
+  @Input() calendarWidth: number = this.el.nativeElement.offsetWidth;
+  @Input('la-datepicker-position') position: string = 'bottom';
 
   @Input()
   get value(): Date {
@@ -45,10 +54,12 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   set value(val: Date) {
     this.date = moment(val);
     this._value = moment(val).startOf('day');
-    this.onChange(this._value);
+    this.onChange(this.value);
     this.onTouched();
   }
   private _value: moment_.Moment = moment().startOf('day');
+
+  private overlayRef: OverlayRef;
 
   @Output() change = new EventEmitter<Date>();
   @Output() selectDate = new EventEmitter<Date>();
@@ -59,12 +70,24 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   onChange: any = () => { };
   onTouched: any = () => { };
 
-  constructor(private eRef: ElementRef) { 
+  constructor(private el: ElementRef,
+              private overlayPositionBuilder: OverlayPositionBuilder,
+              private overlay: Overlay) { 
     this.type = 'calendar';
     this.showCalendar = false;
   }
 
   ngOnInit() {
+    const positionStrategy = this.overlayPositionBuilder
+    .flexibleConnectedTo(this.el)
+    .withPositions([{
+      originX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'start' : 'end',
+      originY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'top' : 'bottom',
+      overlayX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'end' : 'start',
+      overlayY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'bottom' : 'top'
+    }]);
+
+    this.overlayRef = this.overlay.create({ positionStrategy });
   }
 
   ngOnChanges() {
@@ -94,6 +117,27 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
       return moment(dateString.replace( /(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
     } else {
       return null;
+    }
+  }
+
+  onShowCalendar() {
+    if (this.disabled) {
+      return;
+    }
+
+    if (this.overlayRef.hasAttached()) {
+      this.overlayRef.detach();
+    } else {
+      const tooltipPortal = new ComponentPortal(LaCalendarComponent);
+      const tooltipRef: ComponentRef<LaCalendarComponent> = this.overlayRef.attach(tooltipPortal);
+      tooltipRef.instance.language = this.language;
+      tooltipRef.instance.calendarHeight = this.calendarHeight;
+      tooltipRef.instance.calendarWidth = this.calendarWidth;
+      tooltipRef.instance.writeValue(this.value);
+      tooltipRef.instance.selectDate.subscribe(date => {
+        this.value = date;
+        this.overlayRef.detach();
+      });
     }
   }
 

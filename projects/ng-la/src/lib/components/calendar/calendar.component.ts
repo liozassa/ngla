@@ -36,6 +36,8 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   @Input() required: boolean;
   @Input() minDate: Date;
   @Input() maxDate: Date;
+  @Input() calendarHeight: number = 300;
+  @Input() calendarWidth: number = 400;
 
   @Input()
   get value(): Date | null {

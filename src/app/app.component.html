@@ -66,6 +66,10 @@
     <la-inputPassword label="Input Password" [(ngModel)]="passwordExample" [required]="true"></la-inputPassword>
   </div>
 
+  <div class="dropdown">
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true"></la-dropdown>
+  </div>
+
   <div class="calendar">
     <la-calendar [(ngModel)]="date" language="en"></la-calendar>
   </div>
@@ -75,11 +79,11 @@
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date4" label="Date Picker (birthday)" type="birthday" (selectDate)="onSelectDate($event)" [disabled]="true"></la-datepicker>
+    <la-datepicker [(ngModel)]="date2" label="Date Picker" (selectDate)="onSelectDate($event)" language="en" [endOfDay]="true"></la-datepicker>
   </div>
 
   <div class="date-picker">
-    <la-datepicker [(ngModel)]="date2" label="Date Picker" (selectDate)="onSelectDate($event)" language="en"></la-datepicker>
+    <la-datepicker [(ngModel)]="date4" label="Date Picker (birthday)" type="birthday" (selectDate)="onSelectDate($event)" [disabled]="true"></la-datepicker>
   </div>
 
   <div class="dropdown">
@@ -133,7 +137,7 @@
   </div>
 
   <div class="la-dialog-footer">
-      <la-button class="la-button-secondary" [form]="true" label="OK"></la-button> <!--  -->
+      <la-button class="la-button-secondary" [form]="true" label="OK"></la-button>
       <la-button class="la-button-info" label="Cancel" (click)="showOkDialog = false"></la-button>
   </div>
 </la-dialog>

@@ -1,5 +1,9 @@
 @import '../../common/_variables.scss';
 
+:host {
+    display: block;
+}
+
 .la-datepicker-grid {
     display: grid;
     background-color: transparent;

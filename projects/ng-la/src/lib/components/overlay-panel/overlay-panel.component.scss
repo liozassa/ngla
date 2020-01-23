@@ -1,0 +1,32 @@
+@import '../../common/_variables.scss';
+
+.la-button {
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+    border-radius: 4px;
+    height: 30px;
+    width: auto;
+    border: none;
+    padding: 0 15px;
+        
+    &.la-button-secondary {
+        background-color: $blue;
+    }
+
+    &.la-button-success {
+        background-color: $green;
+    }
+
+    &.la-button-danger {
+        background-color: $red;
+    }
+
+    &.la-button-warning {
+        background-color: $yellow;
+    }
+
+    &.la-button-info {
+        background-color: $bright-gray;
+    }
+}

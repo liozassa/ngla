@@ -1,126 +1,98 @@
 @import '../../common/_variables.scss';
 
+:host {
+  display: block;
+}
+
 .la-dropdown {
-    display: grid;
-    grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-size auto auto auto;
-    grid-template-areas: 'label'
-                         'content'
-                         'menu'
-                         'validate';
-  
-    .la-dropdown-item {
+  display: grid;
+  grid-row-gap: $component-row-gap;
+  grid-template-rows: $component-label-size auto auto;
+  grid-template-areas: 'label'
+                        'content'
+                        'validate';
 
-      &.label {
-        grid-area: label;
-        font-size: $component-label-size;
+  .la-dropdown-item {
 
-        span {
-            color: red;
-        }
-      }
+    &.label {
+      grid-area: label;
+      font-size: $component-label-size;
 
-      &.content {
-        grid-area: content;
-        display: grid;
-        background-color: white;
-        grid-gap: 5px;
-        padding: 1px 10px;
-        // height: 20px;
-        grid-template-columns: auto 30px;
-        grid-template-areas: 'input trigger';
-        border: 0.5px solid lightgrey;
-        cursor: pointer;
-    
-        &:hover {
-          border: 1px solid black;
-        }
-
-        &.la-invalid {
-          border: 1px solid red;
-        }
-
-        &.disabled {
-          background: #dddddd;
-          border: 0.5px solid lightgrey;
-          cursor: default;
-  
-          input {
-              background: #dddddd;
-          }
-
-          .la-dropdown-content-trigger {
-            pointer-events: none;
-            cursor: default;
-          }
-        }
-    
-        .la-dropdown-content-input {
-          grid-area: input;
-          height: 30px;
-          width: 100%;
-          box-shadow: none;
-          border: none;
-    
-          &:focus {
-            outline:none;
-          }
-        }
-    
-        .la-dropdown-content-trigger {
-          grid-area: trigger;
-          width: 100%;
-          cursor: pointer;
-
-          &.down {
-            background: url('./down-arrow.svg') no-repeat center;
-            background-size: 50%;
-          }
-
-          &.up {
-            background: url('./up-arrow.svg') no-repeat center;
-            background-size: 50%;
-          }
-        }
-      }
-  
-      &.menu {
-        grid-area: menu;
-        background-color: #fff;
-        width: 100%;
-        left: 0;
-        box-shadow: 0 1px 2px rgb(204, 204, 204);
-        border-radius: 0 1px 5px 5px;
-        overflow-x: hidden;
-        max-height: 144px;
-        overflow-y: scroll;
-        padding: 0;
-        margin: 0;
-        z-index: 1000;
-        list-style: none;
-    
-        li {
-          font-size: $component-label-size;
-          padding: 10px;
-          transition: all .2s ease-in-out;
-          cursor: pointer;
-    
-          &:hover {
-            background-color: #f2f2f2
-          }
-    
-          &:active {
-            background-color: #e2e2e2
-          }
-        }
-      }
-
-      &.validate {
-        grid-area: validate;
-        color: red;
-        font-size: 12px;
-        margin-top: -5px;
+      span {
+          color: red;
       }
     }
+
+    &.content {
+      grid-area: content;
+      display: grid;
+      background-color: white;
+      grid-gap: 5px;
+      padding: 1px 10px;
+      // height: 20px;
+      grid-template-columns: auto 30px;
+      grid-template-areas: 'input trigger';
+      border: 0.5px solid lightgrey;
+      cursor: pointer;
+  
+      &:hover {
+        border: 1px solid black;
+      }
+
+      &.la-invalid {
+        border: 1px solid red;
+      }
+
+      &.disabled {
+        background: #dddddd;
+        border: 0.5px solid lightgrey;
+        cursor: default;
+
+        input {
+            background: #dddddd;
+        }
+
+        .la-dropdown-content-trigger {
+          pointer-events: none;
+          cursor: default;
+        }
+      }
+  
+      .la-dropdown-content-input {
+        grid-area: input;
+        height: 30px;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+  
+        &:focus {
+          outline:none;
+        }
+      }
+  
+      .la-dropdown-content-trigger {
+        grid-area: trigger;
+        width: 100%;
+        cursor: pointer;
+
+        &.down {
+          background: url('./down-arrow.svg') no-repeat center;
+          background-size: 50%;
+        }
+
+        &.up {
+          background: url('./up-arrow.svg') no-repeat center;
+          background-size: 50%;
+        }
+      }
+    }
+
+    &.validate {
+      grid-area: validate;
+      color: red;
+      font-size: 12px;
+      margin-top: -5px;
+    }
   }
+}
   

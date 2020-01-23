@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaDropdownComponent } from './dropdown.component';
+import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
 
 
 
 @NgModule({
   declarations: [
-    LaDropdownComponent
+    LaDropdownComponent,
+    LaDdlOptionsComponent
   ],
   imports: [
     CommonModule,
@@ -16,5 +18,6 @@ import { LaDropdownComponent } from './dropdown.component';
   exports: [
     LaDropdownComponent
   ],
+  entryComponents: [LaDdlOptionsComponent]
 })
 export class LaDropDownModule { }

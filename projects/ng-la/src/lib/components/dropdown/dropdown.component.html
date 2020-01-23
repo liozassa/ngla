@@ -9,11 +9,6 @@
     <input class="la-dropdown-content-input" type="text" [(ngModel)]="selectedItem" [disabled]="disabled" readonly [placeholder]="placeholder ? placeholder : ''" [required]="required">
     <div class="la-dropdown-content-trigger" [ngClass]="{down: state === 'small', up: state === 'large'}" (click)="openDdl()"></div>
   </div>
-  <ul class="la-dropdown-item menu" [@ddlopen]='state'>
-    <ng-container *ngFor="let o of options">
-        <li id="d.value" (click)="selecteItem(o.value)"> {{ o.label }} </li>
-    </ng-container>
-  </ul>
   <span class="la-dropdown-item validate" *ngIf="getValidationErr() !== null && state === 'small'">{{ getValidationErr() }}</span>
 </div>
   
