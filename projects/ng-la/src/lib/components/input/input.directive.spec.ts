@@ -2,7 +2,10 @@ import { LaInputDirective } from './input.directive';
 
 describe('LaInputDirective', () => {
   it('should create an instance', () => {
-    const directive = new LaInputDirective();
+    let elRefMock = {
+      nativeElement: document.createElement('div')
+    };
+    const directive = new LaInputDirective(elRefMock);
     expect(directive).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LaOverlayPanelComponent } from './overlay-panel.component';
+import { LaOverlayPanelComponent } from './overlaypanel.component';
 
 
 

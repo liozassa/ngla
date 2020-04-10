@@ -1,0 +1,50 @@
+@import '../../common/_variables.scss';
+
+.la-input {
+  display: grid;
+  grid-row-gap: $component-row-gap;
+  grid-template-rows: $component-label-size auto auto;
+  grid-template-areas: 'label'
+                        'input'
+                        'validate';
+
+  .la-input-label {
+    grid-area: label;
+    font-size: $component-label-size;
+    // margin-bottom: 5px;
+
+    span {
+        color: red;
+    }
+  }
+
+  .la-input-content {
+    grid-area: input;
+    /*box-shadow: none;
+    padding: 0 10px;
+
+    &:hover:enabled {
+      border: 1px solid black;
+    }
+
+    &.la-invalid {
+      border: 1px solid red;
+    }*/
+
+    &:disabled {
+      background: #dddddd;
+      border: 0.5px solid lightgrey;
+      cursor: default;
+    }
+  }
+
+  .la-input-validate {
+    grid-area: validate;
+    color: red;
+    font-size: 12px;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}

@@ -162,6 +162,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "LaDev"
+    }
+  },
+  "defaultProject": "LaDev",
+  "cli": {
+    "analytics": false
+  }
 }

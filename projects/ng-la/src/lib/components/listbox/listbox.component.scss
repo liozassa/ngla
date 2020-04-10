@@ -6,18 +6,18 @@
   background-color: white;
   overflow: hidden;
   height: 100%;
-  border: 1px solid lightgrey;
+  border: none;
 
   &.hasHeaderFooter {
-    grid-template-rows: 30px auto 30px;
+    grid-template-rows: 60px auto 40px;
   }
 
   &.hasHeader {
-    grid-template-rows: 30px auto;
+    grid-template-rows: 60px auto;
   }
 
   &.hasFooter{
-    grid-template-rows: auto 30px;
+    grid-template-rows: auto 40px;
   }
   
   /*&:hover {
@@ -29,22 +29,24 @@
     font-size: 2.5vh;
 
     &.header {
-      // grid-area: header;
       display: grid;
-      grid-template-columns: 100%;
-      background-color: $pink;
-      height: 30px;
-      line-height: 30px;
+      grid-template-columns: 20% 60% 20%;
+      // background-color: $pink;
+      border: none;
+      height: 100%;
+      width: 100%;
+      grid-template-areas: 'add label .';
 
-      &.hasAddButton { 
-        grid-template-columns: 30px auto 30px;
-      }
-
-      .la-listbox-header {
+      .la-listbox-header-item {
 
         &.add {
-          background: transparent url('./plus.svg') no-repeat center;
-          background-size: 50%;
+          grid-area: add;
+          place-self: center;
+        }
+
+        &.label {
+          grid-area: label;
+          place-self: center;
         }
       }
     }
@@ -54,16 +56,16 @@
       background-color: white;
       overflow-x: hidden;
       overflow-y: auto;
-      padding: 2%;
+      //margin: 1vmin;
 
-      la-items {
+      .la-items {
         height: 100%;
       }
     }
 
     &.footer {
       // grid-area: footer;
-      background-color: $pink;
+      // background-color: $pink;
       height: 30px;
       line-height: 30px;
     }

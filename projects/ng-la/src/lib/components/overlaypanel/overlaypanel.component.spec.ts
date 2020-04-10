@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LaOverlayPanelComponent } from './overlay-panel.component';
+import { LaOverlayPanelComponent } from './overlaypanel.component';
 
 describe('LaOverlayPanelComponent', () => {
   let component: LaOverlayPanelComponent;

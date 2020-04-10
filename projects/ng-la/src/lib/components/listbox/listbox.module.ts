@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaListBoxComponent } from './listbox.component';
+import { LaButtonComponent, LaButtonModule } from '../button';
 
 
 
@@ -11,7 +12,8 @@ import { LaListBoxComponent } from './listbox.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    LaButtonModule
   ],
   exports: [
     LaListBoxComponent

@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange, ComponentRef, Self } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange, ComponentRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { LaSelectItem } from '../../common/models';
 import { OverlayRef, OverlayPositionBuilder, Overlay } from '@angular/cdk/overlay';
@@ -36,7 +36,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   @Input() disabled: boolean;
   @Input() placeholder: string = 'Select one option';
   @Input() optionHeight: number = 150;
-  @Input() optionWidth: number = this.el.nativeElement.offsetWidth;
+  @Input() optionWidth: number = 200;
 
   @Input() invalidError: string;
   @Input() required: boolean;

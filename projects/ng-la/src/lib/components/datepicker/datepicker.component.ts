@@ -21,7 +21,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if(!this.el.nativeElement.contains(event.target)) {
+    if(!this.el.nativeElement.contains(event.target) && !this.overlayRef.overlayElement.contains(event.target)) {
       if (this.overlayRef.hasAttached) {
         this.showCalendar = false;
         this.overlayRef.detach();
@@ -137,6 +137,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
       tooltipRef.instance.selectDate.subscribe(date => {
         this.value = date;
         this.overlayRef.detach();
+        this.selectDate.emit(this.value);
       });
     }
   }

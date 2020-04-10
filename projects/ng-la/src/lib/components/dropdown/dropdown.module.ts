@@ -5,7 +5,6 @@ import { LaDropdownComponent } from './dropdown.component';
 import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
 
 
-
 @NgModule({
   declarations: [
     LaDropdownComponent,

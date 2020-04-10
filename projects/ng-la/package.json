@@ -1,16 +1,16 @@
 {
   "name": "ng-la",
-  "version": "0.0.39",
+  "version": "0.0.57",
   "author": "Lioz Assa <liozassa@gmail.com>",
   "peerDependencies": {
-    "@angular/common": "^8.2.5",
-    "@angular/core": "^8.2.5",
-    "@angular/forms": "^8.2.5",
-    "@angular/animations": "^8.2.5",
-    "@angular/platform-browser": "^8.2.4",
-    "@angular/platform-browser-dynamic": "^8.2.4",
+    "@angular/common": "^9.0.7",
+    "@angular/core": "^9.0.7",
+    "@angular/forms": "^9.0.7",
+    "@angular/animations": "^9.0.7",
+    "@angular/platform-browser": "^9.0.7",
+    "@angular/platform-browser-dynamic": "^9.0.7",
     "moment": "^2.24.0",
-    "@angular/cdk": "8.2.3"
+    "@angular/cdk": "9.1.3"
   },
   "dependencies": {
   }

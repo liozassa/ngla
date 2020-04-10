@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'la-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class LaButtonComponent implements OnInit {
+export class LaButtonComponent {
   @Input() label: string;
   @Input() disabled: string;
   @Input() form: boolean = false;
@@ -23,10 +23,9 @@ export class LaButtonComponent implements OnInit {
       this.classes = 'la-button-warning'
     } else if (el.nativeElement.classList.contains('la-button-danger')) {
       this.classes = 'la-button-danger'
+    } else if (el.nativeElement.classList.contains('la-button-flat')) {
+      this.classes = 'la-button-flat'
     }
-  }
-
-  ngOnInit() {
   }
 
 }

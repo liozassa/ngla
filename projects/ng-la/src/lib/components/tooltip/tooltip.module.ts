@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LaTooltipComponent } from './tooltip.component';
 import { LaTooltipDirective } from './tooltip.directive';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -11,6 +12,7 @@ import { LaTooltipDirective } from './tooltip.directive';
     LaTooltipComponent
   ],
   imports: [
+    CommonModule,
     OverlayModule
   ],
   exports: [

@@ -38,6 +38,21 @@ export class AppComponent implements OnInit {
       name: 'person2',
       age: 2,
       phone: '050-1234567'
+    },
+    {
+      name: 'person3',
+      age: 3,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person4',
+      age: 4,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person5',
+      age: 5,
+      phone: '050-1234567'
     }
   ];
 

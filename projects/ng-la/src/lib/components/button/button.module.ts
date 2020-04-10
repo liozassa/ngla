@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaButtonComponent } from './button.component';
 
-
-
 @NgModule({
   declarations: [
     LaButtonComponent

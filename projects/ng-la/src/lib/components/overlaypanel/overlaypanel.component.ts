@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'la-overlay-panel',
-  templateUrl: './overlay-panel.component.html',
-  styleUrls: ['./overlay-panel.component.scss']
+  selector: 'la-overlaypanel',
+  templateUrl: './overlaypanel.component.html',
+  styleUrls: ['./overlaypanel.component.scss']
 })
 export class LaOverlayPanelComponent implements OnInit {
   @Input() label: string;

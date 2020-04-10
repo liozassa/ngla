@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { trigger, transition, style, useAnimation } from '@angular/animations';
+import { transAnimation } from '../../common/animations';
 
 @Component({
   selector: 'la-tooltip',
@@ -10,23 +11,30 @@ import { trigger, transition, style, animate } from '@angular/animations';
     trigger('tooltip', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate(300, style({ opacity: 1 })),
+        useAnimation(transAnimation, {
+          delay: 300,
+          params: { 
+            opacity: 1
+          }
+        })
       ]),
       transition(':leave', [
-        animate(300, style({ opacity: 0 })),
+        useAnimation(transAnimation, {
+          delay: 300,
+          params: { 
+            opacity: 0
+          }
+        })
       ]),
     ]),
   ]
 })
-export class LaTooltipComponent implements OnInit {
+export class LaTooltipComponent {
   
   @Input() text: string = '';
 
   @Input() position: string = 'top';
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

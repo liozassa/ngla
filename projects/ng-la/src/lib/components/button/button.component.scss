@@ -5,10 +5,10 @@
     color: white;
     font-weight: 500;
     border-radius: 4px;
-    height: 30px;
-    width: auto;
+    height: 100%;
+    width: 100%;
     border: none;
-    padding: 0 15px;
+    padding: 5px 15px;
         
     &.la-button-secondary {
         background-color: $blue;
@@ -28,5 +28,20 @@
 
     &.la-button-info {
         background-color: $bright-gray;
+    }
+    
+    &.la-button-flat {
+        border-radius: 50%;
+        color: black;
+        font-weight: bold;
+        height: 4vmin;
+        width: 4vmin;
+        padding: 0;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: $pink;
+            color: white;
+        }
     }
 }

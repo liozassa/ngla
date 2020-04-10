@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { Component, Input, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { LaSelectItem } from '../../../common/models';
+import { trigger, state, transition, style, useAnimation } from '@angular/animations';
+import { transAnimation } from '../../../common/animations';
 
 @Component({
   selector: 'la-ddl-options',
@@ -9,13 +10,30 @@ import { LaSelectItem } from '../../../common/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('ddl-options', [
-      state('small', style({ height: '0px'})),
-      state('large', style({ height: '{{optionHeight}}px', width: '{{optionWidth}}px'}), {params: {optionHeight: 150, optionWidth: 150}}),
-      transition('small <=> large', animate('.5s ease-in'))
+      state('small',
+        style({ height: '0px'})
+      ),
+      state('large',
+        style({
+          height: '{{optionHeight}}px',
+          width: '{{optionWidth}}px'
+        }),
+        {
+          params: {
+            optionHeight: 150,
+            optionWidth: 150
+          }
+        }
+      ),
+      transition('small <=> large',
+        useAnimation(transAnimation, {
+          delay: '.5s ease-in'
+        })
+      )
     ])
   ]
 })
-export class LaDdlOptionsComponent implements OnInit {
+export class LaDdlOptionsComponent {
   
   @Input() options: LaSelectItem[];
   @Input() state: string = 'small';
@@ -26,11 +44,8 @@ export class LaDdlOptionsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
-
   selectOption(option: LaSelectItem) {
     this.change.emit(option);
     this.state = 'small';
   }
-
 }

@@ -1,4 +1,4 @@
-<ul [@ddl-options]='{value: state, params: {optionHeight: optionHeight, optionWidth: optionWidth}}' class="menu">
+<ul class="menu" [@ddl-options]='{value: state, params: {optionHeight: optionHeight, optionWidth: optionWidth}}' class="menu">
     <ng-container *ngFor="let o of options">
         <li id="d.value" (click)="selectOption(o)"> {{ o.label }} </li>
     </ng-container>
