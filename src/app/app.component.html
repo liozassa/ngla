@@ -1,11 +1,22 @@
 <div class="grid-container" [ngClass]="{ 'la-rtl': isRTL() }">
 
   <div class="listbox">
-    <la-listbox header="Persons" footer="Count: {{ persons.length }}" [showAddButton]="true" (addItem)="addPerson()">
+    <la-listbox>
+      <div class="la-header">
+        <div class="la-header-item label">
+          {{ 'Persons' }}
+        </div>
+        <img class="la-header-item btn" src="/assets/icons/ico_add.svg" (click)="addPerson()" />
+      </div>
       <div class="la-items">
         <ng-container *ngFor="let person of persons">
           <la-card [person]="person"></la-card>
         </ng-container>
+      </div>
+      <div class="la-footer">
+        <div class="la-footer-item label">
+          Count: {{ persons.length }}
+        </div>
       </div>
     </la-listbox>
   </div>

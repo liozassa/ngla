@@ -9,6 +9,35 @@
     .dropdown { 
         height: 60px;
     }
+
+    .listbox {
+        .la-header {
+            display: grid;
+            width: 100%;
+            height: 30px;
+            grid-template-columns: 30px auto 30px;
+            grid-template-areas: '. label btn';
+
+            .la-header-item {
+                place-self: center;
+
+                &.label {
+                    grid-area: label;
+                    font-size: 2vh;
+                }
+    
+                &.btn {
+                    grid-area: btn;
+                    width: 1.5vmin;
+                    height: 1.5vmin;
+                }
+            }
+        }
+
+        .la-footer {
+            font-size: 2vh;
+        }
+    }
 }
 
 .la-dialog-content-grid {
