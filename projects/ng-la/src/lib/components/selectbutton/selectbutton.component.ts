@@ -66,12 +66,8 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
     this.change.emit(this.value);
   }
 
-  writeValue(value: any): void {
-    if (value !== null && !Number.isInteger(value)) {
-      // console.error(`Error: la-selectbutton - Invalid ${value} value for ngModel field.`);
-    } else {
-      this.value = value;
-    }
+  writeValue(value: any): void { 
+    this.value = value;
   }
 
   registerOnChange(fn: any): void {
@@ -88,10 +84,6 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
 
   selectItem(value: string) {
     this.value = value;
-  }
-
-  isSelected(value: string) {
-    return this.value === value;
   }
 
   isInvalid() {

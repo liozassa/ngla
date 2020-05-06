@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     'required': 'שדה חובה'
   };
   
-  gender: number;
+  gender: number = 1;
   gender2: number;
   done: boolean;
   date: Date;
@@ -81,6 +81,10 @@ export class AppComponent implements OnInit {
     this.date2 = new Date('2019-10-03');
     this.date3 = new Date('2016-02-13');
     this.date4 = new Date('2018-02-23');
+
+    this.dialogForm.patchValue({
+      gender: this.gender
+    });
   }
 
   getInvalidMsg(formControlName: string): string {

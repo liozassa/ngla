@@ -32,7 +32,12 @@
   </div>
 
   <div class="listbox3">
-    <la-listbox header="Persons">
+    <la-listbox>
+      <div class="la-header">
+        <div class="la-header-item label">
+          {{ 'Persons' }}
+        </div>
+      </div>
       <div class="la-items">
         <ng-container *ngFor="let person of persons">
           <la-card [person]="person"></la-card>
@@ -136,7 +141,7 @@
       </div>
 
       <div class="form-group select-button">
-        <la-selectbutton formControlName="gender2" [options]="getGenderDataSource()" label="Select Button (gender)" [invalidError]="getInvalidMsg('gender2')"></la-selectbutton>
+        <la-selectbutton formControlName="gender" [options]="getGenderDataSource()" label="Select Button (gender)" [invalidError]="getInvalidMsg('gender2')"></la-selectbutton>
       </div>
 
       <div class="form-group date-picker">
