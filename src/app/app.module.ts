@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { NgLaModule } from 'ng-la';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LaCardComponent } from './card/card.component';
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({

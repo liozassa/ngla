@@ -5,10 +5,11 @@
   grid-template-columns: 100%;
   background-color: white;
   overflow: hidden;
-  //height: 100%;
+  height: 100%;
   gap: 0;
   border: none;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto minmax(0, 100%) auto;
+  align-content: stretch;
 
   /*&.hasHeaderFooter {
     grid-template-rows: 60px auto 40px;
@@ -32,35 +33,16 @@
 
     &.header {
       width: 100%;
-      /*display: grid;
-      grid-template-columns: 20% 60% 20%;
-      // background-color: $pink;
-      border: none;
-      height: 100%;
-      width: 100%;
-      grid-template-areas: 'add label .';
-
-      .la-listbox-header-item {
-
-        &.add {
-          grid-area: add;
-          place-self: center;
-        }
-
-        &.label {
-          grid-area: label;
-          place-self: center;
-        }
-      }*/
     }
 
     &.list {
       background-color: white;
       overflow-x: hidden;
       overflow-y: auto;
+      height: fit-content;
 
       .la-items {
-        height: 100%;
+        height: auto;
       }
     }
 
