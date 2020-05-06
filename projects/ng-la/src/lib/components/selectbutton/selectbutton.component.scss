@@ -27,6 +27,7 @@
                          'validate';
 
     .la-selectbutton-item {
+        cursor: pointer;
   
         &.label {
           grid-area: label;
