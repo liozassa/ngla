@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaCalendarComponent } from '../calendar/public_api';
 import { LaCalendarModule } from '../calendar/calendar.module';
+import { CalendarOverlayService } from './calendar-overlay.service';
 
 
 
@@ -18,6 +19,9 @@ import { LaCalendarModule } from '../calendar/calendar.module';
   ],
   exports: [
     LaDatepickerComponent
+  ],
+  providers: [
+    CalendarOverlayService
   ],
   entryComponents: [LaCalendarComponent]
 })

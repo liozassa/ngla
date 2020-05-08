@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     lastName: ['', Validators.required],
     gender: ['', Validators.required],
     gender2: ['', Validators.required],
-    date: [{ value: '', disabled: true }, Validators.required]
+    date: [{ value: '' }, Validators.required]
   });
 
   get f() { return this.dialogForm.controls; }

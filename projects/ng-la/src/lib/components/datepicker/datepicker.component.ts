@@ -1,8 +1,8 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, HostListener, ElementRef, OnChanges, ComponentRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef, OnChanges, ComponentRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import * as moment_ from 'moment';import { LaCalendarComponent } from '../calendar';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { OverlayPositionBuilder, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import * as moment_ from 'moment';
+import { CalendarOverlayRef } from './calendar-overlay-ref.';
+import { CalendarOverlayService } from './calendar-overlay.service';
  const moment = moment_;
 
 @Component({
@@ -18,16 +18,6 @@ import { OverlayPositionBuilder, Overlay, OverlayRef } from '@angular/cdk/overla
   ]
 })
 export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnChanges {
-
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if(!this.el.nativeElement.contains(event.target) && !this.overlayRef.overlayElement.contains(event.target)) {
-      if (this.overlayRef.hasAttached) {
-        this.showCalendar = false;
-        this.overlayRef.detach();
-      }
-    }
-  }
 
   @Input() label: string;
   @Input() type: string;
@@ -59,8 +49,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   }
   private _value: moment_.Moment = moment().startOf('day');
 
-  private overlayRef: OverlayRef;
-
   @Output() change = new EventEmitter<Date>();
   @Output() selectDate = new EventEmitter<Date>();
 
@@ -71,24 +59,12 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   onTouched: any = () => { };
 
   constructor(private el: ElementRef,
-              private overlayPositionBuilder: OverlayPositionBuilder,
-              private overlay: Overlay) { 
+              private calendarOverlayService: CalendarOverlayService) { 
     this.type = 'calendar';
     this.showCalendar = false;
   }
 
-  ngOnInit() {
-    const positionStrategy = this.overlayPositionBuilder
-    .flexibleConnectedTo(this.el)
-    .withPositions([{
-      originX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'start' : 'end',
-      originY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'top' : 'bottom',
-      overlayX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'end' : 'start',
-      overlayY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'bottom' : 'top'
-    }]);
-
-    this.overlayRef = this.overlay.create({ positionStrategy });
-  }
+  ngOnInit() { }
 
   ngOnChanges() {
     this.change.emit(this.value);
@@ -121,13 +97,26 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   }
 
   onShowCalendar() {
-    if (this.disabled) {
+    console.log('onShowCalendar', this.value);
+    let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
+    dialogRef.select.subscribe((date: Date) => {
+      this.value = date;
+      this.selectDate.emit(this.value);
+    });
+
+    /*if (this.disabled) {
       return;
     }
 
     if (this.overlayRef.hasAttached()) {
       this.overlayRef.detach();
     } else {
+      let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
+      dialogRef.select.subscribe((date: Date) => {
+        this.value = date;
+        this.selectDate.emit(this.value);
+      });
+
       const tooltipPortal = new ComponentPortal(LaCalendarComponent);
       const tooltipRef: ComponentRef<LaCalendarComponent> = this.overlayRef.attach(tooltipPortal);
       tooltipRef.instance.language = this.language;
@@ -139,7 +128,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
         this.overlayRef.detach();
         this.selectDate.emit(this.value);
       });
-    }
+    }*/
   }
 
   onSelsctDate(event: Date) {

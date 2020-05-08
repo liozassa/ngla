@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { LaSelectItem } from '../../common/models';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UtilsService } from '../../services/utils.service';
@@ -13,7 +13,8 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaSelectbuttonComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, OnChanges {
 
@@ -29,6 +30,7 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
     return this._value;
   }
   set value(val) {
+    console.log('set value', val);
     const option = this.options.find(i => i.value === val);
     if (option) {
       this._value = option.value;
@@ -67,7 +69,10 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
   }
 
   writeValue(value: any): void { 
-    this.value = value;
+    console.log('writeValue', value);
+    if (value) {
+      this.value = value;
+    }
   }
 
   registerOnChange(fn: any): void {

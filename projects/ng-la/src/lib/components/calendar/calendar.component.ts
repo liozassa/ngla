@@ -50,6 +50,8 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
     this._value = moment(val).startOf('day');
     this.onChange(this._value);
     this.onTouched();
+    this.currentDate = moment(this.value);
+    this.generateCalendar();
   }
   private _value: moment_.Moment = moment().startOf('day');
 
@@ -79,11 +81,7 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
   }
 
   writeValue(value: Date | null): void {
-    if (value) {
-      this.currentDate = moment(value);
-      this.value = value;
-      this.generateCalendar();
-    }
+    this.value = value || new Date;
   }
 
   registerOnChange(fn) {
