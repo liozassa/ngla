@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter, OnChanges, ElementRef, SimpleChanges, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { LaSelectItem } from '../../common/models';
 import { LaDdlOptionsOverlayRef } from './ddl-options-overlay-ref.';
@@ -18,14 +18,13 @@ import { DdlOptionsOverlayService } from './ddl-options-overlay.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
 
   @Input() options: LaSelectItem[];
   @Input() label: string;
   @Input() disabled: boolean;
   @Input() placeholder: string = 'Select one option';
   @Input() optionHeight: number = 150;
-  @Input() optionWidth: number = 200;
   @Input() search_placeholder: string = 'What are you looking for?';
   @Input() showFilter: boolean = false;
 
@@ -67,20 +66,6 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
     this.invalidError = null;
   }
 
-  ngOnInit(): void {
-    /*const positionStrategy = this.overlayPositionBuilder
-    .flexibleConnectedTo(this.el)
-    .withPositions([{
-      originX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'start' : 'end',
-      originY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'top' : 'bottom',
-      overlayX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'end' : 'start',
-      overlayY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'bottom' : 'top'
-    }]);
-
-    this.overlayRef = this.overlay.create({ positionStrategy });*/
-
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.invalidError) {
       const currentInvalidError: SimpleChange = changes.invalidError;
@@ -88,7 +73,6 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
         this.invalidError = currentInvalidError.currentValue;
       }
     }
-    //this.change.emit(this.value);
   }
 
   writeValue(value: any): void {
