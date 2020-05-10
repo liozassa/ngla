@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaDropdownComponent } from './dropdown.component';
 import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
+import { LaInputModule } from '../input';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    LaInputModule
   ],
   exports: [
     LaDropdownComponent

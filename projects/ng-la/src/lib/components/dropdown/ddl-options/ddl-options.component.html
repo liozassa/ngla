@@ -1,5 +1,12 @@
-<ul class="menu" [@ddl-options]='{value: state, params: {optionHeight: optionHeight, optionWidth: optionWidth}}' class="menu">
-    <ng-container *ngFor="let o of options">
-        <li id="d.value" (click)="selectOption(o)"> {{ o.label }} </li>
-    </ng-container>
-</ul>
+<div class="ddl-options-grid" [ngStyle]="{'width': optionWidth + 'px'}">
+    <div class="ddl-search">
+        <la-inputSearch *ngIf="showFilter" [autosearch]="true" (onSearch)="filterOptions($event)"></la-inputSearch>
+    </div>
+    <div class="ddl-option-list">
+        <ul class="menu" class="menu">
+            <ng-container *ngFor="let o of _filter_options">
+                <li id="d.value" (click)="selectOption(o)"> {{ o.label }} </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

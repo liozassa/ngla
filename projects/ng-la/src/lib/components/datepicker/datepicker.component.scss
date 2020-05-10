@@ -7,9 +7,6 @@
 .la-datepicker-grid {
     display: grid;
     background-color: transparent;
-    //padding: 0px;
-    //width: 100%;
-    //height: 100%;
     grid-template-rows: $component-label-size $component-row-gap auto auto;
     grid-template-areas: 'label'
                          '.'

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaInputNumberComponent } from './inputNumber/inputNumber.component';
 import { LaInputPasswordComponent } from './inputPassword/inputPassword.component';
+import { LaInputSearchComponent } from './inputSearch/inputSearch.component';
 
 
 
@@ -11,7 +12,8 @@ import { LaInputPasswordComponent } from './inputPassword/inputPassword.componen
   declarations: [
     LaInputTextComponent,
     LaInputNumberComponent,
-    LaInputPasswordComponent
+    LaInputPasswordComponent,
+    LaInputSearchComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { LaInputPasswordComponent } from './inputPassword/inputPassword.componen
   exports: [
     LaInputTextComponent,
     LaInputNumberComponent,
-    LaInputPasswordComponent
+    LaInputPasswordComponent,
+    LaInputSearchComponent
   ],
 })
 export class LaInputModule { }

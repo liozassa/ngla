@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import * as moment_ from 'moment'; const moment = moment_;
 import * as _ from 'lodash';
 import { CalendarDate } from '../../common/interfaces';
@@ -20,9 +20,10 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaCalendarComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LaCalendarComponent implements OnInit, ControlValueAccessor, Validator, OnChanges {
+export class LaCalendarComponent implements OnInit, ControlValueAccessor, Validator { //OnChanges
 
   @Input() label: string;
   @Input() type: string;
@@ -76,9 +77,9 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
     this.monthNames = this.utilsService.getMonthNames(this.language);
   }
 
-  ngOnChanges() {
+  /*ngOnChanges() {
     this.change.emit(this.value);
-  }
+  }*/
 
   writeValue(value: Date | null): void {
     this.value = value || new Date;

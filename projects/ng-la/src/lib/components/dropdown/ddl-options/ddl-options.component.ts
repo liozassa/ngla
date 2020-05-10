@@ -8,7 +8,7 @@ import { transAnimation } from '../../../common/animations';
   templateUrl: './ddl-options.component.html',
   styleUrls: ['./ddl-options.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
+  /*animations: [
     trigger('ddl-options', [
       state('small',
         style({ height: '0px'})
@@ -31,21 +31,34 @@ import { transAnimation } from '../../../common/animations';
         })
       )
     ])
-  ]
+  ]*/
 })
 export class LaDdlOptionsComponent {
   
-  @Input() options: LaSelectItem[];
-  @Input() state: string = 'small';
+  @Input()
+  get optinos() : LaSelectItem[] {
+    return this._options;
+  }
+  set options(value: LaSelectItem[]) {
+    this._filter_options = value;
+    this._options = value;
+  }
+  private _options: LaSelectItem[];
+
   @Input() optionHeight: number = 150;
   @Input() optionWidth: number = 150;
+  @Input() showFilter: boolean = false;
 
+  _filter_options: LaSelectItem[];
   change = new EventEmitter();
 
   constructor() { }
 
   selectOption(option: LaSelectItem) {
     this.change.emit(option);
-    this.state = 'small';
+  }
+
+  filterOptions(filter_value: string) {
+    this._filter_options = this.optinos.filter(o => o.label.includes(filter_value));
   }
 }

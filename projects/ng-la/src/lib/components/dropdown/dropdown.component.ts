@@ -1,9 +1,8 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange, ComponentRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, HostListener, ElementRef, SimpleChanges, SimpleChange, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { LaSelectItem } from '../../common/models';
-import { OverlayRef, OverlayPositionBuilder, Overlay } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
+import { LaDdlOptionsOverlayRef } from './ddl-options-overlay-ref.';
+import { DdlOptionsOverlayService } from './ddl-options-overlay.service';
 
 @Component({
   selector: 'la-dropdown',
@@ -15,21 +14,11 @@ import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
       useExisting: forwardRef(() => LaDropdownComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChanges {
-
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if(!this.el.nativeElement.contains(event.target)) {
-      if (this.state === 'large') {
-        this.state = 'small';
-        this.hasChange = true;
-        this.overlayRef.detach();
-      }
-    }
-  }
 
   @Input() options: LaSelectItem[];
   @Input() label: string;
@@ -37,6 +26,8 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   @Input() placeholder: string = 'Select one option';
   @Input() optionHeight: number = 150;
   @Input() optionWidth: number = 200;
+  @Input() search_placeholder: string = 'What are you looking for?';
+  @Input() showFilter: boolean = false;
 
   @Input() invalidError: string;
   @Input() required: boolean;
@@ -56,28 +47,20 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
     } else {
       this.selectedItem = this.placeholder || 'Selece one option';
     }
-    this.state = 'small';
   }
   private _value: any;
 
-  private overlayRef: OverlayRef;
-
   @Output() change = new EventEmitter();
 
-
+  open: boolean = false;
   selectedItem: string;
-  state: string = 'small';
   hasChange:boolean;
-
-
-  
 
   onChange: any = () => { };
   onTouched: any = () => { };
 
   constructor(private el: ElementRef,
-              private overlayPositionBuilder: OverlayPositionBuilder,
-              private overlay: Overlay) {
+              private ddlOptionsOverlayService: DdlOptionsOverlayService) {
     this.required = false;
     this.disabled = false;
     this.hasChange = false;
@@ -85,7 +68,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
   }
 
   ngOnInit(): void {
-    const positionStrategy = this.overlayPositionBuilder
+    /*const positionStrategy = this.overlayPositionBuilder
     .flexibleConnectedTo(this.el)
     .withPositions([{
       originX: (this.position === 'top') || (this.position === 'bottom') ? 'center' : this.position === 'left' ? 'start' : 'end',
@@ -94,7 +77,7 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
       overlayY: (this.position === 'left') || (this.position === 'right') ? 'center' : this.position === 'top' ? 'bottom' : 'top'
     }]);
 
-    this.overlayRef = this.overlay.create({ positionStrategy });
+    this.overlayRef = this.overlay.create({ positionStrategy });*/
 
   }
 
@@ -102,10 +85,10 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
     if (changes.invalidError) {
       const currentInvalidError: SimpleChange = changes.invalidError;
       if (currentInvalidError.currentValue ) {
-        this.invalidError =  currentInvalidError.currentValue;
+        this.invalidError = currentInvalidError.currentValue;
       }
     }
-    this.change.emit(this.value);
+    //this.change.emit(this.value);
   }
 
   writeValue(value: any): void {
@@ -132,36 +115,19 @@ export class LaDropdownComponent implements OnInit, ControlValueAccessor, OnChan
       return;
     }
 
-    this.animateMe();
+    this.open = true;
+    let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.position, this.showFilter, this.options, this.optionHeight);
+    dialogRef.select.subscribe((option) => {
+      this.value = option.value;
+      this.change.emit(this.value);
+    });
+    dialogRef.close.subscribe(_ => {
+      this.open = false;
+    });
   }
 
   selecteItem(value: string) {
     this.value = value;
-  }
-
-
-  animateMe() {
-    if (this.disabled) {
-      return;
-    }
-
-    if (this.state === 'large') {
-      this.hasChange = true;
-      this.state = 'small';
-      this.overlayRef.detach();
-    } else {
-      const tooltipPortal = new ComponentPortal(LaDdlOptionsComponent);
-      const tooltipRef: ComponentRef<LaDdlOptionsComponent> = this.overlayRef.attach(tooltipPortal);
-      tooltipRef.instance.options = this.options;
-      tooltipRef.instance.optionHeight = this.optionHeight;
-      tooltipRef.instance.optionWidth = this.optionWidth;
-      tooltipRef.instance.state = 'large';
-      tooltipRef.instance.change.subscribe(option => {
-        this.value = option.value;
-        this.overlayRef.detach();
-      });
-      this.state = 'large';
-    }
   }
 
   isInvalid() {

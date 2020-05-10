@@ -1,43 +1,53 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { UtilsService } from '../../../services/utils.service';
 
 @Component({
-  selector: 'la-inputNumber',
-  templateUrl: './inputNumber.component.html',
-  styleUrls: ['./inputNumber.component.scss'],
+  selector: 'la-inputSearch',
+  templateUrl: './inputSearch.component.html',
+  styleUrls: ['./inputSearch.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => LaInputNumberComponent),
+      useExisting: forwardRef(() => LaInputSearchComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class LaInputSearchComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   @Input() label: string;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: boolean;
-  @Input() invalidError: string;
+  @Input() autosearch: boolean = false;
+
   @Input() required: boolean;
-  @Input() min: number;
-  @Input() max: number;
+  @Input() minlength: number;
+  @Input() maxlength: number;
 
   @Input()
-  get value(): number {
+  get value(): any {
     return this._value;
   }
-  set value(val: number) {
+  set value(val: any) {
     this._value = val;
     this.onChange(this._value);
     this.onTouched();
   }
-  private _value: number;
+  private _value: any;
+
+  @Input()
+  get invalidError() {
+    return this._invalidError;
+  }
+  set invalidError(val: string) {
+    this._invalidError = val;
+  }
+  private _invalidError: string;
 
   @Output() change = new EventEmitter();
+  @Output() onSearch = new EventEmitter();
 
   private onChange: any = () => { };
   private onTouched: any = () => { };
@@ -50,7 +60,7 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
     this.readonly = false;
     this.hasChange = false;
     this.invalidError = null;
-  }
+   }
 
   ngOnInit() { }
 
@@ -64,9 +74,9 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
     //this.change.emit(this.value);
   }
 
-  writeValue(value: number): void {
-    if (value !== null && !Number.isInteger(value)) {
-      // console.error(`Error: la-inputNumber - Invalid ${value} value for ngModel field.`);
+  writeValue(value: string): void {
+    if (value === undefined) {
+      // console.error(`Error: la-inputText - Invalid ${value} value for ngModel field.`);
     } else {
       this.value = value;
     }
@@ -90,5 +100,15 @@ export class LaInputNumberComponent implements OnInit, ControlValueAccessor, OnC
 
   getValidationErr() {
     return this.invalidError;
+  }
+
+  autoSearch(searchValue: string) {
+    if (this.autosearch) {
+      this.onSearch.emit(searchValue);
+    }
+  }
+
+  search() {
+    this.onSearch.emit(this.value);
   }
 }

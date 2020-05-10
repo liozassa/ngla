@@ -10,6 +10,8 @@ import { UtilsService } from 'projects/ng-la/src/lib/services/utils.service';
 export class AppComponent implements OnInit {
   title = 'LaDev';
   textExample = 'Text For Example';
+  textExample2: string;
+  textExample3 = 'Text For Example2';
   numberExample: number;
   passwordExample: string = '1234';
   textEmptyExample = '';
@@ -139,7 +141,9 @@ export class AppComponent implements OnInit {
     return [
       { label: 'male', value: 1},
       { label: 'female', value: 2},
-      { label: 'trans', value: 3}
+      { label: 'trans', value: 3},
+      { label: 'gay', value: 3},
+      { label: 'lesbian', value: 3}
     ]
   }
 
@@ -167,5 +171,9 @@ export class AppComponent implements OnInit {
 
   isRTL() {
     return this.utilsService.isRTL();
+  }
+
+  onSearch(search_value: string) {
+    console.log('search_value', search_value);
   }
 }

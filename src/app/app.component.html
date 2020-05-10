@@ -74,6 +74,14 @@
     <la-inputText label="Input Text (disabled)" [(ngModel)]="textExample" [disabled]="true"></la-inputText>
   </div>
 
+  <div class="input search">
+    <la-inputSearch label="Input Search" [(ngModel)]="textExample2" (onSearch)="onSearch($event)"></la-inputSearch>
+  </div>
+
+  <div class="input search">
+    <la-inputSearch label="Input Search (autosearch)" [autosearch]="true" [(ngModel)]="textExample3" (onSearch)="onSearch($event)"></la-inputSearch>
+  </div>
+
   <div class="input number">
     <la-inputNumber label="Input Number (with min)" [(ngModel)]="numberExample" [required]="true" [min]="0"></la-inputNumber>
   </div>
@@ -83,7 +91,7 @@
   </div>
 
   <div class="dropdown">
-    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true"></la-dropdown>
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (search)" placeholder="Select a gender" [(ngModel)]="gender" [showFilter]="true" [required]="true"></la-dropdown>
   </div>
 
   <div class="calendar">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChanges, SimpleChange, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { LaSelectItem } from '../../common/models';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UtilsService } from '../../services/utils.service';
@@ -16,10 +16,11 @@ import { UtilsService } from '../../services/utils.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges {
 
-  @Input() label: string;
+
   @Input() options: LaSelectItem[];
+  @Input() label: string;
   @Input() disabled: boolean;
 
   @Input() invalidError: string;
@@ -30,7 +31,6 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
     return this._value;
   }
   set value(val) {
-    console.log('set value', val);
     const option = this.options.find(i => i.value === val);
     if (option) {
       this._value = option.value;
@@ -42,36 +42,32 @@ export class LaSelectbuttonComponent implements OnInit, ControlValueAccessor, On
 
   @Output() change = new EventEmitter();
 
-
-  private onChange: any = () => { };
-  private onTouched: any = () => { };
-
   hasChange:boolean;
 
-  constructor(private utilsService: UtilsService) {
+  onChange: any = () => { };
+  onTouched: any = () => { };
+
+  constructor(private utilsService: UtilsService,
+              private cd: ChangeDetectorRef) {
     this.required = false;
     this.disabled = false;
     this.hasChange = false;
     this.invalidError = null;
   }
 
-  ngOnInit() {
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.invalidError) {
       const currentInvalidError: SimpleChange = changes.invalidError;
       if (currentInvalidError.currentValue ) {
-        this.invalidError =  currentInvalidError.currentValue;
+        this.invalidError = currentInvalidError.currentValue;
       }
     }
-    this.change.emit(this.value);
   }
 
-  writeValue(value: any): void { 
-    console.log('writeValue', value);
+  writeValue(value: any): void {
     if (value) {
       this.value = value;
+      this.cd.markForCheck();
     }
   }
 

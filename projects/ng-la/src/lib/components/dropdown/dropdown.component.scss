@@ -6,9 +6,9 @@
 
 .la-dropdown {
   display: grid;
-  grid-row-gap: $component-row-gap;
-  grid-template-rows: $component-label-size auto auto;
-  grid-template-areas: 'label'
+  grid-template-rows: $component-label-size $component-row-gap auto auto;
+  grid-template-areas:  'label'
+                        '.'
                         'content'
                         'validate';
 
@@ -29,7 +29,6 @@
       background-color: white;
       grid-gap: 5px;
       padding: 1px 10px;
-      // height: 20px;
       grid-template-columns: auto 30px;
       grid-template-areas: 'input trigger';
       border: 0.5px solid lightgrey;

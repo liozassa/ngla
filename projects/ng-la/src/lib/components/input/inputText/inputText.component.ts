@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UtilsService } from '../../../services/utils.service';
 
@@ -12,7 +12,8 @@ import { UtilsService } from '../../../services/utils.service';
       useExisting: forwardRef(() => LaInputTextComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnChanges {
 
@@ -69,7 +70,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
         this.invalidError =  currentInvalidError.currentValue;
       }
     }
-    this.change.emit(this.value);
+    //this.change.emit(this.value);
   }
 
   writeValue(value: string): void {

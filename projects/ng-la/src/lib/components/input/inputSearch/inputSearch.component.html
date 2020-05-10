@@ -1,0 +1,19 @@
+<div class="la-input" [ngClass]="{ disabled: disabled }">
+    <label class="la-input-label" *ngIf="label !== undefined">
+        <span *ngIf="required">*&nbsp;</span>
+        {{ label }}
+    </label>
+    <div class="la-input-content" [ngClass]="{'la-invalid': isInvalid()}">
+        <input class="la-input-content-input" [ngClass]="{'la-invalid': isInvalid()}" type="text"
+            [(ngModel)]="value"
+            [disabled]="disabled"
+            [readonly]="readonly"
+            [placeholder]="placeholder ? placeholder : ''"
+            [required]="required"
+            [minlength]="minlength"
+            [maxlength]="maxlength"
+            (input)="autoSearch($event.target.value)">
+        <div class="la-input-content-trigger" (click)="search()"></div>
+    </div>
+    <span class="la-input-validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>
+</div>

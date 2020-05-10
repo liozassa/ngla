@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { UtilsService } from '../../../services/utils.service';
 
 @Component({
   selector: 'la-inputPassword',
@@ -12,7 +11,8 @@ import { UtilsService } from '../../../services/utils.service';
       useExisting: forwardRef(() => LaInputPasswordComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, OnChanges {
 
@@ -70,7 +70,7 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
         this.invalidError =  currentInvalidError.currentValue;
       }
     }
-    this.change.emit(this.value);
+    //this.change.emit(this.value);
   }
 
   writeValue(value: string): void {

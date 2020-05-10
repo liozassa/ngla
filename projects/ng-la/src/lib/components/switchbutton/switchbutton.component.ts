@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, OnChanges, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, forwardRef, OnChanges, Input, Output, EventEmitter, SimpleChanges, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UtilsService } from '../../services/utils.service';
 
@@ -12,9 +12,10 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaSwitchbuttonComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor { //OnChanges
 
   @Input() label: string;
   @Input() disabled: boolean;
@@ -57,9 +58,9 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor, On
 
   ngOnInit() { }
   
-  ngOnChanges() {
+  /*ngOnChanges() {
     this.change.emit(this.value);
-  }
+  }*/
 
   writeValue(value: any): void {
     if (typeof value !== 'boolean' && value !== null) {

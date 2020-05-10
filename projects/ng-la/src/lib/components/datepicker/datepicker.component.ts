@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef, OnChanges, ComponentRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef, OnChanges, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as moment_ from 'moment';
 import { CalendarOverlayRef } from './calendar-overlay-ref.';
@@ -15,9 +15,10 @@ import { CalendarOverlayService } from './calendar-overlay.service';
       useExisting: forwardRef(() => LaDatepickerComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //OnChanges
 
   @Input() label: string;
   @Input() type: string;
@@ -66,9 +67,9 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
 
   ngOnInit() { }
 
-  ngOnChanges() {
+  /*ngOnChanges() {
     this.change.emit(this.value);
-  }
+  }*/
 
   writeValue(value: Date | null): void {
     if (value) {
@@ -97,7 +98,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor, OnCh
   }
 
   onShowCalendar() {
-    console.log('onShowCalendar', this.value);
     let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
     dialogRef.select.subscribe((date: Date) => {
       this.value = date;
