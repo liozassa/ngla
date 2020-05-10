@@ -27,6 +27,7 @@ export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
   @Input() optionHeight: number = 150;
   @Input() search_placeholder: string = 'What are you looking for?';
   @Input() showFilter: boolean = false;
+  @Input() autoSearch: boolean = false;
 
   @Input() invalidError: string;
   @Input() required: boolean;
@@ -100,7 +101,7 @@ export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
     }
 
     this.open = true;
-    let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.position, this.showFilter, this.options, this.optionHeight);
+    let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.position, this.showFilter, this.autoSearch, this.search_placeholder, this.options, this.optionHeight);
     dialogRef.select.subscribe((option) => {
       this.value = option.value;
       this.change.emit(this.value);

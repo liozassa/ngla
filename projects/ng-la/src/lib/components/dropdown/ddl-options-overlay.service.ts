@@ -25,7 +25,7 @@ export class DdlOptionsOverlayService {
   constructor(private overlay: Overlay,
               private overlayPositionBuilder: OverlayPositionBuilder) { }
 
-  open(el: ElementRef, position: string, showFilter: boolean, options: LaSelectItem[], optionHeight: number, config: DdlOptionsDialogConfig = {}) {
+  open(el: ElementRef, position: string, showFilter: boolean, autoSearch: boolean, search_placeholder: string, options: LaSelectItem[], optionHeight: number, config: DdlOptionsDialogConfig = {}) {
     console.log('el width', el.nativeElement.offsetWidth);
     const dialogConfig = { ...DEFAULT_CONFIG, ...config };
     const overlayRef = this.createOverlay(el, position, dialogConfig);
@@ -36,6 +36,8 @@ export class DdlOptionsOverlayService {
     ddl_options.instance.optionHeight = optionHeight;
     ddl_options.instance.optionWidth = el.nativeElement.offsetWidth;
     ddl_options.instance.showFilter = showFilter;
+    ddl_options.instance.autoSearch = autoSearch;
+    ddl_options.instance.search_placeholder = search_placeholder;
     ddl_options.instance.change.subscribe(option => {
       dialogRef.onChange(option.value);
     });

@@ -20,7 +20,7 @@ export class LaInputSearchComponent implements OnInit, ControlValueAccessor, OnC
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: boolean;
-  @Input() autosearch: boolean = false;
+  @Input() autoSearch: boolean = false;
 
   @Input() required: boolean;
   @Input() minlength: number;
@@ -102,8 +102,8 @@ export class LaInputSearchComponent implements OnInit, ControlValueAccessor, OnC
     return this.invalidError;
   }
 
-  autoSearch(searchValue: string) {
-    if (this.autosearch) {
+  onAutoSearch(searchValue: string) {
+    if (this.autoSearch) {
       this.onSearch.emit(searchValue);
     }
   }

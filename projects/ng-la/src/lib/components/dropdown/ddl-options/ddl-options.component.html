@@ -1,6 +1,6 @@
 <div class="ddl-options-grid" [ngStyle]="{'width': optionWidth + 'px'}">
     <div class="ddl-search">
-        <la-inputSearch *ngIf="showFilter" [autosearch]="true" (onSearch)="filterOptions($event)"></la-inputSearch>
+        <la-inputSearch *ngIf="showFilter" [autoSearch]="autoSearch" [placeholder]="search_placeholder" (onSearch)="filterOptions($event)"></la-inputSearch>
     </div>
     <div class="ddl-option-list">
         <ul class="menu" class="menu">

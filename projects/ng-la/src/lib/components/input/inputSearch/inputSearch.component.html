@@ -12,7 +12,7 @@
             [required]="required"
             [minlength]="minlength"
             [maxlength]="maxlength"
-            (input)="autoSearch($event.target.value)">
+            (input)="onAutoSearch($event.target.value)">
         <div class="la-input-content-trigger" (click)="search()"></div>
     </div>
     <span class="la-input-validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>

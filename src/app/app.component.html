@@ -79,7 +79,7 @@
   </div>
 
   <div class="input search">
-    <la-inputSearch label="Input Search (autosearch)" [autosearch]="true" [(ngModel)]="textExample3" (onSearch)="onSearch($event)"></la-inputSearch>
+    <la-inputSearch label="Input Search (autosearch)" [autoSearch]="true" [(ngModel)]="textExample3" (onSearch)="onSearch($event)"></la-inputSearch>
   </div>
 
   <div class="input number">
@@ -91,7 +91,7 @@
   </div>
 
   <div class="dropdown">
-    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (search)" placeholder="Select a gender" [(ngModel)]="gender" [showFilter]="true" [required]="true"></la-dropdown>
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (search)" [autoSearch]="true" placeholder="Select a gender" [(ngModel)]="gender" [showFilter]="true" [required]="true"></la-dropdown>
   </div>
 
   <div class="calendar">
