@@ -142,8 +142,8 @@ export class AppComponent implements OnInit {
       { label: 'male', value: 1},
       { label: 'female', value: 2},
       { label: 'trans', value: 3},
-      { label: 'gay', value: 3},
-      { label: 'lesbian', value: 3}
+      { label: 'gay', value: 4},
+      { label: 'lesbian', value: 5}
     ]
   }
 

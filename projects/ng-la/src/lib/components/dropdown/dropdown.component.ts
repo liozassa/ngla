@@ -103,7 +103,7 @@ export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
     this.open = true;
     let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.position, this.showFilter, this.autoSearch, this.search_placeholder, this.options, this.optionHeight);
     dialogRef.select.subscribe((option) => {
-      this.value = option.value;
+      this.value = option;
       this.change.emit(this.value);
     });
     dialogRef.close.subscribe(_ => {

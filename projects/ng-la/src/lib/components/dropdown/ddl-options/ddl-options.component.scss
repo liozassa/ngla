@@ -3,6 +3,7 @@
 .ddl-options-grid {
   display: grid;
   gap: 0;
+  border: 0.5px solid lightgrey;
   background-color: #fff;
   grid-template-rows: auto auto;
   grid-template-areas: 'search'
@@ -10,7 +11,7 @@
 
   .ddl-search {
     grid-area: search;
-    padding: .5vmin;
+    padding: .3vmin;
   }
   
   .ddl-option-list {
