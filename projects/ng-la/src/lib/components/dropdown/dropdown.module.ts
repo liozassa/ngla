@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LaDropdownComponent } from './dropdown.component';
 import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
 import { LaInputModule } from '../input';
+import { DdlOptionsOverlayService } from './ddl-options-overlay.service';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { LaInputModule } from '../input';
   ],
   exports: [
     LaDropdownComponent
+  ],
+  providers: [
+    DdlOptionsOverlayService
   ],
   entryComponents: [LaDdlOptionsComponent]
 })
