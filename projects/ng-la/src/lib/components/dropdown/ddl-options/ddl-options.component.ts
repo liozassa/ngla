@@ -35,6 +35,6 @@ export class LaDdlOptionsComponent {
   }
 
   filterOptions(filter_value: string) {
-    this._filter_options = this.optinos.filter(o => o.label.includes(filter_value));
+    this._filter_options = this.optinos.filter(o => o.label.toLowerCase().includes(filter_value.toLowerCase()));
   }
 }
