@@ -29,10 +29,10 @@
             &.la-calendar-years-back {
                 grid-area: back;
                 cursor: pointer;
-                text-align: left;
-                padding: 15%;
-                background: url('./left-arrow.svg') no-repeat center;
-                background-size: 50%;
+                width: 60%;
+                height: 60%;
+                margin: 15%;
+                justify-self: start;
             }
     
             &.la-calendar-years-name {
@@ -43,10 +43,20 @@
             &.la-calendar-years-next {
                 grid-area: next;
                 cursor: pointer;
-                text-align: right;
-                padding: 15%;
+                width: 60%;
+                height: 60%;
+                margin: 15%;
+                justify-self: end;
+            }
+
+            &.left-arrow {
+                background: url('./left-arrow.svg') no-repeat center;
+                background-size: 100%;
+            }
+
+            &.right-arrow {
                 background: url('./right-arrow.svg') no-repeat center;
-                background-size: 50%;
+                background-size: 100%;
             }
         }
     }
@@ -63,10 +73,10 @@
             &.la-calendar-months-back {
                 grid-area: back;
                 cursor: pointer;
-                text-align: left;
-                padding: 15%;
-                background: url('./left-arrow.svg') no-repeat center;
-                background-size: 50%;
+                width: 60%;
+                height: 60%;
+                margin: 15%;
+                justify-self: start;
             }
     
             &.la-calendar-months-name {
@@ -77,10 +87,20 @@
             &.la-calendar-months-next {
                 grid-area: next;
                 cursor: pointer;
-                text-align: right;
-                padding: 15%;
+                width: 60%;
+                height: 60%;
+                margin: 15%;
+                justify-self: end;
+            }
+
+            &.left-arrow {
+                background: url('./left-arrow.svg') no-repeat center;
+                background-size: 100%;
+            }
+
+            &.right-arrow {
                 background: url('./right-arrow.svg') no-repeat center;
-                background-size: 50%;
+                background-size: 100%;
             }
         }
     }

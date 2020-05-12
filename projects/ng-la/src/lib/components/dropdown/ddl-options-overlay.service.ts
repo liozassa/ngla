@@ -4,6 +4,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { LaDdlOptionsOverlayRef } from './ddl-options-overlay-ref.';
 import { LaDdlOptionsComponent } from './ddl-options/ddl-options.component';
 import { LaSelectItem } from '../../common/models';
+import { UtilsService } from '../../services/utils.service';
 
 interface DdlOptionsDialogConfig {
   panelClass?: string;
@@ -23,12 +24,13 @@ const DEFAULT_CONFIG: DdlOptionsDialogConfig = {
 export class DdlOptionsOverlayService {
 
   constructor(private overlay: Overlay,
-              private overlayPositionBuilder: OverlayPositionBuilder) { }
+              private overlayPositionBuilder: OverlayPositionBuilder,
+              private utilsService: UtilsService) { }
 
   open(el: ElementRef, position: string, showFilter: boolean, autoSearch: boolean, search_placeholder: string, options: LaSelectItem[], optionHeight: number, config: DdlOptionsDialogConfig = {}) {
-    console.log('el width', el.nativeElement.offsetWidth);
     const dialogConfig = { ...DEFAULT_CONFIG, ...config };
     const overlayRef = this.createOverlay(el, position, dialogConfig);
+    overlayRef.setDirection(this.utilsService.getDirection());
     const dialogRef = new LaDdlOptionsOverlayRef(overlayRef);
     const ddl_options_portal = new ComponentPortal(LaDdlOptionsComponent);
     const ddl_options: ComponentRef<LaDdlOptionsComponent> = overlayRef.attach(ddl_options_portal);

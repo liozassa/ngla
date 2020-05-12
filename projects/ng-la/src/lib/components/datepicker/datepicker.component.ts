@@ -1,8 +1,8 @@
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef, OnChanges, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as moment_ from 'moment';
-import { CalendarOverlayRef } from './calendar-overlay-ref.';
-import { CalendarOverlayService } from './calendar-overlay.service';
+import { CalendarOverlayRef } from '../calendar/calendar-overlay-ref.';
+import { CalendarOverlayService } from '../calendar/calendar-overlay.service';
  const moment = moment_;
 
 @Component({

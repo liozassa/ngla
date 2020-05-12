@@ -70,16 +70,12 @@ export class LaCalendarComponent implements OnInit, ControlValueAccessor, Valida
 
   constructor(private utilsService: UtilsService) {
     this.language = utilsService.getLang();
-   }
+  }
 
   ngOnInit() {
     this.dayNames = this.utilsService.getDayNames(this.language);
     this.monthNames = this.utilsService.getMonthNames(this.language);
   }
-
-  /*ngOnChanges() {
-    this.change.emit(this.value);
-  }*/
 
   writeValue(value: Date | null): void {
     this.value = value || new Date;

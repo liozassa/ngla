@@ -3,7 +3,7 @@
         <la-inputSearch *ngIf="showFilter" [autoSearch]="autoSearch" [placeholder]="search_placeholder" (onSearch)="filterOptions($event)"></la-inputSearch>
     </div>
     <div class="ddl-option-list">
-        <ul class="menu" class="menu">
+        <ul class="menu">
             <ng-container *ngFor="let o of _filter_options">
                 <li id="d.value" (click)="selectOption(o)"> {{ o.label }} </li>
             </ng-container>

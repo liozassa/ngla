@@ -1,15 +1,15 @@
-<div class="la-calendar" [ngClass]="{ 'la-rtl': isRTL() }" [ngStyle]="{height: calendarHeight + 'px', width: calendarWidth + 'px'}">
+<div class="la-calendar" [ngStyle]="{height: calendarHeight + 'px', width: calendarWidth + 'px'}"> <!--  [ngClass]="{ 'la-rtl': isRTL() }" -->
 
   <div class="la-calendar-years">
-    <div class="la-calendar-years-item la-calendar-years-back" (click)="prevYear()"></div>
+    <div class="la-calendar-years-item la-calendar-years-back" [ngClass]="{'left-arrow': !isRTL(), 'right-arrow': isRTL()}" (click)="prevYear()"></div>
     <div class="la-calendar-years-item la-calendar-years-name"> {{ currentDate.format('YYYY') }} </div>
-    <div class="la-calendar-years-item la-calendar-years-next" (click)="nextYear()"></div>
+    <div class="la-calendar-years-item la-calendar-years-next" [ngClass]="{'left-arrow': isRTL(), 'right-arrow': !isRTL()}" (click)="nextYear()"></div>
   </div>
 
   <div class="la-calendar-months">
-    <div class="la-calendar-months-item la-calendar-months-back" (click)="prevMonth()"></div>
+    <div class="la-calendar-months-item la-calendar-months-back" [ngClass]="{'left-arrow': !isRTL(), 'right-arrow': isRTL()}" (click)="prevMonth()"></div>
     <div class="la-calendar-months-item la-calendar-months-name"> {{ monthNames[currentDate.month()] }}</div>
-    <div class="la-calendar-months-item la-calendar-months-next" (click)="nextMonth()"></div>
+    <div class="la-calendar-months-item la-calendar-months-next" [ngClass]="{'left-arrow': isRTL(), 'right-arrow': !isRTL()}" (click)="nextMonth()"></div> <!-- [ngClass]="{'': !isRTL(), 'la-calendar-months-back': isRTL()}" -->
   </div>
 
   <div class="la-calendar-headers">
