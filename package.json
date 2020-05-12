@@ -1,6 +1,6 @@
 {
   "name": "la-dev",
-  "version": "0.0.1",
+  "version": "0.0.81",
   "author": "Lioz assa <liozassa@gmail.com>",
   "scripts": {
     "ng": "ng",

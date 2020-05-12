@@ -32,6 +32,7 @@ export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
   @Input() invalidError: string;
   @Input() required: boolean;
   @Input('la-dropdown-position') position: string = 'bottom';
+  @Input() direction: "rtl" | "ltr" = "ltr";
 
   @Input()
   get value() {
@@ -101,7 +102,7 @@ export class LaDropdownComponent implements ControlValueAccessor, OnChanges {
     }
 
     this.open = true;
-    let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.position, this.showFilter, this.autoSearch, this.search_placeholder, this.options, this.optionHeight);
+    let dialogRef: LaDdlOptionsOverlayRef = this.ddlOptionsOverlayService.open(this.el, this.direction, this.position, this.showFilter, this.autoSearch, this.search_placeholder, this.options, this.optionHeight);
     dialogRef.select.subscribe((option) => {
       this.value = option;
       this.change.emit(this.value);

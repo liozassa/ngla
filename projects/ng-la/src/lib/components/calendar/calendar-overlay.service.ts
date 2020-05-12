@@ -23,13 +23,12 @@ const DEFAULT_CONFIG: CalendarDialogConfig = {
 export class CalendarOverlayService {
 
   constructor(private overlay: Overlay,
-              private overlayPositionBuilder: OverlayPositionBuilder,
-              private utilsService: UtilsService) { }
+              private overlayPositionBuilder: OverlayPositionBuilder) { }
 
-  open(el: ElementRef, position: string, date: Date, config: CalendarDialogConfig = {}) {
+  open(el: ElementRef, direction: "rtl" | "ltr", position: string, date: Date, config: CalendarDialogConfig = {}) {
     const dialogConfig = { ...DEFAULT_CONFIG, ...config };
     const overlayRef = this.createOverlay(el, position, dialogConfig);
-    overlayRef.setDirection(this.utilsService.getDirection());
+    overlayRef.setDirection(direction);
     const dialogRef = new CalendarOverlayRef(overlayRef);
     const calendar_portal = new ComponentPortal(LaCalendarComponent);
     const calendar: ComponentRef<LaCalendarComponent> = overlayRef.attach(calendar_portal);

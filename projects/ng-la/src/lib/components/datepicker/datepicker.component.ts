@@ -35,6 +35,8 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   @Input() calendarWidth: number = this.el.nativeElement.offsetWidth;
   @Input('la-datepicker-position') position: string = 'bottom';
 
+  @Input() direction: "rtl" | "ltr" = "ltr";
+
   @Input()
   get value(): Date {
     if (this.endOfDay === true) {
@@ -98,37 +100,11 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   }
 
   onShowCalendar() {
-    let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
+    let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.direction, this.position, this.value);
     dialogRef.select.subscribe((date: Date) => {
       this.value = date;
       this.selectDate.emit(this.value);
     });
-
-    /*if (this.disabled) {
-      return;
-    }
-
-    if (this.overlayRef.hasAttached()) {
-      this.overlayRef.detach();
-    } else {
-      let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
-      dialogRef.select.subscribe((date: Date) => {
-        this.value = date;
-        this.selectDate.emit(this.value);
-      });
-
-      const tooltipPortal = new ComponentPortal(LaCalendarComponent);
-      const tooltipRef: ComponentRef<LaCalendarComponent> = this.overlayRef.attach(tooltipPortal);
-      tooltipRef.instance.language = this.language;
-      tooltipRef.instance.calendarHeight = this.calendarHeight;
-      tooltipRef.instance.calendarWidth = this.calendarWidth;
-      tooltipRef.instance.writeValue(this.value);
-      tooltipRef.instance.selectDate.subscribe(date => {
-        this.value = date;
-        this.overlayRef.detach();
-        this.selectDate.emit(this.value);
-      });
-    }*/
   }
 
   onSelsctDate(event: Date) {
