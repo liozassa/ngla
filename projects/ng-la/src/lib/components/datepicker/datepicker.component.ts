@@ -35,8 +35,6 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   @Input() calendarWidth: number = this.el.nativeElement.offsetWidth;
   @Input('la-datepicker-position') position: string = 'bottom';
 
-  @Input() direction: "rtl" | "ltr" = "ltr";
-
   @Input()
   get value(): Date {
     if (this.endOfDay === true) {
@@ -100,7 +98,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   }
 
   onShowCalendar() {
-    let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.direction, this.position, this.value);
+    let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
     dialogRef.select.subscribe((date: Date) => {
       this.value = date;
       this.selectDate.emit(this.value);

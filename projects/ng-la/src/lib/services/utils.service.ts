@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +7,10 @@ export class UtilsService {
 
   rtl_languages = ['he'];
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor() { }
 
   isRTL() {
-    const lang = this.document.documentElement.lang;
-    if (this.rtl_languages.includes(lang)) {
+    if (this.rtl_languages.includes(this.getLang())) {
         return true;
     } else {
         return false;
@@ -20,8 +18,7 @@ export class UtilsService {
   }
 
   getDirection() {
-    const lang = this.document.documentElement.lang;
-    return this.rtl_languages.includes(lang)  ? 'rtl' : 'ltr';
+    return this.rtl_languages.includes(this.getLang())  ? 'rtl' : 'ltr';
   }
 
   getLang() {

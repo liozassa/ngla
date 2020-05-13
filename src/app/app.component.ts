@@ -84,9 +84,9 @@ export class AppComponent implements OnInit {
     this.date3 = new Date('2016-02-13');
     this.date4 = new Date('2018-02-23');
 
-    this.dialogForm.patchValue({
+    /*this.dialogForm.patchValue({
       gender: this.gender
-    });
+    });*/
   }
 
   getInvalidMsg(formControlName: string): string {

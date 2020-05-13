@@ -24,12 +24,13 @@ const DEFAULT_CONFIG: DdlOptionsDialogConfig = {
 export class DdlOptionsOverlayService {
 
   constructor(private overlay: Overlay,
-              private overlayPositionBuilder: OverlayPositionBuilder) { }
+              private overlayPositionBuilder: OverlayPositionBuilder,
+              private utilsService: UtilsService) { }
 
-  open(el: ElementRef, direction: "rtl" | "ltr", position: string, showFilter: boolean, autoSearch: boolean, search_placeholder: string, options: LaSelectItem[], optionHeight: number, config: DdlOptionsDialogConfig = {}) {
+  open(el: ElementRef, position: string, showFilter: boolean, autoSearch: boolean, search_placeholder: string, options: LaSelectItem[], optionHeight: number, config: DdlOptionsDialogConfig = {}) {
     const dialogConfig = { ...DEFAULT_CONFIG, ...config };
     const overlayRef = this.createOverlay(el, position, dialogConfig);
-    overlayRef.setDirection(direction);
+    overlayRef.setDirection(this.utilsService.getDirection());
     const dialogRef = new LaDdlOptionsOverlayRef(overlayRef);
     const ddl_options_portal = new ComponentPortal(LaDdlOptionsComponent);
     const ddl_options: ComponentRef<LaDdlOptionsComponent> = overlayRef.attach(ddl_options_portal);
