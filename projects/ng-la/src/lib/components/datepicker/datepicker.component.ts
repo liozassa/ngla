@@ -21,7 +21,7 @@ import { CalendarOverlayService } from '../calendar/calendar-overlay.service';
 export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //OnChanges
 
   @Input() label: string;
-  @Input() type: string;
+  @Input() type: string = 'calendar';
   @Input() endOfDay: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -31,6 +31,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   @Input() required: boolean;
   @Input() minDate: Date;
   @Input() maxDate: Date;
+  @Input() onlyYear: boolean = false;
   @Input() calendarHeight: number = 300;
   @Input() calendarWidth: number = this.el.nativeElement.offsetWidth;
   @Input('la-datepicker-position') position: string = 'bottom';
@@ -53,17 +54,13 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   @Output() change = new EventEmitter<Date>();
   @Output() selectDate = new EventEmitter<Date>();
 
-  showCalendar: boolean;
   date: moment_.Moment = moment();
 
   onChange: any = () => { };
   onTouched: any = () => { };
 
   constructor(private el: ElementRef,
-              private calendarOverlayService: CalendarOverlayService) { 
-    this.type = 'calendar';
-    this.showCalendar = false;
-  }
+              private calendarOverlayService: CalendarOverlayService) { }
 
   ngOnInit() { }
 
@@ -98,6 +95,22 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
   }
 
   onShowCalendar() {
+    if (!this.onlyYear) {
+      let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
+      dialogRef.select.subscribe((date: Date) => {
+        this.value = date;
+        this.selectDate.emit(this.value);
+      });
+    } else if (this.onlyYear) {
+      let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
+      dialogRef.select.subscribe((date: Date) => {
+        this.value = date;
+        this.selectDate.emit(this.value);
+      });
+    }
+  }
+
+  onShowYears() {
     let dialogRef: CalendarOverlayRef = this.calendarOverlayService.open(this.el, this.position, this.value);
     dialogRef.select.subscribe((date: Date) => {
       this.value = date;

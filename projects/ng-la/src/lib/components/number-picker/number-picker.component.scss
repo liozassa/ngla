@@ -1,0 +1,41 @@
+@import '../../common/_variables.scss';
+
+:host {
+    display: block;
+}
+
+.la-number-picker {
+    display: grid;
+    height: auto;
+    grid-gap: 0;
+    grid-auto-columns: 100%;
+    grid-template-rows: 30px 30px 30px;
+    grid-template-areas: 'next'
+                         'num'
+                         'back';
+
+    .next {
+        grid-area: next;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        place-self: center;
+        background: url('../../common/up_arrow.svg') no-repeat center;
+        background-size: 100%;
+    }
+
+    .num {
+        grid-area: num;
+        place-self: center;
+    }
+
+    .back {
+        grid-area: back;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        place-self: center;
+        background: url('../../common/down_arrow.svg') no-repeat center;
+        background-size: 100%;
+    }
+}

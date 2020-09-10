@@ -13,6 +13,7 @@ import { LaTooltipModule } from './components/tooltip/tooltip.module';
 import { LaOverlayPanelModule } from './components/overlaypanel/overlaypanel.module';
 import { CommonModule } from '@angular/common';
 import { LaInputDirective } from './components/input/input.directive';
+import { LaNumberPickerModule } from './components/number-picker';
 
 
 
@@ -36,7 +37,8 @@ import { LaInputDirective } from './components/input/input.directive';
     LaDialogModule,
     LaButtonModule,
     LaTooltipModule,
-    LaOverlayPanelModule
+    LaOverlayPanelModule,
+    LaNumberPickerModule
   ]
 })
 export class NgLaModule { }

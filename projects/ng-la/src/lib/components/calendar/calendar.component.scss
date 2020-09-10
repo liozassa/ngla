@@ -50,12 +50,12 @@
             }
 
             &.left-arrow {
-                background: url('./left-arrow.svg') no-repeat center;
+                background: url('../../common/left_arrow.svg') no-repeat center;
                 background-size: 100%;
             }
 
             &.right-arrow {
-                background: url('./right-arrow.svg') no-repeat center;
+                background: url('../../common/right_arrow.svg') no-repeat center;
                 background-size: 100%;
             }
         }
@@ -94,12 +94,12 @@
             }
 
             &.left-arrow {
-                background: url('./left-arrow.svg') no-repeat center;
+                background: url('../../common/left_arrow.svg') no-repeat center;
                 background-size: 100%;
             }
 
             &.right-arrow {
-                background: url('./right-arrow.svg') no-repeat center;
+                background: url('../../common/right_arrow.svg') no-repeat center;
                 background-size: 100%;
             }
         }
@@ -165,11 +165,11 @@
         .la-calendar-years {
             .la-calendar-years-item {
                 &.la-calendar-years-back {
-                    background: url('./right-arrow.svg') no-repeat center;
+                    background: url('../../common/right_arrow.svg') no-repeat center;
                     background-size: 50%;
                 }
                 &.la-calendar-years-next {
-                    background: url('./left-arrow.svg') no-repeat center;
+                    background: url('../../common/left_arrow.svg') no-repeat center;
                     background-size: 50%;
                 }
             }
@@ -177,11 +177,11 @@
         .la-calendar-months {
             .la-calendar-months-item {
                 &.la-calendar-months-back {
-                    background: url('./right-arrow.svg') no-repeat center;
+                    background: url('../../common/right_arrow.svg') no-repeat center;
                     background-size: 50%;
                 }
                 &.la-calendar-months-next {
-                    background: url('./left-arrow.svg') no-repeat center;
+                    background: url('../../common/left_arrow.svg') no-repeat center;
                     background-size: 50%;
                 }
             }

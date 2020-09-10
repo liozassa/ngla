@@ -75,12 +75,12 @@
         cursor: pointer;
 
         &.down {
-          background: url('./down-arrow.svg') no-repeat center;
+          background: url('../../common/down_arrow.svg') no-repeat center;
           background-size: 50%;
         }
 
         &.up {
-          background: url('./up-arrow.svg') no-repeat center;
+          background: url('../../common/up_arrow.svg') no-repeat center;
           background-size: 50%;
         }
       }

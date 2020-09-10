@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   gender: number[] = [1];
   gender2: number;
   done: boolean;
+  number: Number = 2020;
   date: Date;
   date2: Date;
   date3: Date;
