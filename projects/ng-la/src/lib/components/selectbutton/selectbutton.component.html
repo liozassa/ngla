@@ -5,7 +5,7 @@
     </label>
 
     <div class="la-selectbutton-item toggle">
-        <div *ngFor="let option of options; let i = index" [ngClass]="{ 'la-invalid': isInvalid(), 'selected': value === option.value, 'left-round-border': (i === 0 && !isRTL()) || (i === options.length - 1 && isRTL()), 'right-round-border': (i === 0 && isRTL()) || (i === options.length - 1 && !isRTL()) }" (click)="selectItem(option.value)">
+        <div *ngFor="let option of options; let i = index" [ngClass]="{ 'la-invalid': isInvalid(), 'selected': isSelected(option.value), 'left-round-border': (i === 0 && !isRTL()) || (i === options.length - 1 && isRTL()), 'right-round-border': (i === 0 && isRTL()) || (i === options.length - 1 && !isRTL()) }" (click)="selectItem(option.value)">
             <span> {{ option.label }} </span>
         </div>
     </div>

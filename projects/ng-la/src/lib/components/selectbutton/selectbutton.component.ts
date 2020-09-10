@@ -22,6 +22,7 @@ export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges 
   @Input() options: LaSelectItem[];
   @Input() label: string;
   @Input() disabled: boolean;
+  @Input() multiple_choice: boolean;
 
   @Input() invalidError: string;
   @Input() required: boolean;
@@ -31,14 +32,17 @@ export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges 
     return this._value;
   }
   set value(val) {
-    const option = this.options.find(i => i.value === val);
-    if (option) {
-      this._value = option.value;
+    if (val) {
+      if (!this.multiple_choice) {
+        this._value = val;
+      } else {
+        this._value = val;
+      }
       this.onChange(val);
       this.onTouched();
     }
   }
-  private _value: any;
+  private _value: any[] = [];
 
   @Output() change = new EventEmitter();
 
@@ -53,6 +57,7 @@ export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges 
     this.disabled = false;
     this.hasChange = false;
     this.invalidError = null;
+    this.multiple_choice = false
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -83,8 +88,21 @@ export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges 
     this.disabled = disabled;
   }
 
-  selectItem(value: string) {
-    this.value = value;
+  selectItem(value: any) {
+    if (!this.multiple_choice) {
+      this.value = value;
+    } else if (this.value?.includes(value)) {
+      this.value = this.value.filter(v => v !== value);
+    } else {
+      this.value = [...this.value, value];
+    }
+  }
+
+  isSelected(value: any) {
+    if (!this.multiple_choice) {
+      return this.value === value;
+    }
+    return this.value?.includes(value);
   }
 
   isInvalid() {

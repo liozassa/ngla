@@ -115,7 +115,19 @@
   </div>
 
   <div class="select-button">
-    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender"></la-selectbutton>
+    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender2"></la-selectbutton>
+  </div>
+
+  <div class="select-button-text">
+    Gender: {{ gender2 }}
+  </div>
+
+  <div class="select-button">
+    <la-selectbutton [options]="getGenderDataSource()" label="Select Button (gender)" [(ngModel)]="gender" [multiple_choice]="true"></la-selectbutton>
+  </div>
+
+  <div class="select-button-text">
+    Gender: {{ gender }}
   </div>
 
   <div class="switch-button">

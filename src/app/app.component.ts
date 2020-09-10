@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     'required': 'שדה חובה'
   };
   
-  gender: number = 1;
+  gender: number[] = [1];
   gender2: number;
   done: boolean;
   date: Date;
