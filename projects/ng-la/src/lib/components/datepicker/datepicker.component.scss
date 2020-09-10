@@ -53,11 +53,11 @@
       
             .la-datepicker-content-trigger {
                 grid-area: trigger;
-                background: url('./calendar.png') no-repeat center;
+                background: url('../../common/calendar.png') no-repeat center;
                 background-size: 50%;
 
                 &.birthday {
-                  background: url('./birthday-cake.png') no-repeat center;
+                  background: url('../../common/birthday-cake.png') no-repeat center;
                   background-size: 50%;
                 }
             }

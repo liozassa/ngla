@@ -59,6 +59,34 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  persons2 = [
+    {
+      name: 'person1',
+      age: 1,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person2',
+      age: 2,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person3',
+      age: 3,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person4',
+      age: 4,
+      phone: '050-1234567'
+    },
+    {
+      name: 'person5',
+      age: 5,
+      phone: '050-1234567'
+    }
+  ];
+
   submitted = false;
   dialogForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],

@@ -9,7 +9,7 @@
   gap: 0;
   border: none;
   grid-template-rows: auto minmax(0, 100%) auto;
-  align-content: stretch;
+  //align-content: stretch;
 
   /*&.hasHeaderFooter {
     grid-template-rows: 60px auto 40px;
@@ -33,21 +33,25 @@
 
     &.header {
       width: 100%;
+
+      .la-header {
+        height: 30px;
+      }
     }
 
     &.list {
       background-color: white;
       overflow-x: hidden;
       overflow-y: auto;
-      height: fit-content;
-
-      .la-items {
-        height: auto;
-      }
+      height: 100%;
     }
 
     &.footer {
       width: 100%;
+
+      .la-footer {
+        height: 30px;
+      }
     }
   }
 }

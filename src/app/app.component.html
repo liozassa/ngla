@@ -46,6 +46,21 @@
     </la-listbox>
   </div>
 
+  <div class="listbox4">
+    <la-listbox>
+      <div class="la-items">
+        <ng-container *ngFor="let person of persons">
+          <la-card [person]="person"></la-card>
+        </ng-container>
+      </div>
+      <div class="la-footer">
+        <div class="la-footer-item label">
+          Count: {{ persons.length }}
+        </div>
+      </div>
+    </la-listbox>
+  </div>
+
   <div class="showOkDialog">
     <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true" laTooltip="Show OK Dialog" laTooltip-position="bottom"></la-button>
   </div>
