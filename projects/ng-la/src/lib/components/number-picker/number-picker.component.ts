@@ -19,8 +19,7 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaNumberPickerComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaNumberPickerComponent implements OnInit, ControlValueAccessor, Validator { //OnChanges
 

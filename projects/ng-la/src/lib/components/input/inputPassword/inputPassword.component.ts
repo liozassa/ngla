@@ -11,8 +11,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
       useExisting: forwardRef(() => LaInputPasswordComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, OnChanges {
 

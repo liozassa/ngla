@@ -15,8 +15,7 @@ import { CalendarOverlayService } from '../calendar/calendar-overlay.service';
       useExisting: forwardRef(() => LaDatepickerComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //OnChanges
 

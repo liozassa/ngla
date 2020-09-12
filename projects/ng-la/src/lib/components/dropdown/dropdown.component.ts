@@ -14,8 +14,7 @@ import { DdlOptionsOverlayService } from './ddl-options-overlay.service';
       useExisting: forwardRef(() => LaDropdownComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 
 export class LaDropdownComponent implements ControlValueAccessor, OnChanges {

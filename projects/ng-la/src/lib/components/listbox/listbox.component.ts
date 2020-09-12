@@ -3,8 +3,7 @@ import { Component, OnInit, ContentChild, Input, Output, EventEmitter, ChangeDet
 @Component({
   selector: 'la-listbox',
   templateUrl: './listbox.component.html',
-  styleUrls: ['./listbox.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./listbox.component.scss']
 })
 export class LaListBoxComponent implements OnInit {
 

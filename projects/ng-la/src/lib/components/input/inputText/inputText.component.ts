@@ -12,8 +12,7 @@ import { UtilsService } from '../../../services/utils.service';
       useExisting: forwardRef(() => LaInputTextComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnChanges {
 

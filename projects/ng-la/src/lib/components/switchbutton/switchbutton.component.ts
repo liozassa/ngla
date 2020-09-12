@@ -12,8 +12,7 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaSwitchbuttonComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor { //OnChanges
 

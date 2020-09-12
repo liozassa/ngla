@@ -46,16 +46,6 @@ export class AppComponent implements OnInit {
       name: 'person3',
       age: 3,
       phone: '050-1234567'
-    },
-    {
-      name: 'person4',
-      age: 4,
-      phone: '050-1234567'
-    },
-    {
-      name: 'person5',
-      age: 5,
-      phone: '050-1234567'
     }
   ];
 
@@ -93,7 +83,9 @@ export class AppComponent implements OnInit {
     lastName: ['', Validators.required],
     gender: ['', Validators.required],
     gender2: ['', Validators.required],
-    date: [{ value: '' }, Validators.required]
+    date: [{ value: '' }, Validators.required],
+    numberExample: ['', Validators.required],
+    done: ['', Validators.required]
   });
 
   get f() { return this.dialogForm.controls; }
@@ -116,6 +108,15 @@ export class AppComponent implements OnInit {
     /*this.dialogForm.patchValue({
       gender: this.gender
     });*/
+
+    this.dialogForm.get('done').valueChanges.subscribe(val => {
+      console.log('done', val);
+      if (val) {
+        this.dialogForm.controls.numberExample.enable();
+      } else {
+        this.dialogForm.controls.numberExample.disable();
+      }
+    });
   }
 
   getInvalidMsg(formControlName: string): string {
@@ -184,6 +185,13 @@ export class AppComponent implements OnInit {
     };
 
     this.persons.push(person);
+    if (this.persons.length < 5) {
+      this.done = false;
+    }else if (this.persons.length > 5 && this.persons.length < 8) {
+      this.done = true;
+    } else {
+      this.done = false;
+    }
   }
 
   onSelectDate(event) {

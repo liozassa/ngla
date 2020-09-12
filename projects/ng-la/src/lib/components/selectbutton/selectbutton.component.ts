@@ -13,8 +13,7 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaSelectbuttonComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaSelectbuttonComponent implements ControlValueAccessor, OnChanges {
 

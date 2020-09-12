@@ -61,6 +61,10 @@
     </la-listbox>
   </div>
 
+  <div class="switch-button">
+    <la-switchbutton label="Switch Button (done)" [(ngModel)]="done"></la-switchbutton>
+  </div>
+
   <div class="showOkDialog">
     <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true" laTooltip="Show OK Dialog" laTooltip-position="bottom"></la-button>
   </div>
@@ -155,10 +159,6 @@
 
   
 
-  <div class="switch-button">
-    <la-switchbutton label="Switch Button (done)" [(ngModel)]="done"></la-switchbutton>
-  </div>
-
   <div class="done value">
     Date: {{ date | date: 'dd-MM-yyyy' }}
   </div>
@@ -191,6 +191,14 @@
 
       <div class="form-group date-picker">
         <la-datepicker formControlName="date" label="Date Picker (Disabled)" (selectDate)="onSelectDate($event)" laTooltip="Disabled"></la-datepicker>
+      </div>
+
+      <div class="switch-button">
+        <la-switchbutton label="Switch Button (done)" formControlName="done"></la-switchbutton>
+      </div>
+
+      <div class="input number">
+        <la-inputNumber label="Input Number (with min)" formControlName="numberExample" [required]="true" [min]="0"></la-inputNumber>
       </div>
 
     </form>

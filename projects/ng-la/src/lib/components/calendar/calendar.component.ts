@@ -20,8 +20,7 @@ import { UtilsService } from '../../services/utils.service';
       useExisting: forwardRef(() => LaCalendarComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class LaCalendarComponent implements OnInit, ControlValueAccessor, Validator { //OnChanges
 
