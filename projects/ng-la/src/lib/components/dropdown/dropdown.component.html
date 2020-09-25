@@ -5,9 +5,9 @@
     {{ label }}
   </label>
 
-  <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid(), 'disabled': disabled}">
+  <div class="la-dropdown-item content" [ngClass]="{'la-invalid': isInvalid(), 'disabled': disabled}" (click)="openDdl()">
     <input class="la-dropdown-content-input" type="text" [(ngModel)]="selectedItem" [disabled]="disabled" readonly [placeholder]="placeholder ? placeholder : ''" [required]="required">
-    <div class="la-dropdown-content-trigger" [ngClass]="{down: !open, up: open}" (click)="openDdl()"></div>
+    <div class="la-dropdown-content-trigger" [ngClass]="{down: !open, up: open}"></div>
   </div>
   <span class="la-dropdown-item validate" *ngIf="getValidationErr() !== null && !open">{{ getValidationErr() }}</span>
 </div>
