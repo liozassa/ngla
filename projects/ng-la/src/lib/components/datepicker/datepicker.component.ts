@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef, OnChanges, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as moment_ from 'moment';
 import { CalendarOverlayRef } from '../calendar/calendar-overlay-ref.';
@@ -87,7 +87,7 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
 
   parseDate(dateString: string): moment_.Moment {
     if (dateString) {
-      return moment(dateString.replace( /(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+      return moment(dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
     } else {
       return null;
     }
@@ -128,6 +128,10 @@ export class LaDatepickerComponent implements OnInit, ControlValueAccessor { //O
 
   getValidationErr() {
     return this.invalidError;
+  }
+
+  onValueChange(value) {
+    this.value = value;
   }
 
 }

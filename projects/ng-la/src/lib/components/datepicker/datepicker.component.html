@@ -4,8 +4,9 @@
     {{ label }}
   </label>
   <div class="la-datepicker-item content" [ngClass]="{'disabled': disabled}">
-    <input class="la-datepicker-content-input" [ngModel]="value | date: 'dd-MM-yyyy'" readonly [disabled]="disabled">
+    <input name="date" #date='ngModel' class="la-datepicker-content-input" [ngModel]="value | date: 'dd-MM-yyyy'" pattern="\d{2}-\d{2}-\d{4}" (keyup)="date.valid ? onValueChange($event.target.value) : null" [disabled]="disabled">
     <div class="la-datepicker-content-trigger" [ngClass]="type" (click)="onShowCalendar()"></div>
   </div>
   <span class="la-datepicker-item validate" *ngIf="getValidationErr() !== null">{{ getValidationErr() }}</span>
 </div>
+{{ date.valid }}
