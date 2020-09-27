@@ -6,7 +6,7 @@
 
 div {
     //position: absolute;
-    background-color: $pink;
+    background-color: $light-green;
     color: black;
     text-align: center;
     padding: 4px;
@@ -22,7 +22,7 @@ div {
             margin-left: -6px;
             width: 0;
             height: 0;
-            border-top: 6px solid $pink;
+            border-top: 6px solid $light-green;
             border-right: 6px solid transparent;
             border-left: 6px solid transparent;
         }
@@ -38,7 +38,7 @@ div {
             margin-top: -6px;
             width: 0;
             height: 0;
-            border-left: 6px solid $pink;
+            border-left: 6px solid $light-green;
             border-top: 6px solid transparent;
             border-bottom: 6px solid transparent;
         }
@@ -55,7 +55,7 @@ div {
             margin-top: -6px;
             width: 0;
             height: 0;
-            border-right: 6px solid $pink;
+            border-right: 6px solid $light-green;
             border-top: 6px solid transparent;
             border-bottom: 6px solid transparent;
         }
@@ -71,7 +71,7 @@ div {
             margin-left: -6px;
             width: 0;
             height: 0;
-            border-bottom: 6px solid $pink;
+            border-bottom: 6px solid $light-green;
             border-right: 6px solid transparent;
             border-left: 6px solid transparent;
         }

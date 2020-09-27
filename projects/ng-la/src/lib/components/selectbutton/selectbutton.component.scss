@@ -85,10 +85,10 @@
                 }
 
                 &.selected {
-                    background-color: $pink;
+                    background-color: $light-green;
                     color: #FFF;
                     box-shadow: 0 0 10px rgba(#66B3FB, .5);
-                    border-color: $pink;
+                    border-color: $light-green;
                     font-weight: bold;
                     z-index: 1;
                 }

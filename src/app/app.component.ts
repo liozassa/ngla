@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { LaLoaderRef } from 'projects/ng-la/src/lib/components/loader/loader-ref.';
+import { LaLoaderService } from 'projects/ng-la/src/lib/components/loader/loader.service';
 import { UtilsService } from 'projects/ng-la/src/lib/services/utils.service';
 
 @Component({
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
   date4: Date;
   showOkDialog: boolean;
   showYesNoDialog: boolean;
+  dialogRef: LaLoaderRef;
 
   persons = [
     {
@@ -91,9 +94,16 @@ export class AppComponent implements OnInit {
   get f() { return this.dialogForm.controls; }
 
   constructor(private utilsService: UtilsService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private loaderService: LaLoaderService,
+              private el: ElementRef) { }
 
   ngOnInit(): void {
+    this.dialogRef = this.loaderService.show(this.el, "/assets/icons/ico_loader.svg");
+    /*setInterval(() => {
+      this.dialogRef.close();
+    }, 5000);*/
+
     //this.dialogForm.controls.date.disable();
     this.numberExample = 0;
     // this.gender = 1;
@@ -117,6 +127,8 @@ export class AppComponent implements OnInit {
         this.dialogForm.controls.numberExample.disable();
       }
     });
+
+    
   }
 
   getInvalidMsg(formControlName: string): string {

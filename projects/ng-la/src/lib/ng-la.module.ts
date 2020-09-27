@@ -14,6 +14,7 @@ import { LaOverlayPanelModule } from './components/overlaypanel/overlaypanel.mod
 import { CommonModule } from '@angular/common';
 import { LaInputDirective } from './components/input/input.directive';
 import { LaNumberPickerModule } from './components/number-picker';
+import { LaLoaderModule } from './components/loader';
 
 
 
@@ -38,7 +39,8 @@ import { LaNumberPickerModule } from './components/number-picker';
     LaButtonModule,
     LaTooltipModule,
     LaOverlayPanelModule,
-    LaNumberPickerModule
+    LaNumberPickerModule,
+    LaLoaderModule
   ]
 })
 export class NgLaModule { }

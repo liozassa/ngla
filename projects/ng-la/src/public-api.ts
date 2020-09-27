@@ -18,3 +18,4 @@ export * from './lib/components/button/public_api';
 export * from './lib/components/tooltip/public_api';
 export * from './lib/components/overlaypanel/public_api';
 export * from './lib/components/number-picker/public_api';
+export * from './lib/components/loader/public_api';
