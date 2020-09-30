@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgLaComponent } from './ng-la.component';
 import { LaInputModule } from './components/input/input.module';
 import { LaDropDownModule } from './components/dropdown/dropdown.module';
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { LaInputDirective } from './components/input/input.directive';
 import { LaNumberPickerModule } from './components/number-picker';
 import { LaLoaderModule } from './components/loader';
+import { LaToastModule } from './components/toast';
 
 
 
@@ -24,7 +25,7 @@ import { LaLoaderModule } from './components/loader';
     LaInputDirective
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
     NgLaComponent,
@@ -40,7 +41,8 @@ import { LaLoaderModule } from './components/loader';
     LaTooltipModule,
     LaOverlayPanelModule,
     LaNumberPickerModule,
-    LaLoaderModule
+    LaLoaderModule,
+    LaToastModule
   ]
 })
 export class NgLaModule { }

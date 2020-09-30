@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { LaLoaderRef } from 'projects/ng-la/src/lib/components/loader/loader-ref.';
 import { LaLoaderService } from 'projects/ng-la/src/lib/components/loader/loader.service';
+import { LaToastService } from 'projects/ng-la/src/lib/components/toast';
 import { UtilsService } from 'projects/ng-la/src/lib/services/utils.service';
 
 @Component({
@@ -96,13 +97,14 @@ export class AppComponent implements OnInit {
   constructor(private utilsService: UtilsService,
               private fb: FormBuilder,
               private loaderService: LaLoaderService,
-              private el: ElementRef) { }
+              private el: ElementRef,
+              private toastService: LaToastService) { }
 
   ngOnInit(): void {
     this.dialogRef = this.loaderService.show(this.el, "/assets/icons/ico_loader.svg");
-    /*setInterval(() => {
+    setInterval(() => {
       this.dialogRef.close();
-    }, 5000);*/
+    }, 5000);
 
     //this.dialogForm.controls.date.disable();
     this.numberExample = 0;
@@ -204,6 +206,7 @@ export class AppComponent implements OnInit {
     } else {
       this.done = false;
     }
+    this.toastService.show({type: 'success', message: 'Person add successfully', rtl: true});
   }
 
   onSelectDate(event) {

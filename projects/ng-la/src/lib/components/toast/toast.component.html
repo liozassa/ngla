@@ -1,0 +1,7 @@
+<div class="la-toast" [ngClass]="[mode, type]">
+    <div class="la-toast-content">
+        <div class="icon"></div>
+        <div class="text"> {{ message }} </div>
+        <div class="close" *ngIf="show_close" (click)="onHide()"></div>
+    </div>
+</div>

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgLaModule } from 'ng-la';
+import { LaToastModule, NgLaModule } from 'ng-la';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LaCardComponent } from './card/card.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { LaToastService } from 'projects/ng-la/src/public-api';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     ReactiveFormsModule,
     NgLaModule
+  ],
+  providers: [
+    LaToastService
   ],
   bootstrap: [AppComponent]
 })
