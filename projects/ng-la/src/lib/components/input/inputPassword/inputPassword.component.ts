@@ -23,6 +23,8 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
   @Input() required: boolean;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() autocomplete: string;
+  
 
   @Input()
   get value(): any {
@@ -56,6 +58,7 @@ export class LaInputPasswordComponent implements OnInit, ControlValueAccessor, O
     this.required = false;
     this.disabled = false;
     this.readonly = false;
+    this.autocomplete = 'off';
     this.hasChange = false;
     this.invalidError = null;
    }

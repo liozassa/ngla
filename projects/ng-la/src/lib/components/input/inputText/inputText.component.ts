@@ -24,6 +24,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
   @Input() required: boolean;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() autocomplete: string;
 
   @Input()
   get value(): any {
@@ -56,6 +57,7 @@ export class LaInputTextComponent implements OnInit, ControlValueAccessor, OnCha
     this.required = false;
     this.disabled = false;
     this.readonly = false;
+    this.autocomplete = 'off';
     this.hasChange = false;
     this.invalidError = null;
    }
