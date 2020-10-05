@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-lib": "ng-packagr -p ./projects/ng-la/ng-package.json",
-    "build-lib-dev": "ng build NgLa",
-    "build-npm-package": "npm run build-lib; cd dist/ng-la; npm pack .; npm publish; cd ..; cd ..;",
+    "dev": "ng build NgLa",
+    "prod": "npm run build-lib; cd dist/ng-la; npm pack .; npm publish; cd ..; cd ..;",
     "postinstall": "npx ngcc"
   },
   "dependencies": {

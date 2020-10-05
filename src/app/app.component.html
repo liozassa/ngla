@@ -65,6 +65,10 @@
     <la-switchbutton label="Switch Button (done)" [(ngModel)]="done"></la-switchbutton>
   </div>
 
+  <div class="switch-button">
+    <la-switchbutton label="Switch Button (done)" [one_line]="true" [(ngModel)]="done"></la-switchbutton>
+  </div>
+
   <div class="showOkDialog">
     <la-button class="la-button-secondary" label="Show OK Dialog" (click)="showOkDialog = true" laTooltip="Show OK Dialog" laTooltip-position="bottom"></la-button>
   </div>

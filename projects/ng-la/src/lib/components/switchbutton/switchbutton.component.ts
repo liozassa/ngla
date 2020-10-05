@@ -19,6 +19,7 @@ export class LaSwitchbuttonComponent implements OnInit, ControlValueAccessor { /
   @Input() label: string;
   @Input() disabled: boolean;
   @Input() required: boolean;
+  @Input() one_line: boolean;
 
   @Input()
   get value() {
