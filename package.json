@@ -4,13 +4,13 @@
   "author": "Lioz assa <liozassa@gmail.com>",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4201",
+    "start-dev": "ng serve --port=4201",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-lib": "ng-packagr -p ./projects/ng-la/ng-package.json",
-    "dev": "ng build NgLa",
+    "build-lib-dev": "ng build NgLa",
     "prod": "npm run build-lib; cd dist/ng-la; npm pack .; npm publish; cd ..; cd ..;",
     "postinstall": "npx ngcc"
   },
