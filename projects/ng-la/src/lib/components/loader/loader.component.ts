@@ -16,7 +16,6 @@ export class LaLoaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('imageSrc', this.imageSrc);
    }
 
 }

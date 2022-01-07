@@ -43,7 +43,7 @@
     .la-dialog-item {
         // width: 100%;
 
-        &.header {
+        &-header {
             grid-area: header;
             background-color: $light-green;
             font-size: 20px;
@@ -51,8 +51,9 @@
             text-align: center;
         } 
   
-        &.content {
+        &-content {
             grid-area: content;
+            padding: 10px;
             //padding: 10px;
             
             /*.la-dialog-content {
@@ -61,7 +62,7 @@
             }*/
         }
   
-        &.footer {
+        &-footer {
             grid-area: footer;
             border-top: 1px solid lightgrey;
             padding: 5px 0;

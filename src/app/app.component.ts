@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   
   gender: number[] = [1];
   gender2: number;
+  gender3: number;
   done: boolean;
   number: Number = 2020;
   date: Date;
@@ -188,6 +189,12 @@ export class AppComponent implements OnInit {
       { label: 'trans', value: 3},
       { label: 'gay', value: 4},
       { label: 'lesbian', value: 5}
+    ]
+  }
+
+  getSingleDataSource() {
+    return [
+      { label: 'single', value: 1}
     ]
   }
 

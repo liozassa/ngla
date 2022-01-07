@@ -1,15 +1,15 @@
 <div class="la-dialog-overlay" [ngClass]="{'closed': !open}"></div>
 
 <div class="la-dialog-grid" [ngStyle]="laStyle" [ngClass]="{'closed': !open}">
-    <div class="la-dialog-item header"> <!-- *ngIf="header" -->
+    <div class="la-dialog-item-header"> <!-- *ngIf="header" -->
         <span class="la-dialog-header label"> {{ header }} </span>
     </div>
 
-    <div class="la-dialog-item content">
+    <div class="la-dialog-item-content">
         <ng-content select=".la-dialog-content"></ng-content>
     </div>
 
-    <div class="la-dialog-item footer">
+    <div class="la-dialog-item-footer">
         <ng-content select=".la-dialog-footer"></ng-content>
     </div>
 </div>

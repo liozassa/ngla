@@ -1,190 +1,190 @@
 @import '../../common/_variables.scss';
 
 :host {
-    display: block;
+  display: block;
 }
 
 .la-calendar {
+  display: grid;
+  height: auto;
+  background-color: white;
+  padding: 5px;
+  border: 0.5px solid lightgrey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  grid-row-gap: 5px;
+  grid-template-rows: 30px 30px auto;
+  grid-template-areas:
+    'years'
+    'months'
+    'headers'
+    'days';
+
+  .la-calendar-years {
+    grid-area: years;
     display: grid;
-    height: auto;
-    background-color: white;
-    border: 0.5px solid lightgrey;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    grid-row-gap: 5px;
-    grid-template-rows: 30px 30px auto;
-    grid-template-areas: 'years'
-                         'months'
-                         'headers'
-                         'days';
+    // grid-column-gap: 10px;
+    grid-template-columns: 30px auto 30px;
+    grid-template-areas: 'back name next';
 
+    .la-calendar-years-item {
+      &.la-calendar-years-back {
+        grid-area: back;
+        cursor: pointer;
+        width: 60%;
+        height: 60%;
+        margin: 15%;
+        justify-self: start;
+      }
+
+      &.la-calendar-years-name {
+        grid-area: name;
+        place-self: center;
+      }
+
+      &.la-calendar-years-next {
+        grid-area: next;
+        cursor: pointer;
+        width: 60%;
+        height: 60%;
+        margin: 15%;
+        justify-self: end;
+      }
+
+      &.left-arrow {
+        background: url('../../common/left_arrow.svg') no-repeat center;
+        background-size: 100%;
+      }
+
+      &.right-arrow {
+        background: url('../../common/right_arrow.svg') no-repeat center;
+        background-size: 100%;
+      }
+    }
+  }
+
+  .la-calendar-months {
+    grid-area: months;
+    display: grid;
+    // grid-column-gap: 10px;
+    grid-template-columns: 30px auto 30px;
+    grid-template-areas: 'back name next';
+
+    .la-calendar-months-item {
+      &.la-calendar-months-back {
+        grid-area: back;
+        cursor: pointer;
+        width: 60%;
+        height: 60%;
+        margin: 15%;
+        justify-self: start;
+      }
+
+      &.la-calendar-months-name {
+        grid-area: name;
+        place-self: center;
+      }
+
+      &.la-calendar-months-next {
+        grid-area: next;
+        cursor: pointer;
+        width: 60%;
+        height: 60%;
+        margin: 15%;
+        justify-self: end;
+      }
+
+      &.left-arrow {
+        background: url('../../common/left_arrow.svg') no-repeat center;
+        background-size: 100%;
+      }
+
+      &.right-arrow {
+        background: url('../../common/right_arrow.svg') no-repeat center;
+        background-size: 100%;
+      }
+    }
+  }
+
+  .la-calendar-headers {
+    grid-area: headers;
+    display: grid;
+    grid-template-columns: repeat(7, 30px);
+    grid-template-rows: 30px;
+    justify-content: space-between;
+
+    .la-calendar-headers-label {
+      place-self: center;
+    }
+  }
+
+  .la-calendar-days {
+    grid-area: days;
+    display: grid;
+    // grid-gap: 0px;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(5, 30px);
+
+    .la-calendar-days-week {
+      display: grid;
+      grid-template-columns: repeat(7, 30px);
+      grid-template-rows: auto;
+      //justify-items: center;
+      justify-content: space-between;
+      align-items: stretch;
+
+      .la-calendar-days-label {
+        padding: 5px;
+        text-align: center;
+
+        &.enabled {
+          cursor: pointer;
+          &:hover {
+            background-color: lightgray;
+            border-radius: 50%;
+          }
+        }
+
+        &.selected {
+          color: white;
+          background-color: $light-green;
+          border-radius: 50%;
+        }
+
+        &.disabled {
+          color: gray;
+        }
+
+        &.today {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &.la-rtl {
     .la-calendar-years {
-        grid-area: years;
-        display: grid;
-        // grid-column-gap: 10px;
-        grid-template-columns: 30px auto 30px;
-        grid-template-areas: 'back name next';
-
-        .la-calendar-years-item {
-
-            &.la-calendar-years-back {
-                grid-area: back;
-                cursor: pointer;
-                width: 60%;
-                height: 60%;
-                margin: 15%;
-                justify-self: start;
-            }
-    
-            &.la-calendar-years-name {
-                grid-area: name;
-                place-self: center;
-            }
-    
-            &.la-calendar-years-next {
-                grid-area: next;
-                cursor: pointer;
-                width: 60%;
-                height: 60%;
-                margin: 15%;
-                justify-self: end;
-            }
-
-            &.left-arrow {
-                background: url('../../common/left_arrow.svg') no-repeat center;
-                background-size: 100%;
-            }
-
-            &.right-arrow {
-                background: url('../../common/right_arrow.svg') no-repeat center;
-                background-size: 100%;
-            }
+      .la-calendar-years-item {
+        &.la-calendar-years-back {
+          background: url('../../common/right_arrow.svg') no-repeat center;
+          background-size: 50%;
         }
+        &.la-calendar-years-next {
+          background: url('../../common/left_arrow.svg') no-repeat center;
+          background-size: 50%;
+        }
+      }
     }
-    
     .la-calendar-months {
-        grid-area: months;
-        display: grid;
-        // grid-column-gap: 10px;
-        grid-template-columns: 30px auto 30px;
-        grid-template-areas: 'back name next';
-
-        .la-calendar-months-item {
-
-            &.la-calendar-months-back {
-                grid-area: back;
-                cursor: pointer;
-                width: 60%;
-                height: 60%;
-                margin: 15%;
-                justify-self: start;
-            }
-    
-            &.la-calendar-months-name {
-                grid-area: name;
-                place-self: center;
-            }
-    
-            &.la-calendar-months-next {
-                grid-area: next;
-                cursor: pointer;
-                width: 60%;
-                height: 60%;
-                margin: 15%;
-                justify-self: end;
-            }
-
-            &.left-arrow {
-                background: url('../../common/left_arrow.svg') no-repeat center;
-                background-size: 100%;
-            }
-
-            &.right-arrow {
-                background: url('../../common/right_arrow.svg') no-repeat center;
-                background-size: 100%;
-            }
+      .la-calendar-months-item {
+        &.la-calendar-months-back {
+          background: url('../../common/right_arrow.svg') no-repeat center;
+          background-size: 50%;
         }
+        &.la-calendar-months-next {
+          background: url('../../common/left_arrow.svg') no-repeat center;
+          background-size: 50%;
+        }
+      }
     }
-
-    .la-calendar-headers {
-        grid-area: headers;
-        display: grid;
-        grid-template-columns: repeat(7, 30px);
-        grid-template-rows: 30px;
-        justify-content: space-between;	
-
-        .la-calendar-headers-label {
-            place-self: center;
-        }
-    }
-
-    .la-calendar-days {
-        grid-area: days;
-        display: grid;
-        // grid-gap: 0px;
-        grid-template-columns: auto;
-        grid-template-rows: repeat(5, 30px);
-
-        .la-calendar-days-week {
-            display: grid;
-            grid-template-columns: repeat(7, 30px);
-            grid-template-rows: auto;
-            //justify-items: center;
-            justify-content: space-between;	
-            align-items: stretch;
-
-            .la-calendar-days-label {
-                padding: 5px;
-                text-align: center;
-
-                &.enabled {
-                    cursor: pointer;
-                    &:hover {
-                        background-color: lightgray;
-                        border-radius: 50%;
-                    }
-                }
-
-                &.selected {
-                    color: white;
-                    background-color: $light-green;
-                    border-radius: 50%;
-                }
-            
-                &.disabled {
-                    color: gray;
-                }
-
-                &.today {
-                    font-weight: bold;
-                }
-            }
-        }
-    }
-
-    &.la-rtl {
-        .la-calendar-years {
-            .la-calendar-years-item {
-                &.la-calendar-years-back {
-                    background: url('../../common/right_arrow.svg') no-repeat center;
-                    background-size: 50%;
-                }
-                &.la-calendar-years-next {
-                    background: url('../../common/left_arrow.svg') no-repeat center;
-                    background-size: 50%;
-                }
-            }
-        }
-        .la-calendar-months {
-            .la-calendar-months-item {
-                &.la-calendar-months-back {
-                    background: url('../../common/right_arrow.svg') no-repeat center;
-                    background-size: 50%;
-                }
-                &.la-calendar-months-next {
-                    background: url('../../common/left_arrow.svg') no-repeat center;
-                    background-size: 50%;
-                }
-            }
-        }
-    }
+  }
 }

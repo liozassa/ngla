@@ -1,123 +1,137 @@
 @import '../../common/_variables.scss';
 
-@mixin hideInput {width: 0; height: 0; position: absolute; left: -9999px;}
+@mixin hideInput {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -9999px;
+}
 
-@mixin focusOutline {outline: dotted 1px #CCC; outline-offset: .45rem;}
+@mixin focusOutline {
+  outline: dotted 1px #ccc;
+  outline-offset: 0.45rem;
+}
 
 @mixin breakpoint($point) {
-	@if $point == 1100 {
-		@media (max-width: 1100px) { @content ; }
-	}
-	@else if $point == 800 {
-		@media (max-width: 800px) { @content ; }
-	}
+  @if $point == 1100 {
+    @media (max-width: 1100px) {
+      @content;
+    }
+  } @else if $point == 800 {
+    @media (max-width: 800px) {
+      @content;
+    }
+  }
 }
 
 .la-selectbutton-grid {
-    display: grid;
-    background-color: transparent;
-    padding: 0px;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-row-gap: $component-row-gap;
-    grid-template-rows: $component-label-size 30px auto;
-    grid-template-areas: 'label'
-                         'toggle'
-                         'validate';
+  display: grid;
+  background-color: transparent;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-row-gap: $component-row-gap;
+  grid-template-rows: $component-label-size 30px auto;
+  grid-template-areas:
+    'label'
+    'toggle'
+    'validate';
 
-    .la-selectbutton-item {
-        cursor: pointer;
-  
-        &.label {
-          grid-area: label;
-          font-size: $component-label-size;
+  .la-selectbutton-item {
+    cursor: pointer;
 
-          span {
-              color: red;
-          }
+    &.label {
+      grid-area: label;
+      font-size: $component-label-size;
+
+      span {
+        color: red;
+      }
+    }
+
+    &.toggle {
+      grid-area: toggle;
+      // margin: 0 0 1.5rem;
+      box-sizing: border-box;
+      //font-size: 0;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+
+      div {
+        box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        border: solid 1px #ddd;
+        background-color: #fff;
+        padding: 9.5px;
+        line-height: 7px;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+        transition: border-color 0.15s ease-out, color 0.25s ease-out,
+          background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+
+        span {
+          font-size: 11px;
         }
-      
-        &.toggle {
-            grid-area: toggle;
-            // margin: 0 0 1.5rem;
-            box-sizing: border-box;
-            //font-size: 0;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-start;
-            align-items: stretch;
-            
-            div {
-                box-sizing: border-box;
-                position: relative;
-                display: inline-block;
-                border: solid 1px #DDD;
-                background-color: #FFF;
-                padding: 9.5px;
-                line-height: 7px;
-                box-shadow: 0 0 0 rgba(255,255,255,0);
-                transition: border-color .15s ease-out, 
-                            color .25s ease-out, 
-                            background-color .15s ease-out,
-                            box-shadow .15s ease-out;
 
-                span {
-                    font-size: 11px;
-                }
+        &.left-round-border {
+          border-radius: 6px 0 0 6px;
+          border-right: none;
+        }
 
-                &.left-round-border {
-                    border-radius: 6px 0 0 6px;
-                    border-right: none;
-                }
+        &.right-round-border {
+          border-radius: 0 6px 6px 0;
+          border-left: none;
+        }
 
-                &.right-round-border {
-                    border-radius: 0 6px 6px 0;
-                    border-left: none;
-                }
-                
-                &.la-invalid {
-                    border-left: 1px solid red;
-                }
+        &.single-round-border {
+          border-radius: 6px !important;
+        }
 
-                &:hover {
-                    border-color: #213140;
-                }
+        &.la-invalid {
+          border-left: 1px solid red;
+        }
 
-                &.selected {
-                    background-color: $light-green;
-                    color: #FFF;
-                    box-shadow: 0 0 10px rgba(#66B3FB, .5);
-                    border-color: $light-green;
-                    font-weight: bold;
-                    z-index: 1;
-                }
-                
-                &.la-invalid {
-                    border-top: 1px solid red;
-                    border-bottom: 1px solid red;
-                }
-            }
+        &:hover {
+          border-color: #213140;
+        }
 
-            /*@include breakpoint(800) {
+        &.selected {
+          background-color: $light-green;
+          color: #fff;
+          box-shadow: 0 0 10px rgba(#66b3fb, 0.5);
+          border-color: $light-green;
+          font-weight: bold;
+          z-index: 1;
+        }
+
+        &.la-invalid {
+          border-top: 1px solid red;
+          border-bottom: 1px solid red;
+        }
+      }
+
+      /*@include breakpoint(800) {
                 input + label {
                     padding: 2vh 1vw;
                     flex: 0 0 50%;
                     display: flex; justify-content: center; align-items: center;
                 }
             }*/
-        }
-
-        &.validate {
-            grid-area: validate;
-            color: red;
-            font-size: 12px;
-        }
     }
+
+    &.validate {
+      grid-area: validate;
+      color: red;
+      font-size: 12px;
+    }
+  }
 }
-  
+
 .disabled {
-    pointer-events:none;
+  pointer-events: none;
 }
 
 /*.la-rtl {
