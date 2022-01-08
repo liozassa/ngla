@@ -1,115 +1,117 @@
 @import '../../common/_variables.scss';
 
 .la-switchbutton-grid {
-    display: grid;
-    background-color: transparent;
-    padding: 0px;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-gap: $component-row-gap;
-    grid-template-rows: $component-label-size auto auto;
-    grid-template-areas: 'label'
-                         'toggle'
-                         'validate';
+  display: grid;
+  background-color: transparent;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  grid-gap: $component-row-gap;
+  grid-template-rows: $component-label-size auto auto;
+  grid-template-areas:
+    'label'
+    'toggle'
+    'validate';
 
-    &.one-line {
-        grid-template-columns: min-content auto;
-        grid-template-rows: auto auto;
-        grid-template-areas: 'toggle label'
-                             'validate validate';
+  &.one-line {
+    grid-template-columns: min-content auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'toggle label'
+      'validate validate';
+  }
+
+  .la-switchbutton-item {
+    &.label {
+      grid-area: label;
+      font-size: $component-label-size;
+
+      span {
+        color: red;
+      }
     }
 
-    .la-switchbutton-item {
+    &.toggle {
+      grid-area: toggle;
 
-        &.label {
-          grid-area: label;
-          font-size: $component-label-size;
-          align-self: center;
+      .toggle-btn {
+        display: inline-block;
+        outline: 0;
+        width: 4vh;
+        height: 2vh;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        background: #fbfbfb;
+        border-radius: 2vh;
+        padding: 2px;
+        transition: all 0.4s ease;
+        border: 1px solid #e8eae9;
 
-          span {
-              color: red;
+        &:focus::after,
+        &:active::after {
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08),
+            inset 0px 0px 0px 1.5px #9c9c9c;
+        }
+
+        &::after {
+          left: 0;
+          position: relative;
+          display: block;
+          content: '';
+          width: 50%;
+          height: 100%;
+          border-radius: 2vh;
+          background: #fbfbfb;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+            padding 0.3s ease, margin 0.3s ease;
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        &.rtl {
+          &::after {
+            right: 0;
           }
         }
-      
-        &.toggle {
-            grid-area: toggle;
-            align-self: center;
 
-            .toggle-btn {
-                display: inline-block;
-                outline: 0;
-                width: 4vh;
-                height: 2vh;
-                position: relative;
-                cursor: pointer;
-                user-select: none;
-                background: #fbfbfb;
-                border-radius: 2vh;
-                padding: 2px;
-                transition: all 0.4s ease;
-                border: 1px solid #e8eae9;
-              
-                &:focus::after, &:active::after {
-                  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08), inset 0px 0px 0px 1.5px #9c9c9c;
-                }
-              
-                &::after {
-                    left: 0;
-                    position: relative;
-                    display: block;
-                    content: '';
-                    width: 50%;
-                    height: 100%;
-                    border-radius: 2vh;
-                    background: #fbfbfb;
-                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
-                    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
-                }
+        &.toggle-btn-on {
+          &::after {
+            left: 50%;
+          }
 
-                &.rtl {
-                    &::after {  
-                        right: 0;
-                    }
-                }
-              
-                &.toggle-btn-on {
-                    &::after {
-                        left: 50%;
-                    }
-
-                    &.rtl {
-                        &::after {  
-                            right: 50%;
-                        }
-                    }
-                
-                    background: $light-green;
-                
-                    &:active {
-                        box-shadow: none;
-                
-                        &::after {
-                        margin-left: -0.8em;
-                        }
-                    }
-                }
-              
-                &:active::after {
-                    padding-right: 0.8em;
-                }
+          &.rtl {
+            &::after {
+              right: 50%;
             }
-              
-            .toggle-input {
-                display: none;
+          }
+
+          background: $light-green;
+
+          &:active {
+            box-shadow: none;
+
+            &::after {
+              margin-left: -0.8em;
             }
+          }
         }
-    }
 
-    .la-selectbutton-validate {
-      grid-area: validate;
-      color: red;
-      font-size: 12px;
-      margin-top: -10px;
+        &:active::after {
+          padding-right: 0.8em;
+        }
+      }
+
+      .toggle-input {
+        display: none;
+      }
     }
+  }
+
+  .la-selectbutton-validate {
+    grid-area: validate;
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+  }
 }
