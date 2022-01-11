@@ -1,98 +1,99 @@
 .grid-container {
-    display: grid;
-    width: 100%;
-    grid-gap: 40px;
-    background-color: coral;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: 200px auto auto auto;
+  display: grid;
+  width: 100%;
+  grid-gap: 40px;
+  background-color: white;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 200px auto auto auto;
 
-    .dropdown { 
-        height: 60px;
-    }
+  .dropdown {
+    height: 60px;
+  }
 
-    .listbox {
-        .la-header {
-            display: grid;
-            width: 100%;
-            height: 30px;
-            grid-template-columns: 30px auto 30px;
-            grid-template-areas: '. label btn';
+  .listbox {
+    .la-header {
+      display: grid;
+      width: 100%;
+      height: 30px;
+      grid-template-columns: 30px auto 30px;
+      grid-template-areas: '. label btn';
 
-            .la-header-item {
-                place-self: center;
+      .la-header-item {
+        place-self: center;
 
-                &.label {
-                    grid-area: label;
-                    font-size: 2vh;
-                }
-    
-                &.btn {
-                    grid-area: btn;
-                    width: 1.5vmin;
-                    height: 1.5vmin;
-                }
-            }
+        &.label {
+          grid-area: label;
+          font-size: 2vh;
         }
 
-        .la-footer {
-            font-size: 2vh;
+        &.btn {
+          grid-area: btn;
+          width: 1.5vmin;
+          height: 1.5vmin;
         }
+      }
     }
+
+    .la-footer {
+      font-size: 2vh;
+    }
+  }
 }
 
 .la-dialog-content-grid {
-    display: grid;
-    height: 100%;
-    grid-template-columns: auto;
-    grid-template-areas: 'firstName'
-                         'lastName'
-                         'dropdown'
-                         'select-button'
-                         'date-picker';
+  display: grid;
+  height: 100%;
+  grid-template-columns: auto;
+  grid-template-areas:
+    'firstName'
+    'lastName'
+    'dropdown'
+    'select-button'
+    'date-picker';
 
-    .form-group {
-        width: 100%;
-        margin-bottom: 10px;
+  .form-group {
+    width: 100%;
+    margin-bottom: 10px;
 
-        &.firstName {
-            grid-area: firstName;
-        }
-
-        &.lastName {
-            grid-area: lastName;
-        }
-
-        &.dropdown {
-            grid-area: dropdown;
-        }
-
-        &.select-button {
-            grid-area: select-button;
-        }
-
-        &.date-picker {
-            grid-area: date-picker;
-        }
+    &.firstName {
+      grid-area: firstName;
     }
 
-    .is-invalid {
-        border: red 1px solid;
+    &.lastName {
+      grid-area: lastName;
     }
 
-    .invalid-feedback {
-        color: red;
-        font-size: 1.2vh;
+    &.dropdown {
+      grid-area: dropdown;
     }
+
+    &.select-button {
+      grid-area: select-button;
+    }
+
+    &.date-picker {
+      grid-area: date-picker;
+    }
+  }
+
+  .is-invalid {
+    border: red 1px solid;
+  }
+
+  .invalid-feedback {
+    color: red;
+    font-size: 1.2vh;
+  }
 }
 
 .la-dialog-footer {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
 }
 
 .la-rtl {
-    &.grid-container {
-        direction: rtl;
-    }
+  &.grid-container {
+    direction: rtl;
+  }
 }

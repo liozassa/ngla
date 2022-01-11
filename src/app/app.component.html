@@ -77,6 +77,10 @@
     <la-button class="la-button-secondary" label="Show Yes|No Dialog" (click)="showYesNoDialog = true"></la-button>
   </div>
 
+  <div class="dropdown">
+    <la-dropdown [options]="getGenderDataSource()" label="Drop Down List (gender)" placeholder="Select a gender" [(ngModel)]="gender" [required]="true"></la-dropdown>
+  </div>
+
   <div class="input text">
     <la-inputText label="Input Text" [(ngModel)]="textEmptyExample" [required]="true" laTooltip="Input Text" laTooltip-position="right"></la-inputText>
   </div>
